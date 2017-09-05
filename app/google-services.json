@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "721420541210",
+    "firebase_url": "https://echosoft-eagora.firebaseio.com",
+    "project_id": "echosoft-eagora",
+    "storage_bucket": "echosoft-eagora.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721420541210:android:4a6dfa31464d3676",
+        "android_client_info": {
+          "package_name": "com.eagora.echosoft.eagora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721420541210-0vunbqiknf5papsi6ka3isgsc6euuhdf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eagora.echosoft.eagora",
+            "certificate_hash": "c4e49d4f7d7678489cd838b3a98fc13b54d47eb0"
+          }
+        },
+        {
+          "client_id": "721420541210-c94ft81p2bgf9fr1epruf5026pnp6kqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADXHZ2wtwJhzIt-zI9DM6EGN3FxAAhoWo"
+        },
+        {
+          "current_key": "AIzaSyD74OPEvRe_U2JmAuE2ulmBrsbXCSW932U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721420541210-c94ft81p2bgf9fr1epruf5026pnp6kqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
