@@ -23,9 +23,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_main);
+        //FacebookSdk.(getApplicationContext());
+        InitializeControls();
     }
+
+
     private void  InitializeControls(){
         txtStatus = (TextView)findViewById(R.id.txtStatus);
         login_button = (LoginButton)findViewById(R.id.login_button);
