@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //FacebookSdk.(getApplicationContext());
         InitializeControls();
     }
 
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                txtStatus.setText("Login Cancelled");
+                //txtStatus.setText("Login Cancelled");
             }
 
             @Override
