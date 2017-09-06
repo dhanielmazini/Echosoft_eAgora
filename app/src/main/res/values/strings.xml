@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">eAgora</string>
+    <string name="facebook_app_id">1881498548777082</string>
+    <string name="fb_login_protocol_scheme">fb1881498548777082</string>
+
 </resources>
