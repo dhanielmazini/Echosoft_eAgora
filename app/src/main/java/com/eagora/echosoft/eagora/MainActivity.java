@@ -3,6 +3,10 @@ package com.eagora.echosoft.eagora;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,11 @@ import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
@@ -24,8 +33,10 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     LoginButton login_button;
-    TextView txtStatus;
+    TextView txtStatus,reqTest;
     CallbackManager callbackManager;
+    EditText insertText;
+    Button testReq,testInsert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void  InitializeControls(){
+        reqTest = (TextView)findViewById(R.id.reqTest);
+        testReq = (Button)findViewById(R.id.testReq);
+        testInsert = (Button)findViewById(R.id.testInsert);
+        insertText = (EditText)findViewById(R.id.insertText);
+
         txtStatus = (TextView)findViewById(R.id.txtStatus);
         login_button = (LoginButton)findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
@@ -87,8 +103,44 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+
+        testReq.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                            DatabaseReference myRef = database.getReference("message");
+                                            myRef.addValueEventListener(new ValueEventListener() {
+
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    String value = dataSnapshot.getValue(String.class);
+                                                    reqTest.setText(value);
+                                                }
+
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
+                                                    reqTest.setText("Fail");
+                                                }
+                                            });
+                                       }
+                                   }
+        );
+
+        testInsert.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View view) {
+                                              FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                              DatabaseReference myRef = database.getReference("message");
+                                              String messageSending = insertText.getText().toString();
+                                              myRef.setValue(messageSending);
+                                          }
+                                      }
+
+        );
+
     }
     protected void onActivityResult(int requestCode, int result, Intent data){
         callbackManager.onActivityResult(requestCode, result, data);
     }
+
 }

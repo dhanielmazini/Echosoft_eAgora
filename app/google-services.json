@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "721420541210-m7g1s6rpfbpdg7qftk9fj8928ipnb6pc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eagora.echosoft.eagora",
+            "certificate_hash": "961870f5757b985a9dae903afae0b676f12f1c07"
+          }
+        },
+        {
           "client_id": "721420541210-0vunbqiknf5papsi6ka3isgsc6euuhdf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
