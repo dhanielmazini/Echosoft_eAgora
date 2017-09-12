@@ -2,5 +2,10 @@
     <string name="app_name">eAgora</string>
     <string name="facebook_app_id">1881498548777082</string>
     <string name="fb_login_protocol_scheme">fb1881498548777082</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="location_permission_denied">Não rolou</string>
+    <string name="permission_required_toast">Não rolou mesmo</string>
+    <string name="permission_rationale_location">se é bixão mesmo</string>
+
 
 </resources>
