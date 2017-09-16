@@ -111,4 +111,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp" />
 
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="305dp" />
+
 </android.support.constraint.ConstraintLayout>

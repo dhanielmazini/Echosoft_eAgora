@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtStatus,reqTest;
     CallbackManager callbackManager;
     EditText insertText;
-    Button testReq,testInsert,button2;
+    Button testReq,testInsert,button2,btnMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         testInsert = (Button)findViewById(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
+        btnMenu = (Button)findViewById(R.id.btnMenu);
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
         login_button = (LoginButton)findViewById(R.id.login_button);
@@ -144,6 +145,16 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view){
                         Intent maps = new Intent(getApplicationContext(), MapsActivity.class);
+                        startActivity(maps);
+                    }
+                }
+        );
+
+        btnMenu.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Intent maps = new Intent(getApplicationContext(), MenuActivity.class);
                         startActivity(maps);
                     }
                 }

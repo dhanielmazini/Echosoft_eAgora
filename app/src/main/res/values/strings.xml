@@ -6,6 +6,12 @@
     <string name="location_permission_denied">Não rolou</string>
     <string name="permission_required_toast">Não rolou mesmo</string>
     <string name="permission_rationale_location">se é bixão mesmo</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 
 </resources>
