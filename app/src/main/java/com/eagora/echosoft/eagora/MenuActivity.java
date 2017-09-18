@@ -41,7 +41,7 @@ public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     LoginButton login_button;
-    TextView txtStatus,reqTest;
+    TextView txtStatus,reqTest, getn;
     CallbackManager callbackManager;
     EditText insertText;
     Button testReq,testInsert,button2;
@@ -70,6 +70,12 @@ public class MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header=navigationView.getHeaderView(0);
+/*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
+        getn = (TextView)header.findViewById(R.id.getn);
+        getn.setText(Profile.getCurrentProfile().getName());
+
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         InitializeControls();
