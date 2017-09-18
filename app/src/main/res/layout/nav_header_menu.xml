@@ -13,13 +13,11 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="1">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="61dp"
-        android:layout_height="40dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
-        android:layout_weight="0.08" />
+    <com.facebook.login.widget.ProfilePictureView
+        android:id="@+id/image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true" />
 
     <TextView
         android:id="@+id/getn"

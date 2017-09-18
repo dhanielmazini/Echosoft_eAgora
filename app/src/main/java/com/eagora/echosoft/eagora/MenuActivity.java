@@ -45,6 +45,7 @@ public class MenuActivity extends AppCompatActivity
     CallbackManager callbackManager;
     EditText insertText;
     Button testReq,testInsert,button2;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +69,8 @@ public class MenuActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        View header=navigationView.getHeaderView(0);
-/*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
-        getn = (TextView)header.findViewById(R.id.getn);
-        getn.setText(Profile.getCurrentProfile().getName());
-
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         InitializeControls();
@@ -106,6 +101,10 @@ public class MenuActivity extends AppCompatActivity
                             loginResult.getAccessToken().getUserId()
                             + "\n" + "Last Refresh:\n " + loginResult.getAccessToken().getLastRefresh() + "\n" +
                             "nome: \n" + Profile.getCurrentProfile().getName());
+                    View header= navigationView.getHeaderView(0);
+/*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
+                    getn = (TextView)header.findViewById(R.id.getn);
+                    getn.setText(Profile.getCurrentProfile().getName());
                 }
                 GraphRequest.newMeRequest(
                         loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
