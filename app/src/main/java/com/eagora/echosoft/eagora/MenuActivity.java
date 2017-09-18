@@ -3,20 +3,20 @@ package com.eagora.echosoft.eagora;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -27,6 +27,7 @@ import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,9 +47,11 @@ public class MenuActivity extends AppCompatActivity
     EditText insertText;
     Button testReq,testInsert,button2;
     NavigationView navigationView;
+    ProfilePictureView profilePictureView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -77,11 +80,14 @@ public class MenuActivity extends AppCompatActivity
     }
 
     private void  InitializeControls(){
+
         reqTest = (TextView)findViewById(R.id.reqTest);
         testReq = (Button)findViewById(R.id.testReq);
         testInsert = (Button)findViewById(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
+
+
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
         login_button = (LoginButton)findViewById(R.id.login_button);
@@ -91,10 +97,29 @@ public class MenuActivity extends AppCompatActivity
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
                 login_button.setReadPermissions("email,public_profile");
                 txtStatus.setText("Login sucess! \n" + "User ID: " +
                         loginResult.getAccessToken().getUserId()
                         + "\n" + "Last Refresh:\n " + loginResult.getAccessToken().getLastRefresh() + "\n");
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v("Main", response.toString());
+                                setProfileToView(object);
+                            }
+
+                            private void setProfileToView(JSONObject object) {
+
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender, birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
 
                 if (Profile.getCurrentProfile() != null) {
                     txtStatus.setText("Login sucess! \n" + "User ID: " +
@@ -105,26 +130,9 @@ public class MenuActivity extends AppCompatActivity
 /*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
                     getn = (TextView)header.findViewById(R.id.getn);
                     getn.setText(Profile.getCurrentProfile().getName());
+                    profilePictureView = (ProfilePictureView)findViewById(R.id.image);
+                    profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
                 }
-                GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(JSONObject me, GraphResponse response) {
-                                if (response.getError() != null) {
-                                    // handle error
-                                } else {
-                                    String email = me.optString("email");
-                                    String id = me.optString("id");
-                                    String name = me.optString("name");
-                                    Toast.makeText(getApplicationContext(),
-
-                                            email + " / " + name,
-
-                                            Toast.LENGTH_LONG).show();
-                                    // send email and id to your web server
-                                }
-                            }
-                        }).executeAsync();
 
             }
             @Override
