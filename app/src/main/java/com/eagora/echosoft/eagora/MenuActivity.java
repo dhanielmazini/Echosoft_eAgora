@@ -45,7 +45,7 @@ public class MenuActivity extends AppCompatActivity
     TextView txtStatus,reqTest, getn;
     CallbackManager callbackManager;
     EditText insertText;
-    Button testReq,testInsert,button2;
+    Button testReq,testInsert,button2,button3;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -86,6 +86,7 @@ public class MenuActivity extends AppCompatActivity
         testInsert = (Button)findViewById(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
+        button3 = (Button)findViewById(R.id.button3);
 
 
 
@@ -185,6 +186,16 @@ public class MenuActivity extends AppCompatActivity
                     public void onClick(View view){
                         Intent maps = new Intent(getApplicationContext(), MapsActivity.class);
                         startActivity(maps);
+                    }
+                }
+        );
+
+        button3.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Intent signup = new Intent(getApplicationContext(),SingupActivity.class);
+                        startActivity(signup);
                     }
                 }
         );

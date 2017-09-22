@@ -12,6 +12,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
+    <string name="title_activity_singup">SingupActivity</string>
+    <string name="user_signup">Cadastro do Usuário</string>
+    <string name="user_name">Nome</string>
 
 </resources>
