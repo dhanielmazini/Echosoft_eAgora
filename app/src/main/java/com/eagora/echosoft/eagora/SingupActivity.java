@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,12 +25,22 @@ public class SingupActivity extends AppCompatActivity {
     private FirebaseAuth minhaAuth;
     private FirebaseAuth.AuthStateListener minhaAuthListener;
 
+    Button concluir;
+    EditText nome,email,confEmail,senha,confSenha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singup);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        concluir = (Button) findViewById(R.id.button4);
+        nome = (EditText) findViewById(R.id.nome);
+        email = (EditText) findViewById(R.id.email);
+        confEmail = (EditText) findViewById(R.id.confemail);
+        senha = (EditText) findViewById(R.id.senha);
+        confSenha = (EditText) findViewById(R.id.confsenha);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -56,22 +68,22 @@ public class SingupActivity extends AppCompatActivity {
         };
     }
 
-    public void clicaCriarUsuario(View view) {
-        minhaAuth.createUserWithEmailAndPassword(campoEmail, campoSenha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.d("meuLog", "Falha na crição de conta");
-                        } else {
-                            FirebaseDatabase database = FirebaseDatabase.getInstance(); //cria o banco
-                            DatabaseReference ref = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()); //cria referencia para o usuario no bd
-                            ref.child("nome").setValue(campoNome.getText().toString); //armazena o nome do usuario
-                            ref.child("uid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid()); //armazena o id do usuario
-                        }
-                    }
-                });
-    }
+//    public void clicaCriarUsuario(View view) {
+//        minhaAuth.createUserWithEmailAndPassword(campoEmail, campoSenha)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (!task.isSuccessful()) {
+//                            Log.d("meuLog", "Falha na crição de conta");
+//                        } else {
+//                            FirebaseDatabase database = FirebaseDatabase.getInstance(); //cria o banco
+//                            DatabaseReference ref = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()); //cria referencia para o usuario no bd
+//                            ref.child("nome").setValue(campoNome.getText().toString); //armazena o nome do usuario
+//                            ref.child("uid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid()); //armazena o id do usuario
+//                        }
+//                    }
+//                });
+//    }
 
     @Override
     public void onStart() {
