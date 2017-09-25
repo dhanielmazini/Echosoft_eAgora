@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     LoginButton login_button;
-    TextView txtStatus,reqTest, getn;
+    TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
     EditText insertText;
     Button testReq,testInsert,button2,button3;

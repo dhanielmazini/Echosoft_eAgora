@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                                           @Override
                                           public void onClick(View view) {
                                               FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                              DatabaseReference myRef = database.getReference("message");
+                                              DatabaseReference myRef = database.getReference("username");
                                               String messageSending = insertText.getText().toString();
                                               myRef.setValue(messageSending);
                                           }

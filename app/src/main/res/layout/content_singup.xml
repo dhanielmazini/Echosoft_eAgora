@@ -38,38 +38,79 @@
             android:textColor="@color/colorPrimaryDark"
             android:textAlignment="center"/>
 
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="1">
+        <!--NOME-->
+        <EditText
+            android:id="@+id/nome"
+            android:padding="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:inputType="text"
+            android:hint="Nome"
+            android:textColor="@color/colorAccent"/>
 
-            <TextView
-                android:padding="2dp"
-                android:layout_column="0"
-                android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:text="@string/user_name"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"/>
+        <!--E-MAIL-->
+        <EditText
+            android:id="@+id/email"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="30dp"
+            android:inputType="textEmailAddress"
+            android:hint="E-mail"
+            android:textColor="@color/colorAccent"/>
 
-            <EditText
-                android:padding="2dp"
-                android:layout_column="1"
-                android:layout_width="250dp"
-                android:layout_height="30dp"
-                android:inputType="text"/>
-        </GridLayout>
+        <!--CONFIRMACAO EMAIL-->
+        <EditText
+            android:id="@+id/confemail"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="30dp"
+            android:inputType="textEmailAddress"
+            android:hint="Confirmação e-mail"
+            android:textColor="@color/colorAccent"/>
 
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="1">
+        <!--SENHA-->
+        <EditText
+            android:id="@+id/senha"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="30dp"
+            android:inputType="textPassword"
+            android:hint="Senha"
+            android:textColor="@color/colorAccent"/>
 
-        </GridLayout>
+        <!--CONFIRMACAO SENHA-->
+        <EditText
+            android:id="@+id/confsenha"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="30dp"
+            android:inputType="textPassword"
+            android:hint="Confirmação Senha"
+            />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteX="8dp">
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Concluir"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintTop_creator="1"
+                android:layout_marginStart="132dp"
+                android:layout_marginLeft="132dp" />
+        </RelativeLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
