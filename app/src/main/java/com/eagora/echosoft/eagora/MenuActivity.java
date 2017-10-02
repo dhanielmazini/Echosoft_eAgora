@@ -194,7 +194,7 @@ public class MenuActivity extends AppCompatActivity
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        Intent signup = new Intent(getApplicationContext(),SingupActivity.class);
+                        Intent signup = new Intent(getApplicationContext(), SingupActivity.class);
                         startActivity(signup);
                     }
                 }

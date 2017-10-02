@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "721420541210-as09h1f10vtcm5jtch6e84o80s55j8q7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eagora.echosoft.eagora",
+            "certificate_hash": "2a180c4be6c2e150c56a6fa93e1ad472823e0a65"
+          }
+        },
+        {
           "client_id": "721420541210-m7g1s6rpfbpdg7qftk9fj8928ipnb6pc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -37,10 +45,51 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyADXHZ2wtwJhzIt-zI9DM6EGN3FxAAhoWo"
+          "current_key": "AIzaSyAOtd1s0ts_b-s0UFBabIkHqoAvJNiKNOI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721420541210-c94ft81p2bgf9fr1epruf5026pnp6kqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721420541210:android:6a842a3ca9f9d620",
+        "android_client_info": {
+          "package_name": "com.example.tom.debugging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721420541210-jtsvicb1bgbrh1qocruj41krs5he781o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tom.debugging",
+            "certificate_hash": "961870f5757b985a9dae903afae0b676f12f1c07"
+          }
         },
         {
-          "current_key": "AIzaSyD74OPEvRe_U2JmAuE2ulmBrsbXCSW932U"
+          "client_id": "721420541210-c94ft81p2bgf9fr1epruf5026pnp6kqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOtd1s0ts_b-s0UFBabIkHqoAvJNiKNOI"
         }
       ],
       "services": {
