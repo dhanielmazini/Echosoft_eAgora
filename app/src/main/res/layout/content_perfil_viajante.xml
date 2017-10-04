@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.eagora.echosoft.eagora.PerfilViajanteActivity"
+    tools:showIn="@layout/activity_perfil_viajante"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollIndicators="end">
+
+        <TextView
+            android:id="@+id/txtQualPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="Qual seu perfil de viajante?"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtEscolhaOpcoes"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:text="Escolha no mínimo 3"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="#404040"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQualPerfil"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <CheckBox
+            android:id="@+id/cbVidaNoturna"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Gosto da vida noturna"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEscolhaOpcoes"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <CheckBox
+            android:id="@+id/cbAmanteNatureza"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Sou amante da natureza"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbVidaNoturna"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbPazTranquilidade"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Busco paz e tranquilidade"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbAmanteNatureza"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbGourmet"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Gourmet"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbPazTranquilidade"
+            app:layout_constraintVertical_bias="0.007" />
+
+
+        <CheckBox
+            android:id="@+id/cbMochileiro"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Mochileiro"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbGourmet"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbEcoturista"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Ecoturista"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbMochileiro"
+            app:layout_constraintVertical_bias="0.007" />
+
+
+        <CheckBox
+            android:id="@+id/cbDivertEcono"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Busco divertimento e economia"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbEcoturista"
+            app:layout_constraintVertical_bias="0.007" />
+
+
+        <CheckBox
+            android:id="@+id/cbArteHistoria"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Gosto de arte e história"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbDivertEcono"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbFamilia"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Viajante com a família"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbArteHistoria"
+            app:layout_constraintVertical_bias="0.007" />
+
+
+        <CheckBox
+            android:id="@+id/cbCriancas"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:minHeight="0dp"
+            android:text="Viajante com crianças"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbFamilia"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbEsportes"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Praticante de esportes"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbCriancas"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbNovasCulturas"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Gosto de conhecer novas culturas"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbEsportes"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbCompras"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Busco fazer compras"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbNovasCulturas"
+            app:layout_constraintVertical_bias="0.007" />
+
+
+        <CheckBox
+            android:id="@+id/cb50Anos"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Tenho mais de 50 anos"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbCompras"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbRomantico"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Romantico"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cb50Anos"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbAventura"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Busco aventura"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbRomantico"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbBaladas"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Baladas e Clubes"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbAventura"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <CheckBox
+            android:id="@+id/cbTrabalho"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginBottom="30px"
+            android:layout_marginLeft="30px"
+            android:buttonTint="#1ab2ff"
+            android:text="Viajando a trabalho"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbBaladas"
+            app:layout_constraintVertical_bias="0.007" />
+
+        <Button
+            android:id="@+id/btnStart"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="50px"
+            android:buttonTint="#1ab2ff"
+            android:text="COMECE SUA VIAGEM"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbTrabalho"
+            app:layout_constraintVertical_bias="0.007" />
+
+    </LinearLayout>
+
+
+
+
+
+</android.support.v4.widget.NestedScrollView>
