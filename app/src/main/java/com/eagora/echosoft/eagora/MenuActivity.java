@@ -45,7 +45,7 @@ public class MenuActivity extends AppCompatActivity
     TextView txtStatus,reqTest, getn;
     CallbackManager callbackManager;
     EditText insertText;
-    Button testReq,testInsert,button2, tagbtn;
+    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -87,7 +87,7 @@ public class MenuActivity extends AppCompatActivity
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
         tagbtn = (Button)findViewById(R.id.tagbtn);
-
+        btnDefinirRoteiro = (Button)findViewById(R.id.btnDefinirRoteiro);
 
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
@@ -193,12 +193,20 @@ public class MenuActivity extends AppCompatActivity
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        Intent maps = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
-                        startActivity(maps);
+                        Intent intentPerfil = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
+                        startActivity(intentPerfil);
                     }
                 }
         );
-
+        btnDefinirRoteiro.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Intent intentDefinirRoteiro = new Intent(getApplicationContext(), DefinirRoteiroActivity.class);
+                        startActivity(intentDefinirRoteiro);
+                    }
+                }
+        );
 
     }
 

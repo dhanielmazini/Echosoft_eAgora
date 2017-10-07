@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.eagora.echosoft.eagora.DefinirRoteiroActivity"
+    tools:showIn="@layout/activity_definir_roteiro"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollIndicators="end">
+
+        <TextView
+            android:id="@+id/txtQualRoteiro"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="Roteiro da minha viagem"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDataLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:text="Data da viagem:"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDataViagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="Segunda-feira, 12 de agosto de 2017"
+            android:textColor="@color/common_google_signin_btn_text_light_focused"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtParaOndeVou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:text="Para onde vou?"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDestino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="Rio de Janeiro,  RJ - Brasil"
+            android:textColor="@color/common_google_signin_btn_text_light_focused"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtQualDistancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:text="Qual a distância?"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtDistancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:text="3587 km - 2 horas a partir de São José dos Campos"
+            android:textColor="@color/common_google_signin_btn_text_light_focused"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtQuaisLocaisVisitar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:text="Quais locais para visitar?"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtListaLocais"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:text="Cristo Redentor - Monumento e História\nCorcovado - Montanha\nPão de Açúcar - Montanha\nCopacabana - Praia \nSambódramo - Carnaval\nJardim Botânico - Parque Histórico\nBondinho do Pão de Açúcar - Arquitetura"
+            android:textColor="@color/common_google_signin_btn_text_light_focused"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/txtQuaisEventos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:text="Quais eventos para participar?"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtListaEventos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:text=" Flamengo x Fluminense - 12/08/2017\n16h - Futebol - @ Estádio do Maracanã\nRock in Rio - 10/08/2017 a 17/08/2017\n08h as 00h - Festival - @ Cidade do Rock\nA Bela e a Fera - 15/08/2017 \n20h as 22h30 - Peça de Teatro - @ Teatro da Lapa"
+            android:textColor="@color/common_google_signin_btn_text_light_focused"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtOndeComer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="casual"
+            android:text="Onde posso fazer minhas refeições?"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20px"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtListaRestaurantes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:text="Hachiko - Culinária Japonesa\nL'Etoile Restaurante - Menu fusion Francês e Brasileiro\nCT Boucherie - Cortes nobres e vinho\nAprazível - Comida Artesanal e Cachaçaria\n"
+            android:textColor="@color/common_google_signin_btn_text_light_focused"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnMudarRoteiro"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginBottom="50px"
+            android:buttonTint="#1ab2ff"
+            android:text="Editar Roteiro"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbTrabalho"
+            app:layout_constraintVertical_bias="0.007" />
+
+    </LinearLayout>
+
+
+
+
+
+</android.support.v4.widget.NestedScrollView>

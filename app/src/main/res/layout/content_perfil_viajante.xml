@@ -17,7 +17,7 @@
         android:scrollIndicators="end">
 
         <TextView
-            android:id="@+id/txtQualPerfil"
+            android:id="@+id/txtQualRoteiro"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_marginTop="6dp"
@@ -43,7 +43,7 @@
             android:textStyle="italic"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtQualPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/txtQualRoteiro"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 

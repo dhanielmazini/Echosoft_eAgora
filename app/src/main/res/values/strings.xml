@@ -14,6 +14,8 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_perfil_viajante">PerfilViajanteActivity</string>
+    <string name="title_activity_definir_roteiro">DefinirRoteiroActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 
 </resources>
