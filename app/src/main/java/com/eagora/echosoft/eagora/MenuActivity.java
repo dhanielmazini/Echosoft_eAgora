@@ -2,6 +2,7 @@ package com.eagora.echosoft.eagora;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -28,6 +30,11 @@ import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,11 +48,13 @@ import java.util.Arrays;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FirebaseAuth mAuth;
+
     LoginButton login_button;
     TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
-    EditText insertText;
-    Button testReq,testInsert,button2,button3;
+    EditText insertText, txtEmail, txtSenha;
+    Button testReq,testInsert,button2,button3, btnLogin;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -77,6 +86,8 @@ public class MenuActivity extends AppCompatActivity
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         InitializeControls();
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     private void  InitializeControls(){
@@ -87,7 +98,9 @@ public class MenuActivity extends AppCompatActivity
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
         button3 = (Button)findViewById(R.id.button3);
-
+        txtEmail = (EditText)findViewById(R.id.loginEmail);
+        txtSenha = (EditText)findViewById(R.id.loginSenha);
+        btnLogin = (Button)findViewById(R.id.btnLogin);
 
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
@@ -262,5 +275,25 @@ public class MenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void loginUsuario(View view){
+        mAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("log", "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                        if (!task.isSuccessful()) {
+                            Log.w("log", "signInWithEmail:failed", task.getException());
+                            Toast.makeText(MenuActivity.this, "Falha na autenticação",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(MenuActivity.this, "Usuário conectado",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
