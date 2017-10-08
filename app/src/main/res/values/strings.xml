@@ -16,6 +16,10 @@
     <string name="title_activity_perfil_viajante">PerfilViajanteActivity</string>
     <string name="title_activity_definir_roteiro">DefinirRoteiroActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_start_trip">StartTripActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 
 </resources>
