@@ -58,8 +58,8 @@ public class SingupActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             }
                             else{
-                               Intent menu = new Intent(getApplicationContext(), MenuActivity.class);
-                               startActivity(menu);
+                               Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                               startActivity(login);
                            }
                         }
                     });
