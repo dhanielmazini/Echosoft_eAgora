@@ -48,13 +48,13 @@ import java.util.Arrays;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
     LoginButton login_button;
     TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
     EditText insertText, txtEmail, txtSenha;
-    Button testReq,testInsert,button2,button3, btnLogin;
+    Button testReq,testInsert,button2,button3, btnLogout;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -87,7 +87,7 @@ public class MenuActivity extends AppCompatActivity
         FacebookSdk.sdkInitialize(getApplicationContext());
         InitializeControls();
 
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
     }
 
     private void  InitializeControls(){
@@ -97,10 +97,10 @@ public class MenuActivity extends AppCompatActivity
         testInsert = (Button)findViewById(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
-        button3 = (Button)findViewById(R.id.button3);
-        txtEmail = (EditText)findViewById(R.id.loginEmail);
-        txtSenha = (EditText)findViewById(R.id.loginSenha);
-        btnLogin = (Button)findViewById(R.id.btnLogin);
+//        button3 = (Button)findViewById(R.id.button3);
+        /*txtEmail = (EditText)findViewById(R.id.loginEmail);
+        txtSenha = (EditText)findViewById(R.id.loginSenha);*/
+        btnLogout = (Button)findViewById(R.id.btnLogout);
 
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
@@ -203,12 +203,25 @@ public class MenuActivity extends AppCompatActivity
                 }
         );
 
-        button3.setOnClickListener(
+        /*button3.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
                         Intent signup = new Intent(getApplicationContext(), SingupActivity.class);
                         startActivity(signup);
+                    }
+                }
+        );*/
+
+        btnLogout.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Toast.makeText(MenuActivity.this, "Usuário deslogado.",
+                                Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().signOut();
+                        Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(login);
                     }
                 }
         );
@@ -277,7 +290,7 @@ public class MenuActivity extends AppCompatActivity
         return true;
     }
 
-    public void loginUsuario(View view){
+    /*public void loginUsuario(View view){
         mAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -295,5 +308,5 @@ public class MenuActivity extends AppCompatActivity
                         }
                     }
                 });
-    }
+    }*/
 }
