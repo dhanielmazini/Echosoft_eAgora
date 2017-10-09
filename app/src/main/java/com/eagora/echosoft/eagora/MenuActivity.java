@@ -53,11 +53,8 @@ public class MenuActivity extends AppCompatActivity
     LoginButton login_button;
     TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
-    EditText insertText, txtEmail, txtSenha;
-    Button testReq,testInsert,button2,button3, btnLogout;
-    Button testReq,testInsert,button2,button3, btnLogin;
     EditText insertText;
-    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro;
+    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -207,6 +204,7 @@ public class MenuActivity extends AppCompatActivity
                     }
                 }
         );
+
         tagbtn.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
@@ -215,7 +213,20 @@ public class MenuActivity extends AppCompatActivity
                         startActivity(intentPerfil);
                     }
                 }
-        );*/
+        );
+
+        btnLogout.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Toast.makeText(MenuActivity.this, "Usuário deslogado.",
+                                Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().signOut();
+                        Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(login);
+                    }
+                }
+        );
 
         btnLogout.setOnClickListener(
                 new View.OnClickListener(){

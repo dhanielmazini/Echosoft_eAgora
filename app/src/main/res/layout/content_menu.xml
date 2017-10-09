@@ -125,10 +125,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.74" />
 
-    <!--<Button
-        android:id="@+id/button3"
+    <Button
         android:id="@+id/tagbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -156,6 +156,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/tagbtn"
         android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.64" />
-
 
 </android.support.constraint.ConstraintLayout>

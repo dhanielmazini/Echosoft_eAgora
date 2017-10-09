@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Echosoft_eAgora.iml" filepath="$PROJECT_DIR$/Echosoft_eAgora.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/eAgora.iml" filepath="$PROJECT_DIR$/eAgora.iml" />
     </modules>
   </component>
