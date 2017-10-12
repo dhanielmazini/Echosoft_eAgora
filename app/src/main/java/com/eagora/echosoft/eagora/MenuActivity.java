@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.eagora.echosoft.eagora.Maps.MapsActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -50,7 +51,7 @@ public class MenuActivity extends AppCompatActivity
     TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
     EditText insertText;
-    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout;
+    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -99,7 +100,7 @@ public class MenuActivity extends AppCompatActivity
         btnLogout = (Button)findViewById(R.id.btnLogout);
         tagbtn = (Button)findViewById(R.id.tagbtn);
         btnDefinirRoteiro = (Button)findViewById(R.id.btnDefinirRoteiro);
-
+        btnEventos = (Button)findViewById(R.id.btnEventos);
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
         login_button = (LoginButton)findViewById(R.id.login_button);
@@ -109,6 +110,8 @@ public class MenuActivity extends AppCompatActivity
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                //Define variável global de Token de Acesso  do Facebook
+                AcessoGraphFacebook.accessToken = loginResult.getAccessToken();
 
                 login_button.setReadPermissions("email,public_profile");
                 txtStatus.setText("Login sucess! \n" + "User ID: " +
@@ -242,6 +245,15 @@ public class MenuActivity extends AppCompatActivity
                     public void onClick(View view){
                         Intent intentDefinirRoteiro = new Intent(getApplicationContext(), DefinirRoteiroActivity.class);
                         startActivity(intentDefinirRoteiro);
+                    }
+                }
+        );
+        btnEventos.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Intent intentEventos = new Intent(getApplicationContext(), EventosActivity.class);
+                        startActivity(intentEventos);
                     }
                 }
         );

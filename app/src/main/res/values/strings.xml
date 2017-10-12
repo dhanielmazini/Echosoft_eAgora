@@ -23,6 +23,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_maps2">MapsActivity2</string>
+    <string name="title_activity_eventos">EventosActivity</string>
 
 
 </resources>
