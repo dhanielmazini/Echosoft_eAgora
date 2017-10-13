@@ -1,6 +1,7 @@
 package com.eagora.echosoft.eagora.Facebook;
 
 import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import android.os.Bundle;
@@ -20,8 +21,6 @@ public class AcessoGraphFacebook {
     //Variável de retorno das consultas da API Graph do Facebook
     GraphResponse responseRetorno;
 
-
-
     public GraphResponse eventosTeste(){
         final GraphRequest request = GraphRequest.newGraphPathRequest(
                 accessToken,
@@ -33,7 +32,7 @@ public class AcessoGraphFacebook {
                     }
                 });
         Bundle parameters = new Bundle();
-        parameters.putString("fields", "name,start_time,cover");
+        parameters.putString("fields", "name,start_time,cover{source},place{name,location{city,street,zip,state}}");
         parameters.putString("time_filter", "upcoming");
         request.setParameters(parameters);
 
