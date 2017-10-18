@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,14 +25,20 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser usuario = mAuth.getCurrentUser();
+
+        if(usuario != null) {
+            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
+            //finish();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         txtEmail = (EditText)findViewById(R.id.emailLogin);
         txtSenha = (EditText)findViewById(R.id.senhaLogin);
         btnCadastro = (Button)findViewById(R.id.botaoCadastro);
-
-        mAuth = FirebaseAuth.getInstance();
 
         btnCadastro.setOnClickListener(
                 new View.OnClickListener(){
@@ -48,8 +55,6 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("log", "signInWithEmail:onComplete:" + task.isSuccessful());
-
                         if (!task.isSuccessful()) {
                             Log.w("log", "signInWithEmail:failed", task.getException());
                             Toast.makeText(LoginActivity.this, "Falha na autenticação",

@@ -45,8 +45,6 @@ import java.util.Arrays;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-//    private FirebaseAuth mAuth;
-
     LoginButton login_button;
     TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
@@ -83,8 +81,6 @@ public class MenuActivity extends AppCompatActivity
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         InitializeControls();
-
-//        mAuth = FirebaseAuth.getInstance();
     }
 
     private void  InitializeControls(){
@@ -94,9 +90,6 @@ public class MenuActivity extends AppCompatActivity
         testInsert = (Button)findViewById(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
-//        button3 = (Button)findViewById(R.id.button3);
-        /*txtEmail = (EditText)findViewById(R.id.loginEmail);
-        txtSenha = (EditText)findViewById(R.id.loginSenha);*/
         btnLogout = (Button)findViewById(R.id.btnLogout);
         tagbtn = (Button)findViewById(R.id.tagbtn);
         btnDefinirRoteiro = (Button)findViewById(R.id.btnDefinirRoteiro);
@@ -321,23 +314,4 @@ public class MenuActivity extends AppCompatActivity
         return true;
     }
 
-    /*public void loginUsuario(View view){
-        mAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("log", "signInWithEmail:onComplete:" + task.isSuccessful());
-
-                        if (!task.isSuccessful()) {
-                            Log.w("log", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(MenuActivity.this, "Falha na autenticação",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            Toast.makeText(MenuActivity.this, "Usuário conectado",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }*/
 }
