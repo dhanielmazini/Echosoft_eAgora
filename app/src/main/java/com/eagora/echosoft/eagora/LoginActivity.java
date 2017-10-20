@@ -29,10 +29,9 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseUser usuario = mAuth.getCurrentUser();
 
-        if(usuario != null) {
+        if(usuario != null)
             startActivity(new Intent(LoginActivity.this, MenuActivity.class));
-            //finish();
-        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 

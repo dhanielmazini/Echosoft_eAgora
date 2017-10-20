@@ -51,6 +51,16 @@
 
         <!--E-MAIL-->
         <EditText
+            android:id="@+id/sobrenome"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:hint="Sobrenome"
+            android:inputType="text"
+            android:padding="5dp"
+            android:textColor="@color/colorAccent" />
+
+        <EditText
             android:id="@+id/email"
             android:padding="5dp"
             android:layout_width="match_parent"
