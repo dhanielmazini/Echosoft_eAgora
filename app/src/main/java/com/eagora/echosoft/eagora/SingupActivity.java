@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +27,9 @@ public class SingupActivity extends AppCompatActivity {
     private FirebaseAuth minhaAuth;
 
     private Button btnConcluir;
-    private EditText txtNome, txtEmail, txtConfEmail, txtSenha, txtConfSenha;
+    private EditText txtSobrenome, txtNome, txtEmail, txtConfEmail, txtSenha, txtConfSenha;
+
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +40,18 @@ public class SingupActivity extends AppCompatActivity {
 
         btnConcluir = (Button) findViewById(R.id.button4);
         txtNome = (EditText) findViewById(R.id.nome);
+        txtSobrenome = (EditText) findViewById(R.id.sobrenome);
         txtEmail = (EditText) findViewById(R.id.email);
         txtConfEmail = (EditText) findViewById(R.id.confemail);
         txtSenha = (EditText) findViewById(R.id.senha);
         txtConfSenha = (EditText) findViewById(R.id.confsenha);
+
         minhaAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void createAccount(View view) {
-        if( txtEmail.getText().toString().equals(txtConfEmail.getText().toString())
+        if(txtEmail.getText().toString().equals(txtConfEmail.getText().toString())
                 && txtSenha.getText().toString().equals(txtConfSenha.getText().toString())) {
             minhaAuth.createUserWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -58,11 +64,17 @@ public class SingupActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             }
                             else{
+                               Usuario user = new Usuario(txtNome.getText().toString(), txtSobrenome.getText().toString(),
+                                       txtEmail.getText().toString(), FirebaseAuth.getInstance().getCurrentUser().getUid(), txtSenha.getText().toString());
+
+                               mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+
                                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                                startActivity(login);
                            }
                         }
                     });
+
         } else{
             Toast.makeText(SingupActivity.this, "Confira os campos novamente", Toast.LENGTH_SHORT).show();
         }

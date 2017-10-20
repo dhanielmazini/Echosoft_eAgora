@@ -135,7 +135,6 @@ public class MenuActivity extends AppCompatActivity
                             + "\n" + "Last Refresh:\n " + loginResult.getAccessToken().getLastRefresh() + "\n" +
                             "nome: \n" + Profile.getCurrentProfile().getName());
                     View header= navigationView.getHeaderView(0);
-/*View view=navigationView.inflateHeaderView(R.layout.nav_header_main);*/
                     getn = (TextView)header.findViewById(R.id.getn);
                     getn.setText(Profile.getCurrentProfile().getName());
                     profilePictureView = (ProfilePictureView)findViewById(R.id.image);
