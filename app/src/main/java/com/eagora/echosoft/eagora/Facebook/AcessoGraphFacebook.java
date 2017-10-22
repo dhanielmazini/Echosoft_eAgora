@@ -1,5 +1,6 @@
 package com.eagora.echosoft.eagora.Facebook;
 
+import com.eagora.echosoft.eagora.BancoDados.VidaNoturna;
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
@@ -28,14 +29,20 @@ public class AcessoGraphFacebook {
     GraphResponse responseRetorno;
 
 
-    public List<JSONObject> procurarEventos(double latitude, double longitude, double raio){
+    public List<JSONObject> procurarEventos(double latitude, double longitude, double raio,List<VidaNoturna> listaLugaresVidaNoturna){
         responseRetorno = locais(latitude,longitude,raio);
         List<String> listaLocais = new ArrayList<String>();
         try {
             JSONArray ar = responseRetorno.getJSONObject().getJSONArray("data");
             for (int i = 0; i < ar.length(); i++) {
                 JSONObject dados = ar.getJSONObject(i);
-                listaLocais.add(i,dados.get("id").toString());
+                String categoriaFb = dados.get("category").toString();
+                for(int j=0;j<listaLugaresVidaNoturna.size();j++){
+                    String categoriaBanco = listaLugaresVidaNoturna.get(j).getName();
+                    if(categoriaBanco.equals(categoriaFb)){
+                        listaLocais.add(dados.get("id").toString());
+                    }
+                }
             }
         }        catch(Exception e){
             e.printStackTrace();

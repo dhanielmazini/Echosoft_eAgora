@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.eagora.echosoft.eagora.BancoDados.TipoViagem;
@@ -47,47 +48,34 @@ public class EventosActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         InitializeControls();
-        listarVidaNoturna();
-
     }
 
     private void listarVidaNoturna(){
-
         mDatabase = FirebaseDatabase.getInstance().getReference("classificacao_tipo_local").child("Vida Noturna");
-
         mDatabase.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.exists()) {
-
                     for (DataSnapshot dados : dataSnapshot.getChildren()) {
                         VidaNoturna tv = dados.getValue(VidaNoturna.class);
                         listaLugaresVidaNoturna.add(tv);
                     }
-
-                    for (int i = 0; i < listaLugaresVidaNoturna.size(); i++) {
-                        String name = listaLugaresVidaNoturna.get(i).getName();
-                        long id = listaLugaresVidaNoturna.get(i).getId();
-                    }
+                    Toast.makeText(getApplicationContext(), "Quantidade de Locais : " + String.valueOf(listaLugaresVidaNoturna.size()) , Toast.LENGTH_LONG).show();
                 }
 
             }
-
             public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
 
     private void  InitializeControls(){
-
-
-
+        listarVidaNoturna();
         btnBuscarEventos = (Button)findViewById(R.id.btnBuscarEventos);
         btnBuscarEventos.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        eventosProximos();
+                        eventosProximos(listaLugaresVidaNoturna);
                     }
                 }
         );
@@ -95,10 +83,8 @@ public class EventosActivity extends AppCompatActivity {
     }
 
 
-    private void eventosProximos(){
+    private void eventosProximos(List<VidaNoturna> listaLugaresVidaNoturna){
 
-        //Teste com breakpoint para listaVidaNoturna
-        System.out.println(listaLugaresVidaNoturna.size());
 
         AcessoGraphFacebook acesso = new AcessoGraphFacebook();
         double latitude = -23.1994939;
@@ -108,7 +94,11 @@ public class EventosActivity extends AppCompatActivity {
         //Mapeia o LinearLayout
         LinearLayout linear = (LinearLayout)findViewById(R.id.linearEventos);
 
-        List<JSONObject> listaEventos = acesso.procurarEventos(latitude,longitude,raio);
+        List<JSONObject> listaEventos = acesso.procurarEventos(latitude,longitude,raio,listaLugaresVidaNoturna);
+
+        Toast.makeText(getApplicationContext(), "Resultados : " + String.valueOf(listaEventos.size()) , Toast.LENGTH_LONG).show();
+
+
         for(int i=0;i<listaEventos.size();i++){
             try {
                     //Para cada resultado de evento, cria os elementos
