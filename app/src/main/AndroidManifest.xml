@@ -19,7 +19,7 @@
     -->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -88,7 +88,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
-        <activity android:name=".ComeceViagemActivity" />
         android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".LoginActivity" />
         <activity
@@ -121,6 +120,15 @@
         <activity
             android:name=".Eventos.EventosComprasActivity"
             android:label="@string/title_activity_eventos_compras"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".Maps.TelaDeRedirecionamentoMainActivity"
+            android:label="@string/title_activity_tela_de_redirecionamento_main"
             android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

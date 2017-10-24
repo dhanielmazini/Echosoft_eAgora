@@ -23,9 +23,11 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_maps2">MapsActivity2</string>
-    <string name="title_activity_eventos">EventosActivity</string>
+    <string name="title_activity_eventos"> </string>
     <string name="title_activity_eventos_aventura">EventosAventuraActivity</string>
     <string name="title_activity_eventos_compras">EventosComprasActivity</string>
+    <string name="title_activity_tela_de_redirecionamento_main">
+    </string>
 
 
 </resources>

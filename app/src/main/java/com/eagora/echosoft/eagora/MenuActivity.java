@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.eagora.echosoft.eagora.Maps.MapsActivity;
+import com.eagora.echosoft.eagora.Maps.TelaDeRedirecionamentoMainActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -252,7 +253,7 @@ public class MenuActivity extends AppCompatActivity
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        Intent intentEventos = new Intent(getApplicationContext(), EventosActivity.class);
+                        Intent intentEventos = new Intent(getApplicationContext(), TelaDeRedirecionamentoMainActivity.class);
                         startActivity(intentEventos);
                     }
                 }

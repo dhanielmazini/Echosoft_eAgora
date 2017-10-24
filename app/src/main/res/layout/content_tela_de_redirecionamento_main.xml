@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="550dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.eagora.echosoft.eagora.Maps.TelaDeRedirecionamentoMainActivity"
+    tools:showIn="@layout/activity_tela_de_redirecionamento_main">
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="-88dp" />
+
+    <ImageButton
+        android:id="@+id/eventbtn"
+        android:layout_width="350dp"
+        android:layout_height="146dp"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        app:srcCompat="@mipmap/balada"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:background="#fff"/>
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        android:orientation="vertical"
+        android:scaleType="fitXY"
+        app:layout_constraintGuide_percent="0.0" />
+
+    <TextView
+        android:id="@+id/EVENTO"
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        android:text="EVENTOS"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="87dp" />
+
+    <ImageButton
+        android:id="@+id/bar_e_restaurante"
+        android:layout_width="354dp"
+        android:layout_height="151dp"
+        android:background="#fff"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/bar"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="191dp" />
+
+    <TextView
+        android:id="@+id/BAR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BARES E RESTAURANTES"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="252dp" />
+
+    <ImageButton
+        android:id="@+id/pontos_turisticos"
+        android:layout_width="349dp"
+        android:layout_height="155dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="364dp"
+        android:background="#fff"/>
+
+    <TextView
+        android:id="@+id/PONTOS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PONTOS TURÍSTICOS"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="433dp" />
+
+
+</android.support.constraint.ConstraintLayout>
