@@ -9,8 +9,18 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PerfilViajanteActivity extends AppCompatActivity {
 
+    private List<String> perfil = new ArrayList<String>();
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +32,7 @@ public class PerfilViajanteActivity extends AppCompatActivity {
         toolbar.setTitle("Perfil");
         setSupportActionBar(toolbar);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
         //Botão do email que fica voando na tela, apagar esse trecho e o
@@ -61,129 +72,256 @@ public class PerfilViajanteActivity extends AppCompatActivity {
         cbVidaNoturna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbVidaNoturna.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Vida Noturna", Toast.LENGTH_SHORT).show();
+                if (cbVidaNoturna.isChecked()) {
+                    if (!perfil.contains(cbVidaNoturna.getText().toString())) {
+                        perfil.add(cbVidaNoturna.getText().toString());
+                    }
+                }
+                if (!cbVidaNoturna.isChecked()){
+                    if (perfil.contains(cbVidaNoturna.getText().toString()))
+                        perfil.remove(cbVidaNoturna.getText().toString());
+                }
             }
         });
 
         cbGourmet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbGourmet.isChecked())
+                if (cbGourmet.isChecked()){
                     Toast.makeText(PerfilViajanteActivity.this, "Vida Noturna e Gastronômico", Toast.LENGTH_SHORT).show();
+                    if (!perfil.contains(cbGourmet.getText().toString())) {
+                        perfil.add(cbGourmet.getText().toString());
+                    }
+                }
+                if (!cbGourmet.isChecked()){
+                    if (perfil.contains(cbGourmet.getText().toString()))
+                        perfil.remove(cbGourmet.getText().toString());
+                }
             }
         });
         cbBaladas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbBaladas.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Vida Noturna", Toast.LENGTH_SHORT).show();
+                if (cbBaladas.isChecked()) {
+                    if (!perfil.contains(cbBaladas.getText().toString())) {
+                        perfil.add(cbBaladas.getText().toString());
+                    }
+                }
+                if (!cbBaladas.isChecked()){
+                    if (perfil.contains(cbBaladas.getText().toString()))
+                        perfil.remove(cbBaladas.getText().toString());
+                }
             }
         });
         cbTrabalho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbTrabalho.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Trabalho", Toast.LENGTH_SHORT).show();
+                if (cbTrabalho.isChecked()) {
+                    if (!perfil.contains(cbTrabalho.getText().toString())) {
+                        perfil.add(cbTrabalho.getText().toString());
+                    }
+                }
+                if (!cbTrabalho.isChecked()){
+                    if (perfil.contains(cbTrabalho.getText().toString()))
+                        perfil.remove(cbTrabalho.getText().toString());
+                }
             }
         });
         cbAmanteNatureza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbAmanteNatureza.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Família e Aventura", Toast.LENGTH_SHORT).show();
+                if (cbAmanteNatureza.isChecked()) {
+                    if (!perfil.contains(cbAmanteNatureza.getText().toString())) {
+                        perfil.add(cbAmanteNatureza.getText().toString());
+                    }
+                }
+                if (!cbAmanteNatureza.isChecked()){
+                    if (perfil.contains(cbAmanteNatureza.getText().toString()))
+                        perfil.remove(cbAmanteNatureza.getText().toString());
+                }
             }
         });
 
         cbPazTranquilidade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbPazTranquilidade.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Família, Cultural e Paisagem", Toast.LENGTH_SHORT).show();
+                if (cbPazTranquilidade.isChecked()) {
+                    if (!perfil.contains(cbPazTranquilidade.getText().toString())) {
+                        perfil.add(cbPazTranquilidade.getText().toString());
+                    }
+                }
+                if (!cbPazTranquilidade.isChecked()){
+                    if (perfil.contains(cbPazTranquilidade.getText().toString()))
+                        perfil.remove(cbPazTranquilidade.getText().toString());
+                }
             }
         });
         cbMochileiro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbMochileiro.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Aventura", Toast.LENGTH_SHORT).show();
+                if (cbMochileiro.isChecked()) {
+                    if (!perfil.contains(cbMochileiro.getText().toString())) {
+                        perfil.add(cbMochileiro.getText().toString());
+                    }
+                }
+                if (!cbMochileiro.isChecked()){
+                    if (perfil.contains(cbMochileiro.getText().toString()))
+                        perfil.remove(cbMochileiro.getText().toString());
+                }
             }
         });
         cbEcoturista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbEcoturista.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Paisagem", Toast.LENGTH_SHORT).show();
+                if (cbEcoturista.isChecked()) {
+                    if (!perfil.contains(cbEcoturista.getText().toString())) {
+                        perfil.add(cbEcoturista.getText().toString());
+                    }
+                }
+                if (!cbEcoturista.isChecked()){
+                    if (perfil.contains(cbEcoturista.getText().toString()))
+                        perfil.remove(cbEcoturista.getText().toString());
+                }
             }
         });
         cbDivertEcono.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbDivertEcono.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Cultural", Toast.LENGTH_SHORT).show();
+                if (cbDivertEcono.isChecked()) {
+                    if (!perfil.contains(cbDivertEcono.getText().toString())) {
+                        perfil.add(cbDivertEcono.getText().toString());
+                    }
+                }
+                if (!cbDivertEcono.isChecked()){
+                    if (perfil.contains(cbDivertEcono.getText().toString()))
+                        perfil.remove(cbDivertEcono.getText().toString());
+                }
             }
         });
         cbArteHistoria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbArteHistoria.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Cultural", Toast.LENGTH_SHORT).show();
+                if (cbArteHistoria.isChecked()) {
+                    if (!perfil.contains(cbArteHistoria.getText().toString())) {
+                        perfil.add(cbArteHistoria.getText().toString());
+                    }
+                }
+                if (!cbArteHistoria.isChecked()){
+                    if (perfil.contains(cbArteHistoria.getText().toString()))
+                        perfil.remove(cbArteHistoria.getText().toString());
+                }
             }
         });
         cbFamilia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbFamilia.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Família e Paisagem", Toast.LENGTH_SHORT).show();
+                if (cbFamilia.isChecked()) {
+                    if (!perfil.contains(cbFamilia.getText().toString())) {
+                        perfil.add(cbFamilia.getText().toString());
+                    }
+                }
+                if (!cbFamilia.isChecked()){
+                    if (perfil.contains(cbFamilia.getText().toString()))
+                        perfil.remove(cbFamilia.getText().toString());
+                }
             }
         });
         cbCriancas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbCriancas.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Família e Cultural", Toast.LENGTH_SHORT).show();
+                if (cbCriancas.isChecked()) {
+                    if (!perfil.contains(cbCriancas.getText().toString())) {
+                        perfil.add(cbCriancas.getText().toString());
+                    }
+                }
+                if (!cbCriancas.isChecked()){
+                    if (perfil.contains(cbCriancas.getText().toString()))
+                        perfil.remove(cbCriancas.getText().toString());
+                }
             }
         });
         cbEsportes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbEsportes.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Aventura", Toast.LENGTH_SHORT).show();
+                if (cbEsportes.isChecked()) {
+                    if (!perfil.contains(cbEsportes.getText().toString())) {
+                        perfil.add(cbEsportes.getText().toString());
+                    }
+                }
+                if (!cbEsportes.isChecked()){
+                    if (perfil.contains(cbEsportes.getText().toString()))
+                        perfil.remove(cbEsportes.getText().toString());
+                }
             }
         });
         cbNovasCulturas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbNovasCulturas.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Cultural e Aventura", Toast.LENGTH_SHORT).show();
+                if (cbNovasCulturas.isChecked()) {
+                    if (!perfil.contains(cbNovasCulturas.getText().toString())) {
+                        perfil.add(cbNovasCulturas.getText().toString());
+                    }
+                }
+                if (!cbNovasCulturas.isChecked()){
+                    if (perfil.contains(cbNovasCulturas.getText().toString()))
+                        perfil.remove(cbNovasCulturas.getText().toString());
+                }
             }
         });
         cbCompras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbCompras.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Compras", Toast.LENGTH_SHORT).show();
+                if (cbCompras.isChecked()) {
+                    if (!perfil.contains(cbCompras.getText().toString())) {
+                        perfil.add(cbCompras.getText().toString());
+                    }
+                }
+                if (!cbCompras.isChecked()){
+                    if (perfil.contains(cbCompras.getText().toString()))
+                        perfil.remove(cbCompras.getText().toString());
+                }
             }
         });
         cb50Anos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cb50Anos.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Cultural e Família", Toast.LENGTH_SHORT).show();
+                if (cb50Anos.isChecked()) {
+                    if (!perfil.contains(cb50Anos.getText().toString())) {
+                        perfil.add(cb50Anos.getText().toString());
+                    }
+                }
+                if (!cb50Anos.isChecked()){
+                    if (perfil.contains(cb50Anos.getText().toString()))
+                        perfil.remove(cb50Anos.getText().toString());
+                }
             }
         });
         cbRomantico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbRomantico.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Compras e Cultural", Toast.LENGTH_SHORT).show();
+                if (cbRomantico.isChecked()) {
+                    if (!perfil.contains(cbRomantico.getText().toString())) {
+                        perfil.add(cbRomantico.getText().toString());
+                    }
+                }
+                if (!cbRomantico.isChecked()){
+                    if (perfil.contains(cbRomantico.getText().toString()))
+                        perfil.remove(cbRomantico.getText().toString());
+                }
             }
         });
         cbAventura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cbAventura.isChecked())
-                    Toast.makeText(PerfilViajanteActivity.this, "Aventura", Toast.LENGTH_SHORT).show();
+                if (cbAventura.isChecked()) {
+                    if (!perfil.contains(cbAventura.getText().toString())) {
+                        perfil.add(cbAventura.getText().toString());
+                    }
+                }
+                if (!cbAventura.isChecked()){
+                    if (perfil.contains(cbAventura.getText().toString()))
+                        perfil.remove(cbAventura.getText().toString());
+                }
             }
         });
 
@@ -191,7 +329,8 @@ public class PerfilViajanteActivity extends AppCompatActivity {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        Intent ini = new Intent(getApplicationContext(), ComeceViagemActivity.class);
+                        mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("perfil").setValue(perfil);
+                        Intent ini = new Intent(getApplicationContext(), MenuActivity.class);
                         startActivity(ini);
                     }
                 }

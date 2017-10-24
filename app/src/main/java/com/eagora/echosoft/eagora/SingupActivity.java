@@ -69,7 +69,7 @@ public class SingupActivity extends AppCompatActivity {
 
                                mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
 
-                               Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                               Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
                                startActivity(login);
                            }
                         }
