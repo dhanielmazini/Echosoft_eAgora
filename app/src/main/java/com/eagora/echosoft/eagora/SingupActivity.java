@@ -57,7 +57,7 @@ public class SingupActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.d("HAIA", "createUserWithEmail:onComplete:" + task.isSuccessful());
+//                            Log.d("HAIA", "createUserWithEmail:onComplete:" + task.isSuccessful());
 
                            if (!task.isSuccessful()) {
                                 Toast.makeText(SingupActivity.this, "Falha na criação de usuário",
