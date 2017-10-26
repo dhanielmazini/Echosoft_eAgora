@@ -23,7 +23,7 @@
             android:background="#fff"
             android:scaleType="centerCrop"
             android:visibility="visible"
-            app:srcCompat="@drawable/balada"
+            app:srcCompat="@drawable/baladas1"
             tools:layout_editor_absoluteX="188dp"
             tools:layout_editor_absoluteY="66dp" />
 
@@ -32,24 +32,24 @@
             android:id="@+id/bar_e_restaurante"
             android:layout_width="match_parent"
             android:layout_height="146dp"
+            android:layout_marginTop="20dp"
             android:background="#fff"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/bar"
+            app:srcCompat="@drawable/bar1"
             tools:layout_editor_absoluteX="70dp"
-            tools:layout_editor_absoluteY="237dp"
-            android:layout_marginTop="20dp"/>
+            tools:layout_editor_absoluteY="237dp" />
 
 
         <ImageButton
             android:id="@+id/pontos_turisticos"
             android:layout_width="match_parent"
             android:layout_height="146dp"
+            android:layout_marginTop="20dp"
             android:background="#fff"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/turistico"
+            app:srcCompat="@drawable/pontos"
             tools:layout_editor_absoluteX="236dp"
-            tools:layout_editor_absoluteY="310dp"
-            android:layout_marginTop="20dp"/>
+            tools:layout_editor_absoluteY="310dp" />
 
     </LinearLayout>
 
