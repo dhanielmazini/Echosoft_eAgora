@@ -50,22 +50,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginUsuario(View view){
-        mAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w("log", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(LoginActivity.this, "Falha na autenticação",
-                                    Toast.LENGTH_SHORT).show();
+        if(!txtEmail.getText().toString().isEmpty() && !txtSenha.getText().toString().isEmpty() ) {
+            mAuth.signInWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Log.w("log", "signInWithEmail:failed", task.getException());
+                                Toast.makeText(LoginActivity.this, "Falha na autenticação",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Usuário conectado",
+                                        Toast.LENGTH_SHORT).show();
+                                Intent mudar = new Intent(getApplicationContext(), MenuActivity.class);
+                                startActivity(mudar);
+                            }
                         }
-                        else{
-                            Toast.makeText(LoginActivity.this, "Usuário conectado",
-                                    Toast.LENGTH_SHORT).show();
-                            Intent mudar = new Intent(getApplicationContext(), MenuActivity.class);
-                            startActivity(mudar);
-                        }
-                    }
-                });
+                    });
+        } else {
+            Toast.makeText(LoginActivity.this, "Campo de email ou senha vazio", Toast.LENGTH_SHORT).show();
+        }
     }
 }
