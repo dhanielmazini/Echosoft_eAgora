@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.eagora.echosoft.eagora.Maps.MapsActivity;
-import com.eagora.echosoft.eagora.Maps.TelaDeRedirecionamentoMainActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;

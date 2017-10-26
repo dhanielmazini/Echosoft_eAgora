@@ -127,7 +127,7 @@
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
-            android:name=".Maps.TelaDeRedirecionamentoMainActivity"
+            android:name=".TelaDeRedirecionamentoMainActivity"
             android:label="@string/title_activity_tela_de_redirecionamento_main"
             android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">

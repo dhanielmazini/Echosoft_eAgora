@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
-import com.eagora.echosoft.eagora.BancoDados.VidaNoturna;
+import com.eagora.echosoft.eagora.BancoDados.TipoViagemGenerico;
 import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,10 +38,12 @@ import java.util.List;
 
 public class EventosActivity extends AppCompatActivity {
 
-    Button btnBuscarEventos;
+    Button btnBuscarEventosVidaNoturna,btnBuscarEventosGastronomico;
 
 
-    List<VidaNoturna> listaLugaresVidaNoturna = new ArrayList<VidaNoturna>();
+    List<TipoViagemGenerico> listaLugaresVidaNoturna = new ArrayList<TipoViagemGenerico>();
+    List<TipoViagemGenerico> listaLugaresGastronomico = new ArrayList<TipoViagemGenerico>();
+
     DatabaseReference mDatabase;
 
 
@@ -57,16 +59,34 @@ public class EventosActivity extends AppCompatActivity {
         InitializeControls();
     }
 
+    private void listarGastronomico(){
+        mDatabase = FirebaseDatabase.getInstance().getReference("classificacao_tipo_local").child("Gastronômico");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot dados : dataSnapshot.getChildren()) {
+                        TipoViagemGenerico tv = dados.getValue(TipoViagemGenerico.class);
+                        listaLugaresGastronomico.add(tv);
+                    }
+                    Toast.makeText(getApplicationContext(), "Quantidade de Locais Gastronomico : " + String.valueOf(listaLugaresGastronomico.size()) , Toast.LENGTH_LONG).show();
+                }
+
+            }
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
     private void listarVidaNoturna(){
         mDatabase = FirebaseDatabase.getInstance().getReference("classificacao_tipo_local").child("Vida Noturna");
         mDatabase.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot dados : dataSnapshot.getChildren()) {
-                        VidaNoturna tv = dados.getValue(VidaNoturna.class);
+                        TipoViagemGenerico tv = dados.getValue(TipoViagemGenerico.class);
                         listaLugaresVidaNoturna.add(tv);
                     }
-                    Toast.makeText(getApplicationContext(), "Quantidade de Locais : " + String.valueOf(listaLugaresVidaNoturna.size()) , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Quantidade de Locais Vida Noturna : " + String.valueOf(listaLugaresVidaNoturna.size()) , Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -78,9 +98,10 @@ public class EventosActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void  InitializeControls(){
         listarVidaNoturna();
+        listarGastronomico();
 
-        btnBuscarEventos = (Button)findViewById(R.id.btnBuscarEventos);
-        btnBuscarEventos.setOnClickListener(
+        btnBuscarEventosVidaNoturna = (Button)findViewById(R.id.btnBuscarEventosVidaNoturna);
+        btnBuscarEventosVidaNoturna.setOnClickListener(
                 new View.OnClickListener(){
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
                     @Override
@@ -90,12 +111,23 @@ public class EventosActivity extends AppCompatActivity {
                 }
         );
 
+        btnBuscarEventosGastronomico = (Button)findViewById(R.id.btnBuscarEventosGastronomico);
+        btnBuscarEventosGastronomico.setOnClickListener(
+                new View.OnClickListener(){
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                    @Override
+                    public void onClick(View view){
+                        eventosProximos(listaLugaresGastronomico);
+                    }
+                }
+        );
+
     }
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void eventosProximos(List<VidaNoturna> listaLugaresVidaNoturna){
+    private void eventosProximos(List<TipoViagemGenerico> listaLugares){
 
 
         AcessoGraphFacebook acesso = new AcessoGraphFacebook();
@@ -106,7 +138,7 @@ public class EventosActivity extends AppCompatActivity {
         //Mapeia o LinearLayout
         LinearLayout linear = (LinearLayout)findViewById(R.id.linearEventos);
 
-        List<JSONObject> listaEventos = acesso.procurarEventos(latitude,longitude,raio,listaLugaresVidaNoturna);
+        List<JSONObject> listaEventos = acesso.procurarEventos(latitude,longitude,raio,listaLugares);
 
         Toast.makeText(getApplicationContext(), "Resultados : " + String.valueOf(listaEventos.size()) , Toast.LENGTH_LONG).show();
 
