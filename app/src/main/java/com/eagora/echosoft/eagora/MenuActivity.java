@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -49,7 +50,7 @@ public class MenuActivity extends AppCompatActivity
     TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
     EditText insertText;
-    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos;
+    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos, update;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -94,6 +95,7 @@ public class MenuActivity extends AppCompatActivity
         tagbtn = (Button)findViewById(R.id.tagbtn);
         btnDefinirRoteiro = (Button)findViewById(R.id.btnDefinirRoteiro);
         btnEventos = (Button)findViewById(R.id.btnEventos);
+        update = (Button)findViewById(R.id.update);
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
         login_button = (LoginButton)findViewById(R.id.login_button);
@@ -240,6 +242,15 @@ public class MenuActivity extends AppCompatActivity
                     }
                 }
         );
+        update.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
+                        startActivity(conta);
+                    }
+                }
+        );
         btnEventos.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
@@ -293,6 +304,8 @@ public class MenuActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        FragmentManager frag = getSupportFragmentManager();
 
         if (id == R.id.nav_camera) {
             // Handle the camera action

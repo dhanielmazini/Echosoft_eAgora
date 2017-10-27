@@ -38,6 +38,10 @@
         app:layout_constraintTop_toBottomOf="@+id/emailLogin"
         app:layout_constraintVertical_bias="0.086"
         tools:text="Senha" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nome"/>
 
     <Button
         android:id="@+id/botaoLogin"
