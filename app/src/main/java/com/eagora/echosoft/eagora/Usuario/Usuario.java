@@ -6,9 +6,9 @@ package com.eagora.echosoft.eagora.Usuario;
 
 public class Usuario {
 
-    private String nome;
+    public String nome;
     private String sobrenome;
-    private String email;
+    public String email;
     private String uid;
     private String senha;
 

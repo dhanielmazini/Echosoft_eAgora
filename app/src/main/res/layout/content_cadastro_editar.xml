@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.eagora.echosoft.eagora.CadastroEditarActivity"
+    tools:showIn="@layout/activity_cadastro_editar">
+
+        <TextView
+            android:id="@+id/uidTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="    UID"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/editpw"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   Email"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_below="@+id/button6"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/editText5"
+            android:background="?attr/actionBarItemBackground"
+            android:text="Editar  sobrenome"
+            android:textColor="@color/colorAccent"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/excluirConta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@android:drawable/ic_menu_delete"
+            android:text="EXCLUIR CONTA"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/printEmail"
+            android:layout_marginBottom="20dp"
+            android:layout_toLeftOf="@+id/excluirConta"
+            android:layout_toStartOf="@+id/excluirConta"
+            android:id="@+id/space" />
+
+        <TextView
+            android:id="@+id/printName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_below="@+id/space"
+            android:layout_toRightOf="@+id/space2"
+            android:layout_toEndOf="@+id/space2"
+            android:layout_marginTop="47dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/sobretxt"
+            android:layout_alignStart="@+id/sobretxt"
+            android:layout_below="@+id/printName"
+            android:layout_marginTop="11dp"
+            android:textColor="@color/cardview_dark_background" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/name"
+            android:id="@+id/space2" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="none"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/btnnome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/name"
+            android:layout_alignBottom="@+id/name"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
+            android:background="?attr/actionBarItemBackground"
+            android:text="Editar nome"
+            android:textColor="@color/colorAccent"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/emailTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mail"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/textView4"
+            android:layout_alignLeft="@+id/Senha"
+            android:layout_alignStart="@+id/Senha" />
+
+        <EditText
+            android:id="@+id/editMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/printsnome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sobrenome"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_below="@+id/editName"
+            android:layout_alignLeft="@+id/printName"
+            android:layout_alignStart="@+id/printName" />
+
+        <TextView
+            android:id="@+id/sobretxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="sn"
+            android:layout_below="@+id/printsnome"
+            android:layout_alignLeft="@+id/printsnome"
+            android:layout_alignStart="@+id/printsnome" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="none"
+            android:textColor="@android:color/black"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/sobretxt"
+            android:layout_toStartOf="@+id/button6"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/btnemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/editMail"
+            android:background="?attr/selectableItemBackground"
+            android:text="Editar email"
+            android:textColor="@color/colorAccent"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_below="@+id/editpw"
+            android:text="UID:"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Senha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senha"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_below="@+id/editMail"
+            android:layout_alignLeft="@+id/printsnome"
+            android:layout_alignStart="@+id/printsnome" />
+
+        <EditText
+            android:id="@+id/editpw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_below="@+id/editMail"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/senhabtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btnemail"
+            android:layout_alignStart="@+id/btnemail"
+            android:layout_below="@+id/editMail"
+            android:background="?attr/actionBarItemBackground"
+            android:text="redefinir senha"
+            android:textColor="@color/colorAccent"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/space"
+            android:layout_toEndOf="@+id/space2"
+            android:layout_toRightOf="@+id/space2"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfil"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/textView14"
+            android:layout_alignLeft="@+id/Senha"
+            android:layout_alignStart="@+id/Senha" />
+
+        <Button
+            android:id="@+id/editPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:drawable/ic_menu_myplaces"
+            android:text="Editar Perfil"
+            android:textColor="@color/colorAccent"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+
+</RelativeLayout>
+
