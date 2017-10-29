@@ -20,17 +20,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+    <include layout="@layout/content_cadastro_editar" />
 
-    <include
-        layout="@layout/content_cadastro_editar"
-        android:layout_height="491dp"
-        android:layout_width="wrap_content" />
+
 
 </android.support.design.widget.CoordinatorLayout>

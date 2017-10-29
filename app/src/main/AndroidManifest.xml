@@ -193,7 +193,12 @@
         <activity
             android:name=".CadastroEditarActivity"
             android:label="@string/title_activity_cadastro_editar"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
+        </activity>
     </application>
 
 </manifest>
