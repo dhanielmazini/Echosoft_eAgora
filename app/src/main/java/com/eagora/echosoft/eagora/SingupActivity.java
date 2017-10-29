@@ -22,7 +22,6 @@ public class SingupActivity extends AppCompatActivity {
 
     private FirebaseAuth minhaAuth;
 
-    private Button btnConcluir;
     private EditText txtSobrenome, txtNome, txtEmail, txtConfEmail, txtSenha, txtConfSenha;
 
     private DatabaseReference mDatabase;
@@ -34,7 +33,6 @@ public class SingupActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        btnConcluir = (Button) findViewById(R.id.button4);
         txtNome = (EditText) findViewById(R.id.nome);
         txtSobrenome = (EditText) findViewById(R.id.sobrenome);
         txtEmail = (EditText) findViewById(R.id.email);
@@ -47,7 +45,6 @@ public class SingupActivity extends AppCompatActivity {
     }
 
     public void createAccount(View view) {
-        System.out.println("Heya");
         if(txtEmail.getText().toString().equals(txtConfEmail.getText().toString())
                 && txtSenha.getText().toString().equals(txtConfSenha.getText().toString())
                 && !txtEmail.getText().toString().isEmpty() && !txtSenha.getText().toString().isEmpty()) {
