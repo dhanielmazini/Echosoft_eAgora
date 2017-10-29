@@ -46,13 +46,11 @@ import java.util.Arrays;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    LoginButton login_button;
-    TextView txtStatus,reqTest,getn;
-    CallbackManager callbackManager;
+    TextView txtStatus,reqTest;
     EditText insertText;
     Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos, update;
     NavigationView navigationView;
-    ProfilePictureView profilePictureView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +77,8 @@ public class MenuActivity extends AppCompatActivity
 
         reqTest = (TextView)findViewById(R.id.reqTest);
         testReq = (Button)findViewById(R.id.testReq);
-        testInsert = (Button)findViewById(R.id.testInsert);
+        testInsert = (Button)findViewById
+(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
         button2 = (Button)findViewById(R.id.button2);
         btnLogout = (Button)findViewById(R.id.btnLogout);
@@ -89,61 +88,6 @@ public class MenuActivity extends AppCompatActivity
         update = (Button)findViewById(R.id.update);
 
         txtStatus = (TextView)findViewById(R.id.txtStatus);
-        login_button = (LoginButton)findViewById(R.id.login_button);
-        callbackManager = CallbackManager.Factory.create();
-        login_button.setReadPermissions(Arrays.asList(
-                "public_profile", "email", "user_birthday", "user_friends"));
-        login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                //Define variável global de Token de Acesso  do Facebook
-                AcessoGraphFacebook.accessToken = loginResult.getAccessToken();
-
-                login_button.setReadPermissions("email,public_profile");
-                txtStatus.setText("Login sucess! \n" + "User ID: " +
-                        loginResult.getAccessToken().getUserId()
-                        + "\n" + "Last Refresh:\n " + loginResult.getAccessToken().getLastRefresh() + "\n");
-                GraphRequest request = GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-
-                            @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                Log.v("Main", response.toString());
-                                setProfileToView(object);
-                            }
-
-                            private void setProfileToView(JSONObject object) {
-
-                            }
-                        });
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,email,gender, birthday");
-                request.setParameters(parameters);
-                request.executeAsync();
-
-                if (Profile.getCurrentProfile() != null) {
-                    txtStatus.setText("Login sucess! \n" + "User ID: " +
-                            loginResult.getAccessToken().getUserId()
-                            + "\n" + "Last Refresh:\n " + loginResult.getAccessToken().getLastRefresh() + "\n" +
-                            "nome: \n" + Profile.getCurrentProfile().getName());
-                    View header= navigationView.getHeaderView(0);
-                    getn = (TextView)header.findViewById(R.id.getn);
-                    getn.setText(Profile.getCurrentProfile().getName());
-                    profilePictureView = (ProfilePictureView)findViewById(R.id.image);
-                    profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
-                }
-
-            }
-            @Override
-            public void onCancel() {
-            }
-
-            @Override
-            public void onError(FacebookException e) {
-                e.printStackTrace();
-            }
-        });
 
         testReq.setOnClickListener(new View.OnClickListener() {
                                        @Override
@@ -255,7 +199,7 @@ public class MenuActivity extends AppCompatActivity
     }
 
     protected void onActivityResult(int requestCode, int result, Intent data){
-        callbackManager.onActivityResult(requestCode, result, data);
+
     }
 
     @Override
