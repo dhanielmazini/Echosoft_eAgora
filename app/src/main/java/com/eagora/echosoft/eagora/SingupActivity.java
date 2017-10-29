@@ -47,13 +47,15 @@ public class SingupActivity extends AppCompatActivity {
     }
 
     public void createAccount(View view) {
+        System.out.println("Heya");
         if(txtEmail.getText().toString().equals(txtConfEmail.getText().toString())
-                && txtSenha.getText().toString().equals(txtConfSenha.getText().toString())) {
+                && txtSenha.getText().toString().equals(txtConfSenha.getText().toString())
+                && !txtEmail.getText().toString().isEmpty() && !txtSenha.getText().toString().isEmpty()) {
             minhaAuth.createUserWithEmailAndPassword(txtEmail.getText().toString(), txtSenha.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-//                            Log.d("HAIA", "createUserWithEmail:onComplete:" + task.isSuccessful());
+//                            Log.d("HAIA", "createUserWithEmail:onComplete:" + task.isSuccessfu2l());
 
                            if (!task.isSuccessful()) {
                                 Toast.makeText(SingupActivity.this, "Falha na criação de usuário",
@@ -76,15 +78,6 @@ public class SingupActivity extends AppCompatActivity {
         } else{
             Toast.makeText(SingupActivity.this, "Confira os campos novamente", Toast.LENGTH_SHORT).show();
         }
-        btnConcluir.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Intent intentConta= new Intent(getApplicationContext(), MenuActivity.class);
-                        startActivity(intentConta);
-                    }
-                }
-        );
     }
 }
 
