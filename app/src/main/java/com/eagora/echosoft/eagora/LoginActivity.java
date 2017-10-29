@@ -58,15 +58,15 @@ public class LoginActivity extends AppCompatActivity implements
     CallbackManager callbackManager;
     private EditText txtEmail, txtSenha;
     private Button btnCadastro;
-    ProfilePictureView profilePictureView;
     private FirebaseAuth mAuth;
     GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 100;
-
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         FirebaseUser usuario = mAuth.getCurrentUser();
 
@@ -109,7 +109,6 @@ public class LoginActivity extends AppCompatActivity implements
     public void onClick (View v){
         switch (v.getId()){
             case R.id.sign_in_button:
-                System.out.println("Heya1");
                 signIn();
                 break;
 //            case R.id.sign_out_button:
@@ -121,13 +120,12 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void faceLog(){
-        login_button.setReadPermissions(Arrays.asList(
-                "public_profile", "email", "user_birthday", "user_friends"));
+        login_button.setReadPermissions("email","public_profile");
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 //Define variável global de Token de Acesso  do Facebook
-//                AcessoGraphFacebook.accessToken = loginResult.getAccessToken();
+                AcessoGraphFacebook.accessToken = loginResult.getAccessToken();
 
 //                GraphRequest request = GraphRequest.newMeRequest(
 //                        loginResult.getAccessToken(),
@@ -168,7 +166,6 @@ public class LoginActivity extends AppCompatActivity implements
     }
 
     private void handleFacebookAccessToken(AccessToken token) {
-//        Log.d("TOKENACC", "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
@@ -178,20 +175,17 @@ public class LoginActivity extends AppCompatActivity implements
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Heya", "signInWithCredential:success");
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            Toast.makeText(LoginActivity.this, "Autenticado com o facebook.",
-//                                    Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
-//                            updateUI(user);
+                            Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
+                            startActivity(login);
+                            Usuario user = new Usuario(Profile.getCurrentProfile().getFirstName(), Profile.getCurrentProfile().getLastName(),
+                                    null, FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
+                            mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                         } else {
                             // If sign in fails, display a message to the user.
-//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Falha na autenticação.",
                                     Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
-                        }
 
-                        // ...
+                        }
                     }
                 });
     }
@@ -260,9 +254,11 @@ public class LoginActivity extends AppCompatActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
 
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+
         if(requestCode == RC_SIGN_IN){
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
+//            handleSignInResult(result);
             if (result.isSuccess()) {
                 GoogleSignInAccount acc = result.getSignInAccount();
                 firebaseAuthWithGoogle(acc);
@@ -271,13 +267,10 @@ public class LoginActivity extends AppCompatActivity implements
                         Toast.LENGTH_SHORT).show();
             }
         }
-
-        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         Log.d("logafirebase", "firebaseAuthWithGoogle:" + acct.getId());
-
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
@@ -290,6 +283,12 @@ public class LoginActivity extends AppCompatActivity implements
                                     Toast.LENGTH_SHORT).show();
 //                            FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
+                            Usuario user = new Usuario(acct.getDisplayName(), acct.getFamilyName(),
+                                    acct.getEmail(), FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
+
+                            mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                            Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
+                            startActivity(login);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Falha na autenticação",
@@ -302,34 +301,33 @@ public class LoginActivity extends AppCompatActivity implements
                 });
     }
 
-    private void handleSignInResult(GoogleSignInResult result) {
-        Log.d("logGOOGLE", "handleSignInResult:" + result.isSuccess());
-        if (result.isSuccess()) {
-            // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
-//            mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
-            updateUI(true);
-            Toast.makeText(LoginActivity.this, "Autenticado com o google",
-                    Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
-        } else {
-            // Signed out, show unauthenticated UI.
-            updateUI(false);
-            Toast.makeText(LoginActivity.this, "Falha na autenticação",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private void handleSignInResult(GoogleSignInResult result) {
+//        Log.d("logGOOGLE", "handleSignInResult:" + result.isSuccess());
+//        if (result.isSuccess()) {
+//            // Signed in successfully, show authenticated UI.
+//            GoogleSignInAccount acct = result.getSignInAccount();
+////            mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
+//            updateUI(true);
+//            Toast.makeText(LoginActivity.this, "Autenticado com o google",
+//                    Toast.LENGTH_SHORT).show();
+//        } else {
+//            // Signed out, show unauthenticated UI.
+//            updateUI(false);
+//            Toast.makeText(LoginActivity.this, "Falha na autenticação",
+//                    Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
-    private void updateUI(boolean signedIn) {
-        if (signedIn) {
-            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
-        } else {
-//            mStatusTextView.setText(R.string.signed_out);
-
-            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
-        }
-    }
+//    private void updateUI(boolean signedIn) {
+//        if (signedIn) {
+//            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+//            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+//        } else {
+////            mStatusTextView.setText(R.string.signed_out);
+//
+//            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
+//            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
+//        }
+//    }
 
 }
