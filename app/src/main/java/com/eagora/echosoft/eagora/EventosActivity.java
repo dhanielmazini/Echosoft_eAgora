@@ -35,7 +35,6 @@ import java.util.Date;
 import java.util.List;
 
 
-
 public class EventosActivity extends AppCompatActivity {
 
     Button btnBuscarEventosVidaNoturna,btnBuscarEventosGastronomico;
@@ -215,7 +214,10 @@ public class EventosActivity extends AppCompatActivity {
                     txtNomeEvento.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     txtNomeEvento.setTextSize(16);
 
+
                     linear.addView(imgEvento);
+                    imgEvento.getAdjustViewBounds();
+                    imgEvento.setMaxWidth(259);
 
 
                     linear.addView(txtHorario);

@@ -135,6 +135,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
+        <activity
+            android:name=".EstabelecimentosActivity"
+            android:label="@string/title_activity_estabelecimentos"
+            android:parentActivityName=".TelaDeRedirecionamentoMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.TelaDeRedirecionamentoMainActivity" />
+        </activity>
+        <activity
+            android:name=".PontosTuristicosActivity"
+            android:label="@string/title_activity_pontos_turisticos"
+            android:parentActivityName=".TelaDeRedirecionamentoMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.TelaDeRedirecionamentoMainActivity" />
+        </activity>
     </application>
 
 </manifest>

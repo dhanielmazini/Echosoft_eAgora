@@ -28,6 +28,8 @@
     <string name="title_activity_eventos_compras">EventosComprasActivity</string>
     <string name="title_activity_tela_de_redirecionamento_main">
     </string>
+    <string name="title_activity_estabelecimentos">EstabelecimentosActivity</string>
+    <string name="title_activity_pontos_turisticos">PontosTuristicosActivity</string>
 
 
 </resources>
