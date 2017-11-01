@@ -35,7 +35,6 @@
     <string name="title_activity_editar_cadastro">EditarCadastroActivity</string>
     <string name="title_activity_cadastro_edit">CadastroEditActivity</string>
     <string name="title_activity_cadastro_editar">CadastroEditarActivity</string>
-    <string name="title_activity_eventos"> </string>
     <string name="title_activity_eventos_aventura">EventosAventuraActivity</string>
     <string name="title_activity_eventos_compras">EventosComprasActivity</string>
     <string name="title_activity_tela_de_redirecionamento_main">
