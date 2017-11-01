@@ -48,7 +48,7 @@ public class MenuActivity extends AppCompatActivity
 
     TextView txtStatus,reqTest;
     EditText insertText;
-    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos, update;
+    Button testReq,testInsert,btnMaps, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos, update;
     NavigationView navigationView;
 
 
@@ -80,7 +80,7 @@ public class MenuActivity extends AppCompatActivity
         testInsert = (Button)findViewById
 (R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
-        button2 = (Button)findViewById(R.id.button2);
+        btnMaps = (Button)findViewById(R.id.btnMaps);
         btnLogout = (Button)findViewById(R.id.btnLogout);
         tagbtn = (Button)findViewById(R.id.tagbtn);
         btnDefinirRoteiro = (Button)findViewById(R.id.btnDefinirRoteiro);
@@ -123,7 +123,7 @@ public class MenuActivity extends AppCompatActivity
 
         );
 
-        button2.setOnClickListener(
+        btnMaps.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
