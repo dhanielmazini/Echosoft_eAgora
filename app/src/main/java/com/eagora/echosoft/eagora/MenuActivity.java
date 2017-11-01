@@ -51,7 +51,7 @@ public class MenuActivity extends AppCompatActivity
     TextView txtStatus,reqTest,getn;
     CallbackManager callbackManager;
     EditText insertText;
-    Button testReq,testInsert,button2, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos;
+    Button testReq,testInsert,btnMaps, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos;
     NavigationView navigationView;
     ProfilePictureView profilePictureView;
 
@@ -93,7 +93,7 @@ public class MenuActivity extends AppCompatActivity
         testReq = (Button)findViewById(R.id.testReq);
         testInsert = (Button)findViewById(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
-        button2 = (Button)findViewById(R.id.button2);
+        btnMaps = (Button)findViewById(R.id.btnMaps);
 //        button3 = (Button)findViewById(R.id.button3);
         /*txtEmail = (EditText)findViewById(R.id.loginEmail);
         txtSenha = (EditText)findViewById(R.id.loginSenha);*/
@@ -194,7 +194,7 @@ public class MenuActivity extends AppCompatActivity
 
         );
 
-        button2.setOnClickListener(
+        btnMaps.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){

@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.158" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnMaps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Maps"
@@ -111,7 +111,9 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.29"
+        app:layout_constraintVertical_bias="0.498" />
 
     <Button
         android:id="@+id/btnEventos"
