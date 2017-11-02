@@ -2,16 +2,13 @@ package com.eagora.echosoft.eagora;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,28 +17,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.eagora.echosoft.eagora.Maps.MapsActivity;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
+import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.facebook.login.widget.ProfilePictureView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONObject;
-
-import java.util.Arrays;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +35,7 @@ public class MenuActivity extends AppCompatActivity
     EditText insertText;
     Button testReq,testInsert,btnMaps, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos, update;
     NavigationView navigationView;
+    DatabaseReference mDatabase;
 
 
     @Override
@@ -71,14 +57,29 @@ public class MenuActivity extends AppCompatActivity
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         InitializeControls();
+
+
+        //Definir nome e perfil do usuário como variável global
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid());
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Usuario usu = dataSnapshot.getValue(Usuario.class);
+                    GlobalAccess.nomeUsuario = usu.getNome();
+                    GlobalAccess.perfilUsuario = usu.getPerfil();
+                }
+            }
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     private void  InitializeControls(){
 
         reqTest = (TextView)findViewById(R.id.reqTest);
         testReq = (Button)findViewById(R.id.testReq);
-        testInsert = (Button)findViewById
-(R.id.testInsert);
+        testInsert = (Button)findViewById(R.id.testInsert);
         insertText = (EditText)findViewById(R.id.insertText);
         btnMaps = (Button)findViewById(R.id.btnMaps);
         btnLogout = (Button)findViewById(R.id.btnLogout);
