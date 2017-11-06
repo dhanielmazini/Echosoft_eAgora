@@ -329,7 +329,25 @@ public class PerfilViajanteActivity extends AppCompatActivity {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("perfil").setValue(perfil);
+                        List<String> finalperf = new ArrayList<String>();
+                        if (perfil.contains("Gosto da vida noturna") || perfil.contains("Gourmet") || perfil.contains("Baladas e Clubes") )
+                            finalperf.add("Vida Noturna");
+                        if (perfil.contains("Gourmet"))
+                            finalperf.add("Gastronômicas");
+                        if (perfil.contains("Sou amante da natureza") || perfil.contains("Mochileiro") || perfil.contains("Praticante de esportes") || perfil.contains("Gosto de conhecer novas culturas") || perfil.contains("Busco aventura"))
+                            finalperf.add("Aventura");
+                        if (perfil.contains("Busco paz e tranquilidade") || perfil.contains("Busco divertimento e economia") || perfil.contains("Gosto de arte e história") || perfil.contains("Viajante com crianças") || perfil.contains("Gosto de conhecer novas culturas") || perfil.contains("Tenho mais de 50 anos") || perfil.contains("Romântico"))
+                            finalperf.add("Cultural");
+                        if (perfil.contains("Sou amante da natureza") || perfil.contains("Busco paz e tranqulidade") || perfil.contains("Viajante com a família") || perfil.contains("Viajante com crianças") || perfil.contains("Tenho mais de 50 anos"))
+                            finalperf.add("Família");
+                        if (perfil.contains("Busco paz e tranqulidade") || perfil.contains("Ecoturista") || perfil.contains("Viajante com a família") )
+                            finalperf.add("Paisagem");
+                        if (perfil.contains("Busco fazer compras") || perfil.contains("Romântico"))
+                            finalperf.add("Compras");
+                        if (perfil.contains("Viajando a trabalho"))
+                            finalperf.add("Trabalho");
+
+                        mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("perfil").setValue(finalperf);
                         Intent ini = new Intent(getApplicationContext(), MenuActivity.class);
                         startActivity(ini);
                     }

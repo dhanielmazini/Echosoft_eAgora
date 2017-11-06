@@ -3,6 +3,7 @@ package com.eagora.echosoft.eagora;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +46,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -123,36 +125,22 @@ public class LoginActivity extends AppCompatActivity implements
         login_button.setReadPermissions("email","public_profile");
         login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(final LoginResult loginResult) {
                 //Define variável global de Token de Acesso  do Facebook
                 AcessoGraphFacebook.accessToken = loginResult.getAccessToken();
-
-//                GraphRequest request = GraphRequest.newMeRequest(
-//                        loginResult.getAccessToken(),
-//                        new GraphRequest.GraphJSONObjectCallback() {
-//
-//                            @Override
-//                            public void onCompleted(JSONObject object, GraphResponse response) {
-//                                Log.v("Main", response.toString());
-//                                setProfileToView(object);
-//                            }
-//
-//                            private void setProfileToView(JSONObject object) {
-//
-//                            }
-//                        });
-//                Bundle parameters = new Bundle();
-//                parameters.putString("fields", "id,name,email,gender, birthday");
-//                request.setParameters(parameters);
-//                request.executeAsync();
-
-//                if (Profile.getCurrentProfile() != null) {
-//                    Toast.makeText(LoginActivity.this, "Campo de email ou senha vazio", Toast.LENGTH_SHORT).show();
-//                    profilePictureView = (ProfilePictureView)findViewById(R.id.image);
-//                    profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
-//                }
-                handleFacebookAccessToken(loginResult.getAccessToken());
-
+                new GraphRequest.GraphJSONObjectCallback(){
+                    @Override
+                    public void onCompleted( JSONObject object, GraphResponse response){
+                        String email = null;
+                        try {
+                            email = object.getString("email");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        if(mAuth.getCurrentUser() != null)
+                            handleFacebookAccessToken(loginResult.getAccessToken(),email);
+                    }
+                };
             }
             @Override
             public void onCancel() {
@@ -165,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements
         });
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
+    private void handleFacebookAccessToken(AccessToken token, final String email) {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
@@ -174,11 +162,11 @@ public class LoginActivity extends AppCompatActivity implements
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("Heya", "signInWithCredential:success");
+                            Log.d("FBLog", "signInWithCredential:success");
                             Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
                             startActivity(login);
                             Usuario user = new Usuario(Profile.getCurrentProfile().getFirstName(), Profile.getCurrentProfile().getLastName(),
-                                    null, FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
+                                    email, Profile.getCurrentProfile().getId() , null);
                             mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
                         } else {
                             // If sign in fails, display a message to the user.
