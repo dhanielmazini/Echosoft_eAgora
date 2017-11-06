@@ -333,7 +333,7 @@ public class PerfilViajanteActivity extends AppCompatActivity {
                         if (perfil.contains("Gosto da vida noturna") || perfil.contains("Gourmet") || perfil.contains("Baladas e Clubes") )
                             finalperf.add("Vida Noturna");
                         if (perfil.contains("Gourmet"))
-                            finalperf.add("Gastronômicas");
+                            finalperf.add("Gastronômico");
                         if (perfil.contains("Sou amante da natureza") || perfil.contains("Mochileiro") || perfil.contains("Praticante de esportes") || perfil.contains("Gosto de conhecer novas culturas") || perfil.contains("Busco aventura"))
                             finalperf.add("Aventura");
                         if (perfil.contains("Busco paz e tranquilidade") || perfil.contains("Busco divertimento e economia") || perfil.contains("Gosto de arte e história") || perfil.contains("Viajante com crianças") || perfil.contains("Gosto de conhecer novas culturas") || perfil.contains("Tenho mais de 50 anos") || perfil.contains("Romântico"))
