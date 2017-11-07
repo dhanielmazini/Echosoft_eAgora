@@ -12,140 +12,177 @@
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:orientation="vertical">
-
-       <TextView
-           android:id="@+id/textView12"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Editar Perfil" />
+       android:orientation="vertical"
+       android:weightSum="1">
 
        <TextView
            android:id="@+id/textView13"
-           android:layout_width="match_parent"
+           android:layout_width="271dp"
            android:layout_height="wrap_content"
-           android:text="Nome" />
+           android:layout_gravity="right"
+           android:text="\n  Nome"
+           android:textColor="@android:color/black"
+           android:textStyle="bold" />
+
+       <ImageView
+           android:id="@+id/imageView4"
+           android:layout_width="67dp"
+           android:layout_height="wrap_content"
+           app:srcCompat="@android:drawable/ic_menu_camera" />
 
        <EditText
            android:id="@+id/txtNome"
-           android:layout_width="match_parent"
+           android:layout_width="272dp"
            android:layout_height="wrap_content"
-           android:text="Nome do Usuário" />
+           android:layout_gravity="right"
+           android:inputType="textPersonName"
+           android:text="Nome do Usuário"
+           android:textColor="@color/colorAccent" />
 
        <TextView
            android:id="@+id/txtviewx"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Sobrenome" />
+           android:text="  \n  Sobrenome"
+           android:textColor="@android:color/black"
+           android:textStyle="bold" />
 
        <EditText
            android:id="@+id/txtSobrenome"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Sobrenome do Usuário" />
+           android:inputType="textPersonName"
+           android:text="Sobrenome do Usuário"
+           android:textColor="@color/colorAccent" />
 
        <TextView
            android:id="@+id/textView17"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Email" />
+           android:text="\n  Email"
+           android:textColor="@android:color/black"
+           android:textStyle="bold" />
 
        <EditText
            android:id="@+id/txtEmail"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Email@usuario.com" />
+           android:inputType="textEmailAddress"
+           android:text="Email@usuario.com"
+           android:textColor="@color/colorAccent" />
 
        <TextView
            android:id="@+id/textView123"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Nova Senha" />
+           android:text="\n  Nova Senha"
+           android:textColor="@android:color/black"
+           android:textStyle="bold" />
 
        <EditText
            android:id="@+id/txtNovaSenha"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="" />
+           android:inputType="textPassword"
+           android:text=""
+           android:textColor="@color/colorAccent" />
 
        <TextView
            android:id="@+id/textView21"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Perfis de Viagem" />
+           android:text="\n  Perfis de Viagem"
+           android:textColor="@android:color/black"
+           android:textStyle="bold" />
 
        <CheckBox
            android:id="@+id/cbAventura"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Aventura" />
+           android:text="Aventura"
+           android:textColor="@color/colorAccent" />
 
        <CheckBox
            android:id="@+id/cbCompras"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Compras" />
+           android:text="Compras"
+           android:textColor="@color/colorAccent" />
 
        <CheckBox
            android:id="@+id/cbCultural"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Cultural" />
+           android:text="Cultural"
+           android:textColor="@color/colorAccent" />
 
        <CheckBox
            android:id="@+id/cbFamilia"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Família" />
+           android:text="Família"
+           android:textColor="@color/colorAccent" />
 
        <CheckBox
            android:id="@+id/cbGastro"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Gastronômico" />
+           android:text="Gastronômico"
+           android:textColor="@color/colorAccent" />
 
        <CheckBox
            android:id="@+id/cbPaisagem"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Paisagem" />
+           android:text="Paisagem"
+           android:textColor="@color/colorAccent" />
 
        <CheckBox
            android:id="@+id/cbTrabalho"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Trabalho" />
+           android:text="Trabalho"
+           android:textColor="@color/colorAccent" />
 
        <CheckBox
            android:id="@+id/cbVidaNoturna"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Vida Noturna" />
+           android:text="Vida Noturna"
+           android:textColor="@color/colorAccent" />
 
 
        <TextView
            android:id="@+id/textView20"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Para salvar as alterações, informe sua senha" />
+           android:text="\n  Para salvar as alterações, informe sua senha"
+           android:textAlignment="center"
+           android:textColor="@android:color/black"
+           android:textStyle="bold" />
 
        <EditText
            android:id="@+id/txtSenhaConfirmar"
-           android:layout_width="match_parent"
+           android:layout_width="232dp"
            android:layout_height="wrap_content"
+           android:layout_gravity="center"
            android:text="" />
 
        <Button
            android:id="@+id/btnEditar"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Editar" />
+           android:background="@drawable/com_facebook_auth_dialog_header_background"
+           android:text="Editar"
+           android:textStyle="bold" />
 
        <Button
            android:id="@+id/btnExcluir"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Excluir Conta" />
+           android:background="@drawable/com_facebook_auth_dialog_header_background"
+           android:text="Excluir Conta"
+           android:textColor="@color/colorPrimaryDark" />
 
 
    </LinearLayout>
