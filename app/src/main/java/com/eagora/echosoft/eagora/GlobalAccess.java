@@ -10,6 +10,7 @@ import java.util.List;
 
 public class GlobalAccess {
     public static String nomeUsuario;
+    public static String emailUsuario;
     public static  List<String> perfilUsuario;
     public static Coordenada coordenadaUsuario;
 }

@@ -17,9 +17,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eagora.echosoft.eagora.Maps.MapsActivity;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
+import com.facebook.login.widget.ProfilePictureView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,11 +31,12 @@ import com.google.firebase.database.ValueEventListener;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView txtStatus,reqTest;
+    TextView txtStatus,reqTest, getn, text_mail;
     EditText insertText;
     Button testReq,testInsert,btnMaps, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos, update;
     NavigationView navigationView;
     DatabaseReference mDatabase;
+    ProfilePictureView profilePictureView;
 
 
     @Override
@@ -58,6 +59,10 @@ public class MenuActivity extends AppCompatActivity
         FacebookSdk.sdkInitialize(getApplicationContext());
         InitializeControls();
 
+        View header= navigationView.getHeaderView(0);
+        getn = (TextView)header.findViewById(R.id.getn);
+        text_mail = (TextView)header.findViewById(R.id.text_mail);
+
 
         //Definir nome e perfil do usuário como variável global
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -67,7 +72,10 @@ public class MenuActivity extends AppCompatActivity
                 if (dataSnapshot.exists()) {
                     Usuario usu = dataSnapshot.getValue(Usuario.class);
                     GlobalAccess.nomeUsuario = usu.getNome();
+                    GlobalAccess.emailUsuario = usu.getEmail();
                     GlobalAccess.perfilUsuario = usu.getPerfil();
+                    getn.setText(GlobalAccess.nomeUsuario);
+                    text_mail.setText(GlobalAccess.emailUsuario);
                 }
             }
             public void onCancelled(DatabaseError databaseError) {
@@ -77,125 +85,7 @@ public class MenuActivity extends AppCompatActivity
 
     private void  InitializeControls(){
 
-        reqTest = (TextView)findViewById(R.id.reqTest);
-        testReq = (Button)findViewById(R.id.testReq);
-        testInsert = (Button)findViewById(R.id.testInsert);
-        insertText = (EditText)findViewById(R.id.insertText);
-        btnMaps = (Button)findViewById(R.id.btnMaps);
-        btnLogout = (Button)findViewById(R.id.btnLogout);
-        tagbtn = (Button)findViewById(R.id.tagbtn);
-        btnDefinirRoteiro = (Button)findViewById(R.id.btnDefinirRoteiro);
-        btnEventos = (Button)findViewById(R.id.btnEventos);
-        update = (Button)findViewById(R.id.update);
 
-        txtStatus = (TextView)findViewById(R.id.txtStatus);
-
-        testReq.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
-                                           FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                           DatabaseReference myRef = database.getReference("message");
-                                           myRef.addValueEventListener(new ValueEventListener() {
-
-                                               @Override
-                                               public void onDataChange(DataSnapshot dataSnapshot) {
-                                                   String value = dataSnapshot.getValue(String.class);
-                                                   reqTest.setText(value);
-                                               }
-
-                                               @Override
-                                               public void onCancelled(DatabaseError databaseError) {
-                                                   reqTest.setText("Fail");
-                                               }
-                                           });
-                                       }
-                                   }
-        );
-
-        testInsert.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View view) {
-                                              FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                              DatabaseReference myRef = database.getReference("message");
-                                              String messageSending = insertText.getText().toString();
-                                              myRef.setValue(messageSending);
-                                          }
-                                      }
-
-        );
-
-        btnMaps.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Intent maps = new Intent(getApplicationContext(), MapsActivity.class);
-                        startActivity(maps);
-                    }
-                }
-        );
-
-        tagbtn.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Intent intentPerfil = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
-                        startActivity(intentPerfil);
-                    }
-                }
-        );
-
-        btnLogout.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Toast.makeText(MenuActivity.this, "Usuário deslogado.",
-                                Toast.LENGTH_SHORT).show();
-                        FirebaseAuth.getInstance().signOut();
-                        Intent login = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(login);
-                    }
-                }
-        );
-
-        btnLogout.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Toast.makeText(MenuActivity.this, "Usuário deslogado.",
-                                Toast.LENGTH_SHORT).show();
-                        FirebaseAuth.getInstance().signOut();
-                        Intent login = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(login);
-                    }
-                }
-        );
-        btnDefinirRoteiro.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Intent intentDefinirRoteiro = new Intent(getApplicationContext(), DefinirRoteiroActivity.class);
-                        startActivity(intentDefinirRoteiro);
-                    }
-                }
-        );
-        update.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
-                        startActivity(conta);
-                    }
-                }
-        );
-        btnEventos.setOnClickListener(
-                new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view){
-                        Intent intentEventos = new Intent(getApplicationContext(), TelaDeRedirecionamentoMainActivity.class);
-                        startActivity(intentEventos);
-                    }
-                }
-        );
 
     }
 
@@ -220,20 +110,6 @@ public class MenuActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -241,19 +117,35 @@ public class MenuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        FragmentManager frag = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_criar_roteiro) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_meus_roteiros) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_procurar_eventos) {
+            Intent intentEventos = new Intent(getApplicationContext(), EventosActivity.class);
+            startActivity(intentEventos);
+        } else if (id == R.id.nav_procurar_pontos) {
+            Intent intentPontosTur = new Intent(getApplicationContext(), PontosTuristicosActivity.class);
+            startActivity(intentPontosTur);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_procurar_bares) {
+            Intent intentbarRest = new Intent(getApplicationContext(), EstabelecimentosActivity.class);
+            startActivity(intentbarRest);
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_editar_cadastro) {
+            Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
+            startActivity(conta);
+        }
+        else if (id == R.id.nav_sair) {
+            Toast.makeText(MenuActivity.this, "Usuário deslogado.",
+                    Toast.LENGTH_SHORT).show();
+            FirebaseAuth.getInstance().signOut();
+            Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(login);
+        }
+        else if (id == R.id.nav_blank) {
 
         }
 

@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_criar_roteiro"
+            android:title="Criar Roteiro de Viagem" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_meus_roteiros"
+            android:title="Meus Roteiros" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_procurar_eventos"
+            android:title="Procurar Eventos" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@android:drawable/ic_menu_edit"
-            android:title="Editar Perfil"
+            android:id="@+id/nav_procurar_pontos"
+            android:title="Procurar Pontos Turísticos"
+            />
+        <item
+            android:id="@+id/nav_procurar_bares"
+
+            android:title="Procurar Bares e Restaurantes" />
+        <item
+            android:id="@+id/nav_blank"
+            android:title=" "
             />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title=" ">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_editar_cadastro"
+                android:title="Editar Cadastro" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_sair"
+                android:title="Sair" />
         </menu>
     </item>
 

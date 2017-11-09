@@ -110,24 +110,6 @@
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
-            android:name=".Eventos.EventosAventuraActivity"
-            android:label="@string/title_activity_eventos_aventura"
-            android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.MenuActivity" />
-        </activity>
-        <activity
-            android:name=".Eventos.EventosComprasActivity"
-            android:label="@string/title_activity_eventos_compras"
-            android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.MenuActivity" />
-        </activity>
-        <activity
             android:name=".TelaDeRedirecionamentoMainActivity"
             android:label="@string/title_activity_tela_de_redirecionamento_main"
             android:parentActivityName=".MenuActivity"
@@ -153,33 +135,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.TelaDeRedirecionamentoMainActivity" />
-        </activity>
-        <activity
-            android:name=".Usuario.MainActivity"
-            android:label="@string/title_activity_main"
-            android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.MenuActivity" />
-        </activity>
-        <activity
-            android:name=".ContaActivity"
-            android:label="@string/title_activity_conta"
-            android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.MenuActivity" />
-        </activity>
-        <activity
-            android:name=".EditarCadastroActivity"
-            android:label="@string/title_activity_editar_cadastro"
-            android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
             android:name=".AdapterOptions$CadastroEditActivity"

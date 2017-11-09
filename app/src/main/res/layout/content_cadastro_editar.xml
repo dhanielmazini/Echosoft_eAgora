@@ -163,9 +163,11 @@
 
        <EditText
            android:id="@+id/txtSenhaConfirmar"
+           style="@android:style/Widget.Material.Light.EditText"
            android:layout_width="232dp"
            android:layout_height="wrap_content"
            android:layout_gravity="center"
+           android:inputType="textPassword"
            android:text="" />
 
        <Button
