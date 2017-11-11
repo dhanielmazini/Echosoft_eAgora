@@ -58,5 +58,6 @@
     <string name="back_to_normal">Back to normal</string>
     <string name="title_activity_place_list_adapter">PlaceListAdapterActivity</string>
     <string name="title_activity_list_place">ListPlaceActivity</string>
+    <string name="title_activity_eventos_roteiro">EventosRoteiroActivity</string>
 
 </resources>

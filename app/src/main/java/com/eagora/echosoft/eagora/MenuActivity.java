@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.ProfilePictureView;
@@ -71,9 +72,14 @@ public class MenuActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Usuario usu = dataSnapshot.getValue(Usuario.class);
+
                     GlobalAccess.nomeUsuario = usu.getNome();
                     GlobalAccess.emailUsuario = usu.getEmail();
                     GlobalAccess.perfilUsuario = usu.getPerfil();
+                    //Coordenada Fake
+                    Coordenada c = new Coordenada(-23.1920446,-45.8950326);
+                    GlobalAccess.coordenadaUsuario =c;
+
                     getn.setText(GlobalAccess.nomeUsuario);
                     text_mail.setText(GlobalAccess.emailUsuario);
                 }
@@ -124,7 +130,8 @@ public class MenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_meus_roteiros) {
 
         } else if (id == R.id.nav_procurar_eventos) {
-            Intent intentEventos = new Intent(getApplicationContext(), EventosActivity.class);
+            //Depois criar uma tela para procurar todos os tipos de eventos
+            Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
             startActivity(intentEventos);
         } else if (id == R.id.nav_procurar_pontos) {
             Intent intentPontosTur = new Intent(getApplicationContext(), PontosTuristicosActivity.class);
