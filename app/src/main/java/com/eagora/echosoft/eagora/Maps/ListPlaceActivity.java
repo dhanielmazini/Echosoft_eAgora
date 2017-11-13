@@ -2,23 +2,30 @@ package com.eagora.echosoft.eagora.Maps;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.eagora.echosoft.eagora.GlobalAccess;
 import com.eagora.echosoft.eagora.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import im.delight.android.location.SimpleLocation;
+
 public class ListPlaceActivity extends AppCompatActivity {
     private JSONObject jsonResponse;
     ListView lstPlaces;
+    private SimpleLocation location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,26 +34,19 @@ public class ListPlaceActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         lstPlaces = (ListView) findViewById(R.id.lstPlaces);
-        String teste = "Rua Cassiopeia São José dos Campos";
-        if(getJsonOfNearbyPlaces(teste) == 1) {
+        if (getJsonOfNearbyPlaces(GlobalAccess.coordenadaUsuario) == 1) {
             MakePlacesList();
         }
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    protected int getJsonOfNearbyPlaces(String origin) {
-        List<String> lista = new ArrayList<>();
-        lista.add(origin);
-
-        List<Coordenada> coordenadas = CoordenadaListFactory.createCoordenadas(lista, this);
-        Coordenada local = coordenadas.get(0);
+    protected int getJsonOfNearbyPlaces(Coordenada origin) {
 
         Uri urlRequest = new PlacesBuilder()
                 .header()
-                .location(local)
-                .radius(5000)
-                .keyword("restaurants")
+                .location(origin)
+                .radius(500)
+                .keyword("university")
                 .build();
 
         try {
@@ -62,36 +62,39 @@ public class ListPlaceActivity extends AppCompatActivity {
     public void MakePlacesList() {
         List<Place> listaEstab = new ArrayList<>();
         try {
-            Place e;
-            for(int i=0;i<10;i++) {
+            JSONArray results = jsonResponse.getJSONArray("results");
+            for(int i=0;i<results.length();i++) {
+                Place e;
                 e = new Place(
                     jsonResponse.getJSONArray("results").getJSONObject(i).getString("id"),
                     jsonResponse.getJSONArray("results").getJSONObject(i).getString("name"),
-                    jsonResponse.getJSONArray("results").getJSONObject(i).getDouble("rating"));
-                //e.setLocalizacao(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("geometry").getJSONObject(0).getJSONArray("location").getDouble(0),
-                // jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("geometry").getJSONObject(0).getJSONArray("location").getDouble(1);
-                //e.setId(jsonResponse.getJSONArray("results").getJSONObject(i).getString("id"));
-                //e.setNome(jsonResponse.getJSONArray("results").getJSONObject(i).getString("name"));
-                //e.setEstado(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("opening_hours").getBoolean(0));
-                //e.setFoto_ref(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("photos").getJSONObject(2).getString("photo_reference"));
-                //e.setNota(jsonResponse.getJSONArray("results").getJSONObject(i).getDouble("rating"));
-                //e.setRedondezas(jsonResponse.getJSONArray("results").getJSONObject(i).getString("vicinity"));
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat"),
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng"),
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getDouble("rating"),
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("vicinity"));
+
+                try {
+                    e.setEstado(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("opening_hours").getJSONObject(0).getBoolean("open_now"));
+                }
+                catch (JSONException OpenEx) {
+                    e.setEstado("-1");
+                }
+
+                try {
+                    e.setFoto_ref(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("photos").getJSONObject(0).getString("photo_reference"));
+                }
+                catch (JSONException photoEx) {
+                    e.setFoto_ref("SF");
+                }
+
                 listaEstab.add(e);
             }
-/*
-            ArrayAdapter<Place> arrayAdapter = new ArrayAdapter<>(
-                    this,
-                    android.R.layout.simple_list_item_1,
-                    listaEstab
-                    );*/
-
-
-            lstPlaces.setAdapter(new PlacesAdapter(this,R.layout.item_place_card,listaEstab));
-
         }
         catch (JSONException jsonEx){
             Log.d("Exception", jsonEx.toString());
         }
+        lstPlaces.setAdapter(new PlacesAdapter(this,R.layout.item_place_card,listaEstab));
+
     }
 
 }

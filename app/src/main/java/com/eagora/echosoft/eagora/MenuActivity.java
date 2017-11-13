@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
+import com.eagora.echosoft.eagora.Maps.MapsActivity;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
 import com.facebook.login.widget.ProfilePictureView;
@@ -30,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import im.delight.android.location.SimpleLocation;
+
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -37,7 +40,7 @@ public class MenuActivity extends AppCompatActivity
     private Button btnMaps;
     private NavigationView navigationView;
     private DatabaseReference mDatabase;
-
+    private SimpleLocation location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -45,6 +48,13 @@ public class MenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //pegando localização
+        location = new SimpleLocation(this, true);
+        if (!location.hasLocationEnabled()) {
+            // ask the user to enable location access
+            SimpleLocation.openSettings(this);
+        }
 
         btnMaps = (Button) findViewById(R.id.btnMaps);
         btnMaps.setOnClickListener(new View.OnClickListener(){
@@ -65,6 +75,8 @@ public class MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
+        location.beginUpdates();
+        GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
 
         View header= navigationView.getHeaderView(0);
         getn = (TextView)header.findViewById(R.id.getn);
@@ -82,9 +94,6 @@ public class MenuActivity extends AppCompatActivity
                     GlobalAccess.nomeUsuario = usu.getNome();
                     GlobalAccess.emailUsuario = usu.getEmail();
                     GlobalAccess.perfilUsuario = usu.getPerfil();
-                    //Coordenada Fake
-                    Coordenada c = new Coordenada(-23.1920446,-45.8950326);
-                    GlobalAccess.coordenadaUsuario =c;
 
                     getn.setText(GlobalAccess.nomeUsuario);
                     text_mail.setText(GlobalAccess.emailUsuario);
@@ -159,6 +168,12 @@ public class MenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        location.endUpdates();
     }
 
 }
