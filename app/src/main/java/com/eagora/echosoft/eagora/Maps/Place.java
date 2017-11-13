@@ -10,13 +10,16 @@ public class Place {
     private String nome;
     private String foto_ref;
     private String redondezas;
-    private boolean estado;
+    private String estado;
     private double nota;
     private Coordenada localizacao;
 
-    public Place(String id, String nome) {
+    public Place(String id, String nome, double lat, double lng, double nota, String vicinity) {
         this.id = id;
         this.nome = nome;
+        localizacao = new Coordenada(lat, lng);
+        this.nota = nota;
+        this.redondezas = vicinity;
     }
 
     public String getId() {
@@ -51,11 +54,24 @@ public class Place {
         this.redondezas = redondezas;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
+    public String getEstado() {
+        if(estado.equals("1"))
+            return "Aberto";
+        else if(estado.equals("0"))
+            return "Fechado";
+        return "Não Informado";
+    }
+
     public void setEstado(boolean estado) {
+        if(estado == true)
+            this.estado = "1";
+        else this.estado = "0";
+    }
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
