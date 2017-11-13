@@ -14,9 +14,10 @@ public class Place {
     private double nota;
     private Coordenada localizacao;
 
-    public Place(String id, String nome) {
+    public Place(String id, String nome, double nota) {
         this.id = id;
         this.nome = nome;
+        this.nota = nota;
     }
 
     public String getId() {

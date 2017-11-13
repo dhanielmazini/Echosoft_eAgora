@@ -45,6 +45,7 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
 
             holder = new PlaceHolder();
             holder.txtNome = (TextView)row.findViewById(R.id.txtNome);
+            holder.txtNota = (TextView)row.findViewById(R.id.txtNota);
             holder.imgIcon = (ImageView)row.findViewById(R.id.ic_place_accent_24dp);
 
             row.setTag(holder);
@@ -54,7 +55,10 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
         }
 
         Place place = placeList.get(position);
+        double nota = place.getNota();
+        String notaString = String.valueOf(nota);
         holder.txtNome.setText(place.getNome());
+        holder.txtNota.setText(notaString);
         holder.imgIcon.setImageResource(R.drawable.ic_place_accent_24dp);
 
         return row;
@@ -62,6 +66,7 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
     static class PlaceHolder {
         String id;
         TextView txtNome;
+        TextView txtNota;
         ImageView imgIcon;
     }
 }

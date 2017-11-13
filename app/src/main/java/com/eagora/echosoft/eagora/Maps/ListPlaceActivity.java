@@ -65,10 +65,11 @@ public class ListPlaceActivity extends AppCompatActivity {
             Place e;
             for(int i=0;i<10;i++) {
                 e = new Place(
-                        jsonResponse.getJSONArray("results").getJSONObject(i).getString("id"),
-                        jsonResponse.getJSONArray("results").getJSONObject(i).getString("name"));
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("id"),
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("name"),
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getDouble("rating"));
                 //e.setLocalizacao(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("geometry").getJSONObject(0).getJSONArray("location").getDouble(0),
-                        //jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("geometry").getJSONObject(0).getJSONArray("location").getDouble(1);
+                // jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("geometry").getJSONObject(0).getJSONArray("location").getDouble(1);
                 //e.setId(jsonResponse.getJSONArray("results").getJSONObject(i).getString("id"));
                 //e.setNome(jsonResponse.getJSONArray("results").getJSONObject(i).getString("name"));
                 //e.setEstado(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("opening_hours").getBoolean(0));

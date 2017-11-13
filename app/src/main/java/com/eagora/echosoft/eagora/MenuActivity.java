@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
@@ -32,13 +33,10 @@ import com.google.firebase.database.ValueEventListener;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView txtStatus,reqTest, getn, text_mail;
-    EditText insertText;
-    Button testReq,testInsert,btnMaps, tagbtn,btnDefinirRoteiro, btnLogout,btnEventos, update;
-    NavigationView navigationView;
-    DatabaseReference mDatabase;
-    ProfilePictureView profilePictureView;
-
+    private TextView getn, text_mail;
+    private Button btnMaps;
+    private NavigationView navigationView;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +45,15 @@ public class MenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        btnMaps = (Button) findViewById(R.id.btnMaps);
+        btnMaps.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), ListPlaceActivity.class);
+                startActivity(intent);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -58,7 +65,6 @@ public class MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
-        InitializeControls();
 
         View header= navigationView.getHeaderView(0);
         getn = (TextView)header.findViewById(R.id.getn);
@@ -87,12 +93,6 @@ public class MenuActivity extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-    }
-
-    private void  InitializeControls(){
-
-
-
     }
 
     protected void onActivityResult(int requestCode, int result, Intent data){
