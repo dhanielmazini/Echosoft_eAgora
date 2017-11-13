@@ -212,7 +212,7 @@ public class LoginActivity extends AppCompatActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("FBLog", "signInWithCredential:success");
 
-                            if(userlist.contains(Profile.getCurrentProfile().getId())) {
+                            if(!userlist.contains(Profile.getCurrentProfile().getId())) {
                                 Log.d("contains","heyobro,newuser");
                                 Usuario user = new Usuario(Profile.getCurrentProfile().getFirstName(), Profile.getCurrentProfile().getLastName(),
                                         email, Profile.getCurrentProfile().getId(), null);
