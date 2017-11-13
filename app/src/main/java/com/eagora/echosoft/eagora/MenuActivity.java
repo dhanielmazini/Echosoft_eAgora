@@ -1,9 +1,12 @@
 package com.eagora.echosoft.eagora;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,10 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.PermissionUtils;
 import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Maps.MapsActivity;
@@ -42,6 +45,7 @@ public class MenuActivity extends AppCompatActivity
     private NavigationView navigationView;
     private DatabaseReference mDatabase;
     private SimpleLocation location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,12 +54,20 @@ public class MenuActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //pegando localização
-        location = new SimpleLocation(this, true);
-        if (!location.hasLocationEnabled()) {
-            // ask the user to enable location access
-            SimpleLocation.openSettings(this);
+        String[] permissoes = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
+                                           android.Manifest.permission.ACCESS_COARSE_LOCATION};
+        if(PermissionUtils.validate(this, 0, permissoes)){
+            //pegando localização
+            location = new SimpleLocation(this, true);
+            if (!location.hasLocationEnabled()) {
+                // ask the user to enable location access
+                SimpleLocation.openSettings(this);
+            }
+            location.beginUpdates();
+            GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
         }
+
+
 
         btnMaps = (Button) findViewById(R.id.btnMaps);
         btnMaps.setOnClickListener(new View.OnClickListener(){
@@ -76,8 +88,6 @@ public class MenuActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
-        location.beginUpdates();
-        GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
 
         View header= navigationView.getHeaderView(0);
         getn = (TextView)header.findViewById(R.id.getn);

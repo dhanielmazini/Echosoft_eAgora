@@ -1,6 +1,7 @@
 package com.eagora.echosoft.eagora;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -8,13 +9,47 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility class for access to runtime permissions.
  */
 public abstract class PermissionUtils {
+
+
+    /**
+     * Solicita as permissÃµes
+     */
+    public static boolean validate(Activity activity, int requestCode, String... permissions) {
+        List<String> list = new ArrayList<String>();
+        for (String permission : permissions) {
+            // Valida permissÃ£o
+            boolean ok = ContextCompat.checkSelfPermission(activity, permission)
+                    == PackageManager.PERMISSION_GRANTED;
+            if (! ok ) {
+                list.add(permission);
+            }
+        }
+        if (list.isEmpty()) {
+            // Tudo ok, retorna true
+            return true;
+        }
+
+        // Lista de permissÃµes que falta acesso.
+        String[] newPermissions = new String[list.size()];
+        list.toArray(newPermissions);
+
+        // Solicita permissÃ£o
+        ActivityCompat.requestPermissions(activity, newPermissions, 1);
+
+        return false;
+    }
+
 
     /**
      * Requests the fine location permission. If a rationale with an additional explanation should

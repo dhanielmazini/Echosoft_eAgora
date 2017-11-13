@@ -172,6 +172,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
+        <activity
+            android:name=".Maps.PesquisaEnderecos"
+            android:label="@string/title_activity_pesquisa_enderecos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
