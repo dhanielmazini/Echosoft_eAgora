@@ -21,6 +21,7 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.login.widget.ProfilePictureView;
@@ -49,13 +50,16 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static com.eagora.echosoft.eagora.R.id.getn;
 
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
+    List<String> userlist = new ArrayList<String>();
     LoginButton login_button;
     CallbackManager callbackManager;
     private EditText txtEmail, txtSenha;
@@ -64,19 +68,32 @@ public class LoginActivity extends AppCompatActivity implements
     GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 100;
     private DatabaseReference mDatabase;
+    String email = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-        FirebaseUser usuario = mAuth.getCurrentUser();
-
-        if(usuario != null)
-            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("usuarios");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for (DataSnapshot dados : dataSnapshot.getChildren()){
+                        String data = dados.getKey();
+                        if (!userlist.contains(data))
+                            userlist.add(data);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -94,8 +111,18 @@ public class LoginActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         login_button = (LoginButton)findViewById(R.id.login_button);
+
         callbackManager = CallbackManager.Factory.create();
-        faceLog();
+//        faceLog();
+
+        login_button.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View view){
+                        faceLog();
+                    }
+                }
+        );
 
         btnCadastro.setOnClickListener(
                 new View.OnClickListener(){
@@ -107,14 +134,33 @@ public class LoginActivity extends AppCompatActivity implements
                 });
     }
 
+//    @Override
+//    public void onResume(){
+//        super.onResume();
+//
+//        FirebaseUser usuario = mAuth.getCurrentUser();
+//
+//        if(usuario == null)
+//
+//    }
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        FirebaseUser usuario = mAuth.getCurrentUser();
+
+        if(usuario != null)
+            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
+    }
+
     @Override
     public void onClick (View v){
         switch (v.getId()){
             case R.id.sign_in_button:
                 signIn();
                 break;
-//            case R.id.sign_out_button:
-//                signOut();
+//            case R.id.login_button:
+//                faceLog();
 //                break;
 //            case R.id.disconnect_button:
 //                revokeAccess();
@@ -131,25 +177,27 @@ public class LoginActivity extends AppCompatActivity implements
                 new GraphRequest.GraphJSONObjectCallback(){
                     @Override
                     public void onCompleted( JSONObject object, GraphResponse response){
-                        String email = null;
                         try {
                             email = object.getString("email");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        if(mAuth.getCurrentUser() != null)
-                            handleFacebookAccessToken(loginResult.getAccessToken(),email);
                     }
                 };
-            }
-            @Override
-            public void onCancel() {
+                handleFacebookAccessToken(loginResult.getAccessToken(),email);
             }
 
             @Override
-            public void onError(FacebookException e) {
-                e.printStackTrace();
+            public void onCancel() {
+                Log.d("FB","facebook:onCancel");
             }
+
+            @Override
+            public void onError(FacebookException e)
+            {
+                Log.d("FB","facebook:onError", e);
+            }
+
         });
     }
 
@@ -163,11 +211,18 @@ public class LoginActivity extends AppCompatActivity implements
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("FBLog", "signInWithCredential:success");
-                            Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
-                            startActivity(login);
-                            Usuario user = new Usuario(Profile.getCurrentProfile().getFirstName(), Profile.getCurrentProfile().getLastName(),
-                                    email, Profile.getCurrentProfile().getId() , null);
-                            mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+
+                            if(userlist.contains(Profile.getCurrentProfile().getId())) {
+                                Log.d("contains","heyobro,newuser");
+                                Usuario user = new Usuario(Profile.getCurrentProfile().getFirstName(), Profile.getCurrentProfile().getLastName(),
+                                        email, Profile.getCurrentProfile().getId(), null);
+                                mDatabase.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                                Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
+                                startActivity(login);
+                            } else {
+                                Intent login = new Intent(getApplicationContext(), MenuActivity.class);
+                                startActivity(login);
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Falha na autenticação.",
@@ -244,78 +299,50 @@ public class LoginActivity extends AppCompatActivity implements
 
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RC_SIGN_IN){
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-//            handleSignInResult(result);
-            if (result.isSuccess()) {
-                GoogleSignInAccount acc = result.getSignInAccount();
-                firebaseAuthWithGoogle(acc);
-            } else{
-                Toast.makeText(LoginActivity.this, "Falha na autenticação",
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
-        Log.d("logafirebase", "firebaseAuthWithGoogle:" + acct.getId());
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(LoginActivity.this, "Autenticado com sucesso",
-                                    Toast.LENGTH_SHORT).show();
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            updateUI(user);
-                            Usuario user = new Usuario(acct.getDisplayName(), acct.getFamilyName(),
-                                    acct.getEmail(), FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
-
-                            mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
-                            Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
-                            startActivity(login);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Falha na autenticação",
-                                    Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
-//    private void handleSignInResult(GoogleSignInResult result) {
-//        Log.d("logGOOGLE", "handleSignInResult:" + result.isSuccess());
-//        if (result.isSuccess()) {
-//            // Signed in successfully, show authenticated UI.
-//            GoogleSignInAccount acct = result.getSignInAccount();
-////            mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
-//            updateUI(true);
-//            Toast.makeText(LoginActivity.this, "Autenticado com o google",
-//                    Toast.LENGTH_SHORT).show();
-//        } else {
-//            // Signed out, show unauthenticated UI.
-//            updateUI(false);
-//            Toast.makeText(LoginActivity.this, "Falha na autenticação",
-//                    Toast.LENGTH_SHORT).show();
+//        if(requestCode == RC_SIGN_IN){
+//            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+////            handleSignInResult(result);
+//            if (result.isSuccess()) {
+//                GoogleSignInAccount acc = result.getSignInAccount();
+//                firebaseAuthWithGoogle(acc);
+//            } else{
+//                Toast.makeText(LoginActivity.this, "Falha na autenticação",
+//                        Toast.LENGTH_SHORT).show();
+//            }
 //        }
-//    }
+    }
 
-//    private void updateUI(boolean signedIn) {
-//        if (signedIn) {
-//            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-//            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
-//        } else {
-////            mStatusTextView.setText(R.string.signed_out);
+//    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
+//        Log.d("logafirebase", "firebaseAuthWithGoogle:" + acct.getId());
 //
-//            findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-//            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
-//        }
+//        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Toast.makeText(LoginActivity.this, "Autenticado com sucesso",
+//                                    Toast.LENGTH_SHORT).show();
+////                            FirebaseUser user = mAuth.getCurrentUser();
+////                            updateUI(user);
+//                            Usuario user = new Usuario(acct.getDisplayName(), acct.getFamilyName(),
+//                                    acct.getEmail(), FirebaseAuth.getInstance().getCurrentUser().getUid(), null);
+//
+//                            mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+//                            Intent login = new Intent(getApplicationContext(), PerfilViajanteActivity.class);
+//                            startActivity(login);
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Toast.makeText(LoginActivity.this, "Falha na autenticação",
+//                                    Toast.LENGTH_SHORT).show();
+////                            updateUI(null);
+//                        }
+//
+//                        // ...
+//                    }
+//                });
 //    }
+
 
 }

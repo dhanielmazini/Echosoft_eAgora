@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.widget.ProfilePictureView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -149,6 +150,7 @@ public class MenuActivity extends AppCompatActivity
             Toast.makeText(MenuActivity.this, "Usuário deslogado.",
                     Toast.LENGTH_SHORT).show();
             FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
             Intent login = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(login);
         }
