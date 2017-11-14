@@ -47,8 +47,8 @@ public class EventosRoteiroActivity extends AppCompatActivity {
     DatabaseReference mDatabase;
     List<TipoViagemGenerico> listaLugares = new ArrayList<TipoViagemGenerico>();
     List<String> perfilUsuario;
-    Button btnTeste;
-    ImageView imgTeste;
+    Button btnTeste,btnEventosBanco;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,10 +122,19 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         listarLugares3();
         listarLugares1();
 
-        imgTeste = (ImageView)findViewById(R.id.imgTeste);
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("imgEventos/174324286480591.png");
-        Glide.with(this).using(new FirebaseImageLoader()).load(storageReference).into(imgTeste);
 
+
+        btnEventosBanco = (Button)findViewById(R.id.btnEventosBanco);
+        btnEventosBanco.setOnClickListener(
+                new View.OnClickListener(){
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                    @Override
+                    public void onClick(View view){
+                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroExibicaoActivity.class);
+                        startActivity(intentEvento);
+                    }
+                }
+        );
 
        btnTeste = (Button)findViewById(R.id.btnTeste);
         btnTeste.setOnClickListener(
@@ -145,7 +154,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         AcessoGraphFacebook acesso = new AcessoGraphFacebook();
         double latitude = GlobalAccess.coordenadaUsuario.getLatitude();
         double longitude = GlobalAccess.coordenadaUsuario.getLongitude();
-        double raio = 500;
+        double raio = 1000;
 
         //Mapeia o LinearLayout
         LinearLayout linear = (LinearLayout)findViewById(R.id.linearEventos);

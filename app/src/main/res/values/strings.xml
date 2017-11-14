@@ -60,5 +60,6 @@
     <string name="title_activity_list_place">ListPlaceActivity</string>
     <string name="title_activity_eventos_roteiro">EventosRoteiroActivity</string>
     <string name="title_activity_detalhes_evento">DetalhesEventoActivity</string>
+    <string name="title_activity_eventos_roteiro_exibicao">EventosRoteiroExibicaoActivity</string>
 
 </resources>

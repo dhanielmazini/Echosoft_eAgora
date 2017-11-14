@@ -23,13 +23,14 @@
                 android:id="@+id/btnTeste"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="Carregar Eventos do Facebook" />
 
-
-            <ImageView
-                android:id="@+id/imgTeste"
+            <Button
+                android:id="@+id/btnEventosBanco"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Exibir Eventos do Roteiro" />
+
 
         </LinearLayout>
 
