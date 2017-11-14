@@ -33,6 +33,10 @@ public class ListPlaceActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        location = new SimpleLocation(this, true);
+        location.beginUpdates();
+        GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
+
         lstPlaces = (ListView) findViewById(R.id.lstPlaces);
         if (getJsonOfNearbyPlaces(GlobalAccess.coordenadaUsuario) == 1) {
             MakePlacesList();
@@ -45,8 +49,8 @@ public class ListPlaceActivity extends AppCompatActivity {
         Uri urlRequest = new PlacesBuilder()
                 .header()
                 .location(origin)
-                .radius(500)
-                .keyword("university")
+                .radius(100)
+                .keyword("establishment")
                 .build();
 
         try {

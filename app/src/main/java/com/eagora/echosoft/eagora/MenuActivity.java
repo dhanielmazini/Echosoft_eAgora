@@ -54,21 +54,6 @@ public class MenuActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String[] permissoes = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
-                                           android.Manifest.permission.ACCESS_COARSE_LOCATION};
-        if(PermissionUtils.validate(this, 0, permissoes)){
-            //pegando localização
-            location = new SimpleLocation(this, true);
-            if (!location.hasLocationEnabled()) {
-                // ask the user to enable location access
-                SimpleLocation.openSettings(this);
-            }
-            location.beginUpdates();
-            GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
-        }
-
-
-
         btnMaps = (Button) findViewById(R.id.btnMaps);
         btnMaps.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,6 +62,10 @@ public class MenuActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        String[] permissoes = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
+                                           android.Manifest.permission.ACCESS_COARSE_LOCATION};
+        PermissionUtils.validate(this, 0, permissoes);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -113,6 +102,16 @@ public class MenuActivity extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
+        //pegando localização
+        location = new SimpleLocation(this, true);
+        if (!location.hasLocationEnabled()) {
+            // ask the user to enable location access
+            SimpleLocation.openSettings(this);
+        }
+        //location.beginUpdates();
+        GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
+
     }
 
     protected void onActivityResult(int requestCode, int result, Intent data){

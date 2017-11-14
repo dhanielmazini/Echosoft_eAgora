@@ -23,7 +23,7 @@ public abstract class PermissionUtils {
 
 
     /**
-     * Solicita as permissÃµes
+     * Solicita as permissoes
      */
     public static boolean validate(Activity activity, int requestCode, String... permissions) {
         List<String> list = new ArrayList<String>();
