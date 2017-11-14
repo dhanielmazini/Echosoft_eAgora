@@ -211,8 +211,9 @@ public class LoginActivity extends AppCompatActivity implements
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("FBLog", "signInWithCredential:success");
-
-                            if(!userlist.contains(Profile.getCurrentProfile().getId())) {
+                            String verify = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            System.out.println(userlist.contains(verify));
+                            if(!userlist.contains(verify)) {
                                 Log.d("contains","heyobro,newuser");
                                 Usuario user = new Usuario(Profile.getCurrentProfile().getFirstName(), Profile.getCurrentProfile().getLastName(),
                                         email, Profile.getCurrentProfile().getId(), null);
@@ -223,6 +224,7 @@ public class LoginActivity extends AppCompatActivity implements
                                 Intent login = new Intent(getApplicationContext(), MenuActivity.class);
                                 startActivity(login);
                             }
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Falha na autenticação.",

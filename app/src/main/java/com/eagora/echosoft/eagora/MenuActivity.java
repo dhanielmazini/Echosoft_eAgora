@@ -152,17 +152,19 @@ public class MenuActivity extends AppCompatActivity
             //Depois criar uma tela para procurar todos os tipos de eventos
             Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
             startActivity(intentEventos);
+            finish();
         } else if (id == R.id.nav_procurar_pontos) {
             Intent intentPontosTur = new Intent(getApplicationContext(), PontosTuristicosActivity.class);
             startActivity(intentPontosTur);
-
+            finish();
         } else if (id == R.id.nav_procurar_bares) {
             Intent intentbarRest = new Intent(getApplicationContext(), EstabelecimentosActivity.class);
             startActivity(intentbarRest);
-
+            finish();
         } else if (id == R.id.nav_editar_cadastro) {
             Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
             startActivity(conta);
+            finish();
         }
         else if (id == R.id.nav_sair) {
             Toast.makeText(MenuActivity.this, "Usuário deslogado.",
@@ -171,6 +173,7 @@ public class MenuActivity extends AppCompatActivity
             LoginManager.getInstance().logOut();
             Intent login = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(login);
+            finish();
         }
         else if (id == R.id.nav_blank) {
 

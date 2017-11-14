@@ -350,6 +350,7 @@ public class PerfilViajanteActivity extends AppCompatActivity {
                         mDatabase.child("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("perfil").setValue(finalperf);
                         Intent ini = new Intent(getApplicationContext(), MenuActivity.class);
                         startActivity(ini);
+                        finish();
                     }
                 }
         );
