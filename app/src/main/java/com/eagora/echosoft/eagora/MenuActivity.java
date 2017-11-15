@@ -1,12 +1,9 @@
 package com.eagora.echosoft.eagora;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,17 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eagora.echosoft.eagora.PermissionUtils;
-import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
-import com.eagora.echosoft.eagora.Maps.MapsActivity;
+import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
-import com.facebook.login.widget.ProfilePictureView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +41,8 @@ public class MenuActivity extends AppCompatActivity
     private DatabaseReference mDatabase;
     private SimpleLocation location;
 
+    ImageView img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,7 +50,7 @@ public class MenuActivity extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        img = (ImageView)findViewById(R.id.imageView6);
         btnMaps = (Button) findViewById(R.id.btnMaps);
         btnMaps.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -145,9 +142,14 @@ public class MenuActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (id == R.id.nav_criar_roteiro) {
-            // Handle the camera action
+            Intent intentcriarroteiro = new Intent(getApplicationContext(), CriarRoteiroActivity.class);
+            startActivity(intentcriarroteiro);
+            finish();
         } else if (id == R.id.nav_meus_roteiros) {
-
+            //Depois criar uma tela para procurar todos os tipos de eventos
+            Intent intentmeuseventos = new Intent(getApplicationContext(), MeusRoteirosActivity.class);
+            startActivity(intentmeuseventos);
+            finish();
         } else if (id == R.id.nav_procurar_eventos) {
             //Depois criar uma tela para procurar todos os tipos de eventos
             Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
@@ -171,7 +173,7 @@ public class MenuActivity extends AppCompatActivity
                     Toast.LENGTH_SHORT).show();
             FirebaseAuth.getInstance().signOut();
             LoginManager.getInstance().logOut();
-            Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+            Intent login = new Intent(getApplicationContext(), InicioActivity.class);
             startActivity(login);
             finish();
         }

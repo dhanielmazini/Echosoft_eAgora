@@ -60,5 +60,9 @@
     <string name="title_activity_list_place">ListPlaceActivity</string>
     <string name="title_activity_eventos_roteiro">EventosRoteiroActivity</string>
     <string name="title_activity_pesquisa_enderecos">PesquisaEnderecos</string>
+    <string name="title_activity_login2">Login2Activity</string>
+    <string name="title_activity_log">LogActivity</string>
+    <string name="title_activity_criar_roteiro">CriarRoteiroActivity</string>
+    <string name="title_activity_meus_roteiros">MeusRoteirosActivity</string>
 
 </resources>

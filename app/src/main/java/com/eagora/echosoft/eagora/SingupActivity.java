@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.eagora.echosoft.eagora.Usuario.Usuario;
@@ -26,6 +26,8 @@ public class SingupActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
 
+    ImageButton cadastrobtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +41,21 @@ public class SingupActivity extends AppCompatActivity {
         txtConfEmail = (EditText) findViewById(R.id.confemail);
         txtSenha = (EditText) findViewById(R.id.senha);
         txtConfSenha = (EditText) findViewById(R.id.confsenha);
+        cadastrobtn = (ImageButton) findViewById(R.id.cadastrobtn);
 
         minhaAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        cadastrobtn.setOnClickListener(
+
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        createAccount(view);
+                    }
+
+                }
+        );
     }
 
     public void createAccount(View view) {

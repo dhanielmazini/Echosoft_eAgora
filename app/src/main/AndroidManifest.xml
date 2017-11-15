@@ -62,11 +62,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SingupActivity"
-            android:label="@string/title_activity_singup"
+            android:label="Cadastro"
+            android:parentActivityName=".InicioActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.eagora.echosoft.eagora.InicioActivity" />
+
         <activity
             android:name=".PerfilViajanteActivity"
-            android:label="@string/title_activity_perfil_viajante"
+            android:label="Cadastro"
             android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -84,7 +90,24 @@
         </activity>
         <activity android:name=".ComeceViagemActivity" />
         android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity">
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login"
+            android:parentActivityName=".InicioActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.InicioActivity" />
+            android:parentActivityName=".InicioActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.InicioActivity" />
+        </activity>
+        <activity
+            android:name=".InicioActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -175,7 +198,27 @@
         <activity
             android:name=".Maps.PesquisaEnderecos"
             android:label="@string/title_activity_pesquisa_enderecos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+\value="com.eagora.echosoft.eagora.InicioActivity" />
+
+        <activity
+            android:name=".CriarRoteiroActivity"
+            android:label="Criar Roteiro"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".MeusRoteirosActivity"
+            android:label="Meus Roteiros"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
+        </activity>
     </application>
 
 </manifest>

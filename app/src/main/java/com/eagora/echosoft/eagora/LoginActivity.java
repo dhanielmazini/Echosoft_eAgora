@@ -3,13 +3,11 @@ package com.eagora.echosoft.eagora;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
@@ -21,17 +19,11 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,7 +32,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,10 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static com.eagora.echosoft.eagora.R.id.getn;
 
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -63,12 +51,13 @@ public class LoginActivity extends AppCompatActivity implements
     LoginButton login_button;
     CallbackManager callbackManager;
     private EditText txtEmail, txtSenha;
-    private Button btnCadastro;
+    private Button botaoLogin;
     private FirebaseAuth mAuth;
     GoogleApiClient mGoogleApiClient;
     private static int RC_SIGN_IN = 100;
     private DatabaseReference mDatabase;
     String email = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +95,10 @@ public class LoginActivity extends AppCompatActivity implements
                 .build();
 
         txtEmail = (EditText)findViewById(R.id.emailLogin);
-        txtSenha = (EditText)findViewById(R.id.senhaLogin);
-        btnCadastro = (Button)findViewById(R.id.botaoCadastro);
+        txtSenha = (EditText)findViewById(R.id.txtSenha);
         findViewById(R.id.sign_in_button).setOnClickListener(this);
-        findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
         login_button = (LoginButton)findViewById(R.id.login_button);
+        botaoLogin = (Button)findViewById(R.id.botaoLogin);
 
         callbackManager = CallbackManager.Factory.create();
 //        faceLog();
@@ -124,14 +112,14 @@ public class LoginActivity extends AppCompatActivity implements
                 }
         );
 
-        btnCadastro.setOnClickListener(
+        botaoLogin.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        Intent signup = new Intent(getApplicationContext(), SingupActivity.class);
-                        startActivity(signup);
+                        loginUsuario(view);
                     }
-                });
+                }
+        );
     }
 
 //    @Override

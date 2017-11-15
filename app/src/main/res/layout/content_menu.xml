@@ -7,20 +7,101 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.eagora.echosoft.eagora.MenuActivity"
     tools:showIn="@layout/app_bar_menu"
-    android:id="@+id/menu2">
+    android:id="@+id/menu2"
+    android:background="#fff">
 
-    <Button
-        android:id="@+id/btnMaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Locais Google"
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854" />
+        tools:layout_editor_absoluteX="8dp"
+        >
+
+        <Button
+            android:id="@+id/btnMaps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Locais Google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.854"
+            android:layout_marginTop="60dp"
+            android:layout_below="@+id/autoCompleteTextView"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="500dp"
+            android:layout_height="193dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:elevation="4dp"
+            android:focusableInTouchMode="true"
+            android:scaleType="fitCenter"
+            android:visibility="visible"
+            app:srcCompat="@drawable/logoeagora"
+            tools:elevation="22dp"
+            tools:layout_editor_absoluteX="9dp"
+            tools:layout_editor_absoluteY="30dp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            style="@android:style/Theme.Holo"
+            android:layout_width="330dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="14dp"
+            android:background="@layout/rounded_border_edittext"
+            android:completionHint="Local"
+            android:dropDownHeight="match_parent"
+            android:gravity="center"
+            android:textAppearance="@style/Material.TextAppearance.SimpleDialog"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="235dp"
+            android:layout_below="@+id/textView15"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="13dp"
+            android:text="Para onde deseja ir?"
+            android:textColor="@color/common_google_signin_btn_text_light_default"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/autoCompleteTextView"
+            android:layout_alignStart="@+id/autoCompleteTextView"
+            android:layout_alignTop="@+id/autoCompleteTextView"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/white"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_place_accent_24dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/autoCompleteTextView"
+            android:layout_alignRight="@+id/autoCompleteTextView"
+            android:layout_alignTop="@+id/imageButton4"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@android:color/white"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/ic_search_category_default" />
+
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
