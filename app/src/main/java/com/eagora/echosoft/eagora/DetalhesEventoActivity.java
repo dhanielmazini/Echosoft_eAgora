@@ -99,10 +99,14 @@ public class DetalhesEventoActivity extends AppCompatActivity {
             horarioEvento = horario;
 
 
-            //Cover (capa) da imagem do evento do Facebook
-            JSONObject cover = dados.getJSONObject("cover");
-            AQuery aq=new AQuery(this);
-            aq.id(imgEvento).image(cover.get("source").toString());
+            try {
+                //Cover (capa) da imagem do evento do Facebook
+                JSONObject cover = dados.getJSONObject("cover");
+                AQuery aq = new AQuery(this);
+                aq.id(imgEvento).image(cover.get("source").toString());
+            }catch(Exception e){
+                e.printStackTrace();
+            }
 
             //Cria a URL
             final String url = "https://www.facebook.com/events/" + dados.get("id") + "/";
@@ -213,8 +217,6 @@ public class DetalhesEventoActivity extends AppCompatActivity {
                         });
 
 
-
-
                         Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
                         startActivity(intentEvento);
 
@@ -224,5 +226,7 @@ public class DetalhesEventoActivity extends AppCompatActivity {
 
 
     }
+
+
 
 }

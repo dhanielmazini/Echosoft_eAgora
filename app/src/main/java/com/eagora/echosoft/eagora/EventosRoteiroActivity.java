@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +49,10 @@ public class EventosRoteiroActivity extends AppCompatActivity {
     DatabaseReference mDatabase;
     List<TipoViagemGenerico> listaLugares = new ArrayList<TipoViagemGenerico>();
     List<String> perfilUsuario;
-    Button btnTeste,btnEventosBanco;
+    Button btnEventosBanco;
+    List<JSONObject> listaEventos;
+    AcessoGraphFacebook acesso;
+    double raio;
 
 
     @Override
@@ -58,7 +63,55 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         perfilUsuario = GlobalAccess.perfilUsuario;
-        InitializeControls();
+
+        acesso = new AcessoGraphFacebook();
+        raio = 1000;
+
+
+        listarLugares1();
+        listarLugares2();
+        listarLugares3();
+
+       final ProgressBar Bar = (ProgressBar) findViewById(R.id.progressBar);
+
+
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                Bar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Bar.setVisibility(View.GONE);
+                eventosProximos();
+            }
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaUsuario.getLatitude(),
+                        GlobalAccess.coordenadaUsuario.getLongitude(),raio,listaLugares);
+                return null;
+            }
+        }.execute();
+
+
+        btnEventosBanco = (Button)findViewById(R.id.btnEventosBanco);
+        btnEventosBanco.setOnClickListener(
+                new View.OnClickListener(){
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                    @Override
+                    public void onClick(View view){
+                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroExibicaoActivity.class);
+                        startActivity(intentEvento);
+                    }
+                }
+        );
+
+
     }
 
     private void listarLugares1(){
@@ -115,51 +168,10 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         });
     }
 
-
-    private void  InitializeControls(){
-
-        listarLugares2();
-        listarLugares3();
-        listarLugares1();
-
-
-
-        btnEventosBanco = (Button)findViewById(R.id.btnEventosBanco);
-        btnEventosBanco.setOnClickListener(
-                new View.OnClickListener(){
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-                    @Override
-                    public void onClick(View view){
-                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroExibicaoActivity.class);
-                        startActivity(intentEvento);
-                    }
-                }
-        );
-
-       btnTeste = (Button)findViewById(R.id.btnTeste);
-        btnTeste.setOnClickListener(
-                new View.OnClickListener(){
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-                    @Override
-                    public void onClick(View view){
-                        eventosProximos(listaLugares);
-                    }
-                }
-        );
-    }
-
-    private void eventosProximos(List<TipoViagemGenerico> listaLugares){
-
-
-        AcessoGraphFacebook acesso = new AcessoGraphFacebook();
-        double latitude = GlobalAccess.coordenadaUsuario.getLatitude();
-        double longitude = GlobalAccess.coordenadaUsuario.getLongitude();
-        double raio = 1000;
+    private void eventosProximos(){
 
         //Mapeia o LinearLayout
         LinearLayout linear = (LinearLayout)findViewById(R.id.linearEventos);
-
-        List<JSONObject> listaEventos = acesso.procurarEventos(latitude,longitude,raio,listaLugares);
 
         for(int i=0;i<listaEventos.size();i++){
             try {

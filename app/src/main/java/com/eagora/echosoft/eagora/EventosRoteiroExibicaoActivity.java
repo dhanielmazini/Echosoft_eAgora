@@ -119,9 +119,13 @@ public class EventosRoteiroExibicaoActivity extends AppCompatActivity {
                 //Cria a URL
                 final String url = "https://www.facebook.com/events/" + listaRoteiros.get(i).getId() + "/";
                 String caminho = "imgEventos/" + listaRoteiros.get(i).getId() + ".png";
-                StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(caminho);
-                Glide.with(this).using(new FirebaseImageLoader()).load(storageReference).into(imgEvento);
 
+                try {
+                    StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(caminho);
+                    Glide.with(this).using(new FirebaseImageLoader()).load(storageReference).into(imgEvento);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 //Seta a imagemview como clicável
                 imgEvento.setClickable(true);
 
