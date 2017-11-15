@@ -94,8 +94,9 @@ public class MenuActivity extends AppCompatActivity
 
                     getn.setText(GlobalAccess.nomeUsuario);
                     text_mail.setText(GlobalAccess.emailUsuario);
-                }
-            }
+
+                }}
+
             public void onCancelled(DatabaseError databaseError) {
             }
         });
@@ -166,7 +167,6 @@ public class MenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_editar_cadastro) {
             Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
             startActivity(conta);
-            finish();
         }
         else if (id == R.id.nav_sair) {
             Toast.makeText(MenuActivity.this, "Usuário deslogado.",

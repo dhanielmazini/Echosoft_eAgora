@@ -8,9 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.database.Cursor;
 
 import com.eagora.echosoft.eagora.Usuario.Usuario;
+import com.facebook.login.LoginResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +35,10 @@ public class CadastroEditarActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
 
+    private static final int SELECT_PICTURE = 1;
+
+    private String selectedImagePath;
+    ImageView imageView4;
 
     EditText txtNome,txtSobrenome,txtEmail,txtNovaSenha,txtSenhaConfirmar;
     Button btnEditar,btnExcluir;
@@ -44,9 +55,23 @@ public class CadastroEditarActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((Button) findViewById(R.id.button2))
+                .setOnClickListener(new OnClickListener() {
+
+                    public void onClick(View arg0) {
+
+                        // No onCreate ou qualquer evento onde quiser selecionar um arquivo
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent,
+                                "Select Picture"), SELECT_PICTURE);
+                    }
+                });
 
 
         txtNome = (EditText) findViewById(R.id.txtNome);
+        imageView4 = (ImageView)findViewById(R.id.imageView4);
         txtSobrenome = (EditText) findViewById(R.id.txtSobrenome);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtNovaSenha = (EditText) findViewById(R.id.txtNovaSenha);
@@ -67,6 +92,7 @@ public class CadastroEditarActivity extends AppCompatActivity {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference();
         DataSnapshot ds;
+        final LoginResult loginResult;
 
         usuario = new Usuario(user.getDisplayName(), " ", user.getEmail(), user.getUid(), "");
 
@@ -104,9 +130,15 @@ public class CadastroEditarActivity extends AppCompatActivity {
                     }
 
                 }
+                else{
+                    Intent volta = new Intent(getApplicationContext(), MenuActivity.class);
+                    startActivity(volta);
+                }
             }
 
             public void onCancelled(DatabaseError databaseError) {
+                Intent volta = new Intent(getApplicationContext(), MenuActivity.class);
+                startActivity(volta);
             }
         });
 
@@ -169,6 +201,45 @@ public class CadastroEditarActivity extends AppCompatActivity {
                 }
         );
 
-
     }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                selectedImagePath = getPath(selectedImageUri);
+                imageView4.setImageURI(selectedImageUri);
+
+            }
+        }
+    }
+
+    /**
+     * auxiliar para saber o caminho de uma imagem URI
+     */
+    public String getPath(Uri uri) {
+
+        if( uri == null ) {
+            // TODO realizar algum log ou feedback do utilizador
+            return null;
+        }
+
+
+        // Tenta recuperar a imagem da media store primeiro
+        // Isto só irá funcionar para as imagens selecionadas da galeria
+
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        if( cursor != null ){
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+
+        return uri.getPath();
+    }
+
 }
+
+
+

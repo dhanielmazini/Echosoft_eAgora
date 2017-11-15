@@ -30,6 +30,12 @@
            android:layout_height="wrap_content"
            app:srcCompat="@android:drawable/ic_menu_camera" />
 
+       <Button
+           android:id="@+id/button2"
+           android:layout_width="60dp"
+           android:layout_height="wrap_content"
+           android:text="Button" />
+
        <EditText
            android:id="@+id/txtNome"
            android:layout_width="272dp"
