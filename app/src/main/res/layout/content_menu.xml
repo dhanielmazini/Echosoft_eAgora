@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.854"
             android:layout_marginTop="60dp"
-            android:layout_below="@+id/autoCompleteTextView"
+            android:layout_below="@+id/place_autocomplete_fragment"
             android:layout_centerHorizontal="true" />
 
         <ImageView
@@ -48,7 +48,7 @@
             tools:layout_editor_absoluteX="9dp"
             tools:layout_editor_absoluteY="30dp" />
 
-        <AutoCompleteTextView
+        <!--<AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
             style="@android:style/Theme.Holo"
             android:layout_width="330dp"
@@ -62,7 +62,17 @@
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="235dp"
             android:layout_below="@+id/textView15"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true" />-->
+
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView15"
+            android:layout_marginTop="28dp" />
 
         <TextView
             android:id="@+id/textView15"
@@ -70,19 +80,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView6"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="11dp"
             android:text="Para onde deseja ir?"
             android:textColor="@color/common_google_signin_btn_text_light_default"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageButton
+        <!--<ImageButton
             android:id="@+id/imageButton4"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignLeft="@+id/autoCompleteTextView"
-            android:layout_alignStart="@+id/autoCompleteTextView"
-            android:layout_alignTop="@+id/autoCompleteTextView"
+            android:layout_alignLeft="@+id/place_autocomplete_fragment"
+            android:layout_alignStart="@+id/place_autocomplete_fragment"
+            android:layout_alignTop="@+id/place_autocomplete_fragment"
             android:layout_marginLeft="14dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
@@ -94,14 +104,14 @@
             android:id="@+id/imageButton5"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_alignEnd="@+id/autoCompleteTextView"
-            android:layout_alignRight="@+id/autoCompleteTextView"
+            android:layout_alignEnd="@+id/place_autocomplete_fragment"
+            android:layout_alignRight="@+id/place_autocomplete_fragment"
             android:layout_alignTop="@+id/imageButton4"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:background="@android:color/white"
             android:scaleType="fitCenter"
-            app:srcCompat="@android:drawable/ic_search_category_default" />
+            app:srcCompat="@android:drawable/ic_search_category_default" />-->
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

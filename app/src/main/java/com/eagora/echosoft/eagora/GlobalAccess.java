@@ -13,4 +13,5 @@ public class GlobalAccess {
     public static String emailUsuario;
     public static  List<String> perfilUsuario;
     public static Coordenada coordenadaUsuario;
+    public static Coordenada coordenadaLocalViagem;
 }

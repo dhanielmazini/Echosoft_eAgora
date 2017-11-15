@@ -38,7 +38,7 @@ public class ListPlaceActivity extends AppCompatActivity {
         GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
 
         lstPlaces = (ListView) findViewById(R.id.lstPlaces);
-        if (getJsonOfNearbyPlaces(GlobalAccess.coordenadaUsuario) == 1) {
+        if (getJsonOfNearbyPlaces(GlobalAccess.coordenadaLocalViagem) == 1) {
             MakePlacesList();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,8 +49,8 @@ public class ListPlaceActivity extends AppCompatActivity {
         Uri urlRequest = new PlacesBuilder()
                 .header()
                 .location(origin)
-                .radius(100)
-                .keyword("establishment")
+                .radius(100000)
+                .keyword("restaurant")
                 .build();
 
         try {
