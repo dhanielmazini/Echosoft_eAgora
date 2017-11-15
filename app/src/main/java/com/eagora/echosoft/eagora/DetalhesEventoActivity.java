@@ -126,19 +126,44 @@ public class DetalhesEventoActivity extends AppCompatActivity {
             });
 
 
+
             //Local e Endereço
             JSONObject local = dados.getJSONObject("place");
             txtLocal.setText("Local: " + local.get("name").toString() );
             JSONObject localizacao = local.getJSONObject("location");
-            txtEndereco.setText("(" + localizacao.get("street").toString() + ", " +
-                    localizacao.get("zip").toString() + "\n" +
-                    localizacao.get("city").toString() + ", " + localizacao.get("state").toString() + ")"+ "\n\n\n\n" + "");
+
+            String street,zip,city,state;
+            try{
+                street = localizacao.get("street").toString();
+            }catch (Exception e){
+                street="";
+            }
+            try{
+                zip = localizacao.get("zip").toString();
+            }catch (Exception e){
+                zip="";
+            }
+            try{
+                city = localizacao.get("city").toString();
+            }catch (Exception e){
+                city="";
+            }
+            try{
+                state = localizacao.get("state").toString();
+            }catch (Exception e){
+                state="";
+            }
+
+
+            txtEndereco.setText("(" + street + ", " +
+                    zip + "\n" +
+                    city + ", " + state + ")"+ "\n\n\n\n" + "");
 
             localEvento = local.get("name").toString();
-            enderecoEvento = localizacao.get("street").toString();
-            cepEvento = localizacao.get("zip").toString();
-            cidadeEvento = localizacao.get("city").toString();
-            estadoEvento = localizacao.get("state").toString();
+            enderecoEvento = street;
+            cepEvento = zip;
+            cidadeEvento = city;
+            estadoEvento = state;
 
 
             txtNomeEvento.setTypeface(null, Typeface.BOLD);

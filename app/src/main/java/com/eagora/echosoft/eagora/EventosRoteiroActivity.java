@@ -47,10 +47,8 @@ import java.util.List;
 public class EventosRoteiroActivity extends AppCompatActivity {
 
     DatabaseReference mDatabase;
-    List<TipoViagemGenerico> listaLugares = new ArrayList<TipoViagemGenerico>();
     List<String> perfilUsuario;
-    Button btnEventosBanco;
-    List<JSONObject> listaEventos;
+    Button btnEventosBanco,btnAtualizarLista;
     AcessoGraphFacebook acesso;
     double raio;
 
@@ -68,11 +66,44 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         raio = 1000;
 
 
+        if(GlobalAccess.listaEventos.size()==0) {
+           atualizaLista();
+        }
+        eventosProximos();
+
+
+        btnEventosBanco = (Button)findViewById(R.id.btnEventosBanco);
+        btnEventosBanco.setOnClickListener(
+                new View.OnClickListener(){
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                    @Override
+                    public void onClick(View view){
+                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroExibicaoActivity.class);
+                        startActivity(intentEvento);
+                    }
+                }
+        );
+
+        btnAtualizarLista = (Button)findViewById(R.id.btnAtualizaLista);
+        btnAtualizarLista.setOnClickListener(
+                new View.OnClickListener(){
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+                    @Override
+                    public void onClick(View view){
+                        atualizaLista();
+                    }
+                }
+        );
+
+
+    }
+
+    private void atualizaLista(){
         listarLugares1();
         listarLugares2();
         listarLugares3();
 
-       final ProgressBar Bar = (ProgressBar) findViewById(R.id.progressBar);
+        final ProgressBar Bar = (ProgressBar) findViewById(R.id.progressBar);
 
 
         new AsyncTask<Void, Void, Void>() {
@@ -92,26 +123,11 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... params) {
-                listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaUsuario.getLatitude(),
-                        GlobalAccess.coordenadaUsuario.getLongitude(),raio,listaLugares);
+                GlobalAccess.listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaUsuario.getLatitude(),
+                        GlobalAccess.coordenadaUsuario.getLongitude(), raio, GlobalAccess.listaLugares);
                 return null;
             }
         }.execute();
-
-
-        btnEventosBanco = (Button)findViewById(R.id.btnEventosBanco);
-        btnEventosBanco.setOnClickListener(
-                new View.OnClickListener(){
-                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-                    @Override
-                    public void onClick(View view){
-                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroExibicaoActivity.class);
-                        startActivity(intentEvento);
-                    }
-                }
-        );
-
-
     }
 
     private void listarLugares1(){
@@ -121,7 +137,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot dados : dataSnapshot.getChildren()) {
                         TipoViagemGenerico tg = dados.getValue(TipoViagemGenerico.class);
-                        listaLugares.add(tg);
+                        GlobalAccess.listaLugares.add(tg);
                     }
                 }
 
@@ -140,7 +156,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot dados : dataSnapshot.getChildren()) {
                         TipoViagemGenerico tg = dados.getValue(TipoViagemGenerico.class);
-                        listaLugares.add(tg);
+                        GlobalAccess.listaLugares.add(tg);
                     }
                 }
 
@@ -158,7 +174,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot dados : dataSnapshot.getChildren()) {
                         TipoViagemGenerico tg = dados.getValue(TipoViagemGenerico.class);
-                        listaLugares.add(tg);
+                        GlobalAccess.listaLugares.add(tg);
                     }
                 }
 
@@ -173,13 +189,13 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         //Mapeia o LinearLayout
         LinearLayout linear = (LinearLayout)findViewById(R.id.linearEventos);
 
-        for(int i=0;i<listaEventos.size();i++){
+        for(int i=0;i<GlobalAccess.listaEventos.size();i++){
             try {
                 ImageView imgEvento = new ImageView(this);
                 imgEvento.setId(i+200);
 
                 //Objeto pai
-                JSONObject dados = listaEventos.get(i);
+                JSONObject dados = GlobalAccess.listaEventos.get(i);
 
 
                 //Cover (capa) da imagem do evento do Facebook

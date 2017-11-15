@@ -1,7 +1,11 @@
 package com.eagora.echosoft.eagora;
 
+import com.eagora.echosoft.eagora.BancoDados.TipoViagemGenerico;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,4 +17,6 @@ public class GlobalAccess {
     public static String emailUsuario;
     public static  List<String> perfilUsuario;
     public static Coordenada coordenadaUsuario;
+    public static List<TipoViagemGenerico> listaLugares = new ArrayList<TipoViagemGenerico>();
+    public static List<JSONObject> listaEventos = new ArrayList<JSONObject>();
 }
