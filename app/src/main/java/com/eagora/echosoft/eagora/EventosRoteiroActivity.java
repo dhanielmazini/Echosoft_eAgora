@@ -52,7 +52,6 @@ public class EventosRoteiroActivity extends AppCompatActivity {
     AcessoGraphFacebook acesso;
     double raio;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +122,9 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... params) {
-                GlobalAccess.listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaUsuario.getLatitude(),
+                // GlobalAccess.listaEventos = acesso.procurarEventos(-23.192044,
+                //         -45.8950326, raio, GlobalAccess.listaLugares);
+                 GlobalAccess.listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaUsuario.getLatitude(),
                         GlobalAccess.coordenadaUsuario.getLongitude(), raio, GlobalAccess.listaLugares);
                 return null;
             }

@@ -18,4 +18,6 @@ public class GlobalAccess {
     public static  List<String> perfilUsuario;
     public static Coordenada coordenadaUsuario;
     public static Coordenada coordenadaLocalViagem;
+    public static List<TipoViagemGenerico> listaLugares = new ArrayList<TipoViagemGenerico>();
+    public static List<JSONObject> listaEventos = new ArrayList<JSONObject>();
 }
