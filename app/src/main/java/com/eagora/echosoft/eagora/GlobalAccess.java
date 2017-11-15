@@ -1,7 +1,11 @@
 package com.eagora.echosoft.eagora;
 
+import com.eagora.echosoft.eagora.BancoDados.TipoViagemGenerico;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -27,6 +27,8 @@ public class AcessoGraphFacebook {
     //Variável de retorno das consultas da API Graph do Facebook
     GraphResponse responseRetorno;
 
+    JSONObject detalhesEvento;
+
 
     public List<JSONObject> procurarEventos(double latitude, double longitude, double raio,List<TipoViagemGenerico> listaLugares){
         responseRetorno = locais(latitude,longitude,raio);
@@ -71,8 +73,8 @@ public class AcessoGraphFacebook {
 
     }
 
+
     public GraphResponse eventos(String id){
-        // "/542158045980461/events"
         String queryId = "/"+ id +"/events";
         final GraphRequest request = GraphRequest.newGraphPathRequest(
                 accessToken,
@@ -84,7 +86,8 @@ public class AcessoGraphFacebook {
                     }
                 });
         Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,start_time,cover{source},place{name,location{city,street,zip,state}}");
+       // parameters.putString("fields", "id,name,start_time,cover{source},place{name,location{city,street,zip,state}}");
+        parameters.putString("fields","id,cover{source}");
         parameters.putString("time_filter", "upcoming");
         request.setParameters(parameters);
 
@@ -122,6 +125,44 @@ public class AcessoGraphFacebook {
         parameters.putString("distance", String.valueOf(raio));
         parameters.putString("fields", "name,category");
         parameters.putString("limit", "500"); //Limite de 500 respostas
+        request.setParameters(parameters);
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                GraphResponse gResponse = request.executeAndWait();
+            }
+        });
+        t.start();
+
+        try {
+            t.join();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return responseRetorno;
+    }
+
+
+    public JSONObject detalhesEvento(String id){
+        responseRetorno = infosEventos(id);
+        detalhesEvento = responseRetorno.getJSONObject();
+        return detalhesEvento;
+    }
+
+    public GraphResponse infosEventos(String id){
+        String queryId = "/"+ id ;
+        final GraphRequest request = GraphRequest.newGraphPathRequest(
+                accessToken,
+                queryId,
+                new GraphRequest.Callback() {
+                    @Override
+                    public void onCompleted(GraphResponse response) {
+                        responseRetorno = response;
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,start_time,cover{source},place{name,location{city,street,zip,state}}");
         request.setParameters(parameters);
 
         Thread t = new Thread(new Runnable() {
