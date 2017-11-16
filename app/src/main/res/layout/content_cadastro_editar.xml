@@ -9,190 +9,280 @@
         tools:showIn="@layout/activity_cadastro_editar">
         >
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical"
-       android:weightSum="1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="750dp"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-       <TextView
-           android:id="@+id/textView13"
-           android:layout_width="271dp"
-           android:layout_height="wrap_content"
-           android:layout_gravity="right"
-           android:text="\n  Nome"
-           android:textColor="@android:color/black"
-           android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_gravity="right"
+            android:text="\n  Nome"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
-       <ImageView
-           android:id="@+id/imageView4"
-           android:layout_width="67dp"
-           android:layout_height="wrap_content"
-           app:srcCompat="@android:drawable/ic_menu_camera" />
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="67dp"
+            android:layout_height="80dp"
+            android:layout_alignEnd="@+id/button2"
+            android:layout_alignLeft="@+id/button2"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/button2"
+            android:layout_alignStart="@+id/button2"
+            android:layout_marginTop="29dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
 
-       <Button
-           android:id="@+id/button2"
-           android:layout_width="60dp"
-           android:layout_height="wrap_content"
-           android:text="Button" />
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="73dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/imageView4"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_toLeftOf="@+id/textView13"
+            android:layout_toStartOf="@+id/textView13"
+            android:background="@color/com_facebook_button_background_color_focused_disabled"
+            android:text="Selecionar foto"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="8sp"
+            android:textStyle="bold" />
 
-       <EditText
-           android:id="@+id/txtNome"
-           android:layout_width="272dp"
-           android:layout_height="wrap_content"
-           android:layout_gravity="right"
-           android:inputType="textPersonName"
-           android:text="Nome do Usuário"
-           android:textColor="@color/colorAccent" />
+        <EditText
+            android:id="@+id/txtNome"
+            android:layout_width="272dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView13"
+            android:layout_gravity="right"
+            android:inputType="textPersonName"
+            android:text="Nome do Usuário"
+            android:textColor="@color/colorAccent" />
 
-       <TextView
-           android:id="@+id/txtviewx"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="  \n  Sobrenome"
-           android:textColor="@android:color/black"
-           android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtviewx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/txtNome"
+            android:layout_alignStart="@+id/txtNome"
+            android:layout_below="@+id/txtNome"
+            android:text="  \n  Sobrenome"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
-       <EditText
-           android:id="@+id/txtSobrenome"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:inputType="textPersonName"
-           android:text="Sobrenome do Usuário"
-           android:textColor="@color/colorAccent" />
+        <EditText
+            android:id="@+id/txtSobrenome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/textView13"
+            android:layout_below="@+id/txtviewx"
+            android:inputType="textPersonName"
+            android:text="Sobrenome do Usuário"
+            android:textColor="@color/colorAccent" />
 
-       <TextView
-           android:id="@+id/textView17"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="\n  Email"
-           android:textColor="@android:color/black"
-           android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtSobrenome"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:text="\n  Email"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
-       <EditText
-           android:id="@+id/txtEmail"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:inputType="textEmailAddress"
-           android:text="Email@usuario.com"
-           android:textColor="@color/colorAccent" />
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView17"
+            android:layout_alignStart="@+id/textView17"
+            android:layout_below="@+id/textView17"
+            android:inputType="textEmailAddress"
+            android:text="Email@usuario.com"
+            android:textColor="@color/colorAccent" />
 
-       <TextView
-           android:id="@+id/textView123"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="\n  Nova Senha"
-           android:textColor="@android:color/black"
-           android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView123"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView17"
+            android:layout_alignStart="@+id/textView17"
+            android:layout_alignTop="@+id/txtNovaSenha"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:text="\n  Nova Senha"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
-       <EditText
-           android:id="@+id/txtNovaSenha"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:inputType="textPassword"
-           android:text=""
-           android:textColor="@color/colorAccent" />
+        <EditText
+            android:id="@+id/txtNovaSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtEmail"
+            android:inputType="textPassword"
+            android:text=""
+            android:textColor="@color/colorAccent" />
 
-       <TextView
-           android:id="@+id/textView21"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="\n  Perfis de Viagem"
-           android:textColor="@android:color/black"
-           android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtNovaSenha"
+            android:text="\n  Perfis de Viagem"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
 
-       <CheckBox
-           android:id="@+id/cbAventura"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Aventura"
-           android:textColor="@color/colorAccent" />
+        <CheckBox
+            android:id="@+id/cbAventura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/cbGastro"
+            android:text="Aventura"
+            android:textColor="@color/colorAccent" />
 
-       <CheckBox
-           android:id="@+id/cbCompras"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Compras"
-           android:textColor="@color/colorAccent" />
+        <CheckBox
+            android:id="@+id/cbCompras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnExcluir"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="435dp"
+            android:text="Compras"
+            android:textColor="@color/colorAccent" />
 
-       <CheckBox
-           android:id="@+id/cbCultural"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Cultural"
-           android:textColor="@color/colorAccent" />
+        <CheckBox
+            android:id="@+id/cbCultural"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/cbAventura"
+            android:text="Cultural"
+            android:textColor="@color/colorAccent" />
 
-       <CheckBox
-           android:id="@+id/cbFamilia"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Família"
-           android:textColor="@color/colorAccent" />
+        <CheckBox
+            android:id="@+id/cbFamilia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/cbCultural"
+            android:text="Família"
+            android:textColor="@color/colorAccent" />
 
-       <CheckBox
-           android:id="@+id/cbGastro"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Gastronômico"
-           android:textColor="@color/colorAccent" />
+        <CheckBox
+            android:id="@+id/cbGastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtNovaSenha"
+            android:layout_marginTop="47dp"
+            android:text="Gastronômico"
+            android:textColor="@color/colorAccent" />
 
-       <CheckBox
-           android:id="@+id/cbPaisagem"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Paisagem"
-           android:textColor="@color/colorAccent" />
+        <CheckBox
+            android:id="@+id/cbPaisagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/cbFamilia"
+            android:text="Paisagem"
+            android:textColor="@color/colorAccent" />
 
-       <CheckBox
-           android:id="@+id/cbTrabalho"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Trabalho"
-           android:textColor="@color/colorAccent" />
+        <CheckBox
+            android:id="@+id/cbTrabalho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/cbPaisagem"
+            android:text="Trabalho"
+            android:textColor="@color/colorAccent" />
 
-       <CheckBox
-           android:id="@+id/cbVidaNoturna"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="Vida Noturna"
-           android:textColor="@color/colorAccent" />
-
-
-       <TextView
-           android:id="@+id/textView20"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="\n  Para salvar as alterações, informe sua senha"
-           android:textAlignment="center"
-           android:textColor="@android:color/black"
-           android:textStyle="bold" />
-
-       <EditText
-           android:id="@+id/txtSenhaConfirmar"
-           style="@android:style/Widget.Material.Light.EditText"
-           android:layout_width="232dp"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:inputType="textPassword"
-           android:text="" />
-
-       <Button
-           android:id="@+id/btnEditar"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:background="@drawable/com_facebook_auth_dialog_header_background"
-           android:text="Editar"
-           android:textStyle="bold" />
-
-       <Button
-           android:id="@+id/btnExcluir"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:background="@drawable/com_facebook_auth_dialog_header_background"
-           android:text="Excluir Conta"
-           android:textColor="@color/colorPrimaryDark" />
+        <CheckBox
+            android:id="@+id/cbVidaNoturna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnExcluir"
+            android:layout_marginBottom="187dp"
+            android:text="Vida Noturna"
+            android:textColor="@color/colorAccent" />
 
 
-   </LinearLayout>
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/cbTrabalho"
+            android:layout_marginTop="14dp"
+            android:text="\n  Para salvar as alterações, informe sua senha"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtSenhaConfirmar"
+            style="@android:style/Widget.Material.Light.EditText"
+            android:layout_width="232dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView20"
+            android:layout_gravity="center"
+            android:inputType="textPassword"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtSenhaConfirmar"
+            android:background="@drawable/com_facebook_auth_dialog_header_background"
+            android:text="Editar"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnExcluir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="17dp"
+            android:background="@drawable/com_facebook_auth_dialog_header_background"
+            android:text="Excluir Conta"
+            android:textColor="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>

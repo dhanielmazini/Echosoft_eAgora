@@ -18,12 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
+import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
@@ -46,8 +47,9 @@ public class MenuActivity extends AppCompatActivity
     private NavigationView navigationView;
     private DatabaseReference mDatabase;
     private SimpleLocation location;
+    ProfilePictureView image;
 
-    ImageView img;
+    ImageView img, foto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,8 @@ public class MenuActivity extends AppCompatActivity
         View header= navigationView.getHeaderView(0);
         getn = (TextView)header.findViewById(R.id.getn);
         text_mail = (TextView)header.findViewById(R.id.text_mail);
+        image = (ProfilePictureView)header.findViewById(R.id.image);
+        foto = (ImageView)header.findViewById(R.id.foto);
 
 
         //implementação do fragment de AutoComplete, salvar coordenadas do local desejado e inicio
@@ -125,6 +129,13 @@ public class MenuActivity extends AppCompatActivity
 
                     getn.setText(GlobalAccess.nomeUsuario);
                     text_mail.setText(GlobalAccess.emailUsuario);
+                    if(Profile.getCurrentProfile()==null){
+                        foto.setImageURI(GlobalAccess.userfoto);
+                    }
+                    if(Profile.getCurrentProfile()!= null) {
+                        image.setProfileId(Profile.getCurrentProfile().getId());
+                        foto.setVisibility(View.INVISIBLE);
+                    }
 
                 }}
 
@@ -203,8 +214,15 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intentbarRest);
             finish();
         } else if (id == R.id.nav_editar_cadastro) {
-            Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
-            startActivity(conta);
+            if(Profile.getCurrentProfile()!=null){
+                Intent contafb = new Intent(getApplicationContext(),EditCadastrofbActivity.class);
+                startActivity(contafb);
+            }
+            else{
+                Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
+                startActivity(conta);
+            }
+            finish();
         }
         else if (id == R.id.nav_sair) {
             Toast.makeText(MenuActivity.this, "Usuário deslogado.",

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:facebook="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
@@ -29,7 +30,14 @@
             facebook:com_facebook_preset_size="small">
 
         </com.facebook.login.widget.ProfilePictureView>
-
+        <ImageView
+            android:id="@+id/foto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait"
+            android:layout_alignBottom="@+id/image"
+            android:layout_toLeftOf="@+id/getn"
+            android:layout_toStartOf="@+id/getn" />
         <TextView
             android:id="@+id/getn"
             android:layout_width="186dp"

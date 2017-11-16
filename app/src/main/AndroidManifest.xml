@@ -103,8 +103,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.InicioActivity" />
-        </activity>
-        <activity
+        </activity>\value="com.eagora.echosoft.eagora.InicioActivity" /><activity
             android:name=".InicioActivity"
             android:theme="@style/AppTheme.NoActionBar">
             >
@@ -200,12 +199,11 @@
             android:label="@string/title_activity_pesquisa_enderecos"
             android:theme="@style/AppTheme.NoActionBar" />
 \value="com.eagora.echosoft.eagora.InicioActivity" />
-
         <activity
             android:name=".CriarRoteiroActivity"
             android:label="Criar Roteiro"
             android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
@@ -214,7 +212,7 @@
             android:name=".MeusRoteirosActivity"
             android:label="Meus Roteiros"
             android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
@@ -223,7 +221,7 @@
             android:name=".DetalhesEventoActivity"
             android:label="@string/title_activity_detalhes_evento"
             android:parentActivityName=".EventosRoteiroActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.EventosRoteiroActivity" />
@@ -232,7 +230,16 @@
             android:name=".EventosRoteiroExibicaoActivity"
             android:label="@string/title_activity_eventos_roteiro_exibicao"
             android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".EditCadastrofbActivity"
+            android:label="@string/title_activity_edit_cadastrofb"
+            android:parentActivityName=".MenuActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />

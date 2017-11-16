@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.eagora.echosoft.eagora.EditCadastrofbActivity"
+    tools:showIn="@layout/activity_edit_cadastrofb">
+
+    <RelativeLayout
+        android:layout_width="374dp"
+        android:layout_height="516dp"
+        tools:layout_editor_absoluteX="5dp"
+        tools:layout_editor_absoluteY="-21dp">
+
+        <com.facebook.login.widget.ProfilePictureView
+            android:id="@+id/image"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/namef"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"></com.facebook.login.widget.ProfilePictureView>
+
+
+        <CheckBox
+            android:id="@+id/cbAventura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbCultural"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Aventura"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/cbCompras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbVidaNoturna"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Compras"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/cbCultural"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbFamilia"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Cultural"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/cbFamilia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbPaisagem"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Família"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/cbGastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbAventura"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Gastronômico"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/cbPaisagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbTrabalho"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Paisagem"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/cbTrabalho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnEditar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Trabalho"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/cbVidaNoturna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbAventura"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="26dp"
+            android:text="Vida Noturna"
+            android:textColor="@color/colorAccent" />
+
+
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@+id/textView22"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/textView22"
+            android:background="@color/common_google_signin_btn_text_light_focused"
+            android:text="Editar"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/namef"
+            android:layout_width="330dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/textView22"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="11dp"
+            android:text="Nomefb"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_dark_background" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/cbCompras"
+            android:layout_centerHorizontal="true"
+            android:text="Qual o seu perfil de viajante?"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

@@ -66,5 +66,6 @@
     <string name="title_activity_meus_roteiros">MeusRoteirosActivity</string>
     <string name="title_activity_detalhes_evento">DetalhesEventoActivity</string>
     <string name="title_activity_eventos_roteiro_exibicao">EventosRoteiroExibicaoActivity</string>
+    <string name="title_activity_edit_cadastrofb">EditCadastrofbActivity</string>
 
 </resources>

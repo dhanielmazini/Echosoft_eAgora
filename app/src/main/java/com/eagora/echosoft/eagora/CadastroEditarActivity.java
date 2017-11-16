@@ -189,6 +189,8 @@ public class CadastroEditarActivity extends AppCompatActivity {
 
                                 mDatabase.updateChildren(hopperUpdates);
                                 Toast.makeText(getApplicationContext(), "Dados atualizados!", Toast.LENGTH_LONG).show();
+                                Intent novo = new Intent(getApplicationContext(), MenuActivity.class);
+                                startActivity(novo);
                             } else {
                                 Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_LONG).show();
                             }
@@ -208,6 +210,8 @@ public class CadastroEditarActivity extends AppCompatActivity {
                 Uri selectedImageUri = data.getData();
                 selectedImagePath = getPath(selectedImageUri);
                 imageView4.setImageURI(selectedImageUri);
+
+                GlobalAccess.userfoto = selectedImageUri;
 
             }
         }
