@@ -1,6 +1,7 @@
 package com.eagora.echosoft.eagora;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -52,6 +53,8 @@ public class EventosRoteiroActivity extends AppCompatActivity {
     AcessoGraphFacebook acesso;
     double raio;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         perfilUsuario = GlobalAccess.perfilUsuario;
 
         acesso = new AcessoGraphFacebook();
-        raio = 1000;
+        raio = 10000;
 
 
         if(GlobalAccess.listaEventos.size()==0) {
@@ -122,10 +125,8 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... params) {
-                // GlobalAccess.listaEventos = acesso.procurarEventos(-23.192044,
-                //         -45.8950326, raio, GlobalAccess.listaLugares);
-                 GlobalAccess.listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaUsuario.getLatitude(),
-                        GlobalAccess.coordenadaUsuario.getLongitude(), raio, GlobalAccess.listaLugares);
+                 GlobalAccess.listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaLocalViagem.getLatitude(),
+                        GlobalAccess.coordenadaLocalViagem.getLongitude(), raio, GlobalAccess.listaLugares);
                 return null;
             }
         }.execute();
@@ -203,6 +204,9 @@ public class EventosRoteiroActivity extends AppCompatActivity {
                 JSONObject cover = dados.getJSONObject("cover");
                 AQuery aq=new AQuery(this);
                 aq.id(imgEvento).image(cover.get("source").toString());
+
+
+
 
                 final String idEvento = dados.get("id").toString();
 

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
@@ -98,6 +99,8 @@ public class MenuActivity extends AppCompatActivity
                 Intent locaisProximos = new Intent(getApplicationContext(), ListPlaceActivity.class);
                 startActivity(locaisProximos);
                 Log.i("logX", "Place: " + place.getName());
+                GlobalAccess.listaLugares.clear();
+                GlobalAccess.listaEventos.clear();
             }
 
             @Override
@@ -180,10 +183,17 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intentmeuseventos);
             finish();
         } else if (id == R.id.nav_procurar_eventos) {
-            //Depois criar uma tela para procurar todos os tipos de eventos
-            Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
-            startActivity(intentEventos);
-            finish();
+                Coordenada c = GlobalAccess.coordenadaLocalViagem;
+                if(c!=null){
+                    Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+                    startActivity(intentEventos);
+                    finish();
+                }
+                else{
+                    Toast.makeText(MenuActivity.this, "Por favor selecione um destino",
+                            Toast.LENGTH_SHORT).show();
+                }
+
         } else if (id == R.id.nav_procurar_pontos) {
             Intent intentPontosTur = new Intent(getApplicationContext(), PontosTuristicosActivity.class);
             startActivity(intentPontosTur);
