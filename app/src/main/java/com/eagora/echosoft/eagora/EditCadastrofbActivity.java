@@ -98,16 +98,16 @@ public class EditCadastrofbActivity extends AppCompatActivity {
                         if (cbTrabalho.isChecked()) novosPerfils.add("Trabalho");
                         if (cbVidaNoturna.isChecked()) novosPerfils.add("Vida Noturna");
 
-                        if (novosPerfils.size() <= 3) {
+                        if (novosPerfils.size()>0 && novosPerfils.size() <= 3) {
 
                             Toast.makeText(getApplicationContext(), "Dados atualizados!", Toast.LENGTH_LONG).show();
                             Intent volta = new Intent(getApplicationContext(), MenuActivity.class);
                             startActivity(volta);
                         }
-                        else if (novosPerfils.size() == 0)
+                        if (novosPerfils.size() == 0)
                             Toast.makeText(getApplicationContext(), "Selecione pelo menos 1 perfil", Toast.LENGTH_LONG).show();
 
-                        else {
+                        if(novosPerfils.size()>3){
                             Toast.makeText(getApplicationContext(), "Selecione no máximo 3 perfis", Toast.LENGTH_LONG).show();
                         }
                     }

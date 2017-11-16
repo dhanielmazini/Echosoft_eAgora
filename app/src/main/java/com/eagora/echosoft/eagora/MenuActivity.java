@@ -181,6 +181,7 @@ public class MenuActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Coordenada c = GlobalAccess.coordenadaLocalViagem;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -194,7 +195,7 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intentmeuseventos);
             finish();
         } else if (id == R.id.nav_procurar_eventos) {
-                Coordenada c = GlobalAccess.coordenadaLocalViagem;
+
                 if(c!=null){
                     Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
                     startActivity(intentEventos);
@@ -210,8 +211,14 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intentPontosTur);
             finish();
         } else if (id == R.id.nav_procurar_bares) {
-            Intent intentbarRest = new Intent(getApplicationContext(), EstabelecimentosActivity.class);
-            startActivity(intentbarRest);
+                if(c!=null){
+                    Intent intentbar = new Intent(getApplicationContext(), ListPlaceActivity.class);
+                    startActivity(intentbar);
+                    finish();
+                 }
+                else{
+                    Toast.makeText(MenuActivity.this, "Por favor selecione um destino", Toast.LENGTH_SHORT).show();
+                }
             finish();
         } else if (id == R.id.nav_editar_cadastro) {
             if(Profile.getCurrentProfile()!=null){

@@ -191,9 +191,11 @@ public class CadastroEditarActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Dados atualizados!", Toast.LENGTH_LONG).show();
                                 Intent novo = new Intent(getApplicationContext(), MenuActivity.class);
                                 startActivity(novo);
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_LONG).show();
+
+                            } else if(senha== " ") {
+                                Toast.makeText(getApplicationContext(), "Preencha o campo senha", Toast.LENGTH_LONG).show();
                             }
+                                else Toast.makeText(getApplicationContext(), "Senha incorreta", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(getApplicationContext(), "Selecione no máximo 3 perfis", Toast.LENGTH_LONG).show();
                         }

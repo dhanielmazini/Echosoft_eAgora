@@ -124,7 +124,7 @@
         </activity>
         <activity
             android:name=".EventosActivity"
-            android:label="@string/title_activity_eventos"
+            android:label="Eventos"
             android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -178,7 +178,7 @@
         </activity>
         <activity
             android:name=".Maps.ListPlaceActivity"
-            android:label="@string/title_activity_list_place"
+            android:label="Bares e Restaurantes"
             android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -237,7 +237,7 @@
         </activity>
         <activity
             android:name=".EditCadastrofbActivity"
-            android:label="@string/title_activity_edit_cadastrofb"
+            android:label="Editar Cadastro"
             android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
