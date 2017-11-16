@@ -92,6 +92,8 @@ public class EventosRoteiroActivity extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
                     @Override
                     public void onClick(View view){
+                        GlobalAccess.listaLugares.clear();
+                        GlobalAccess.listaEventos.clear();
                         atualizaLista();
                     }
                 }
