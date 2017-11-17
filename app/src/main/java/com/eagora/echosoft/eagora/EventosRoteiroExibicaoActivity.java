@@ -62,8 +62,14 @@ public class EventosRoteiroExibicaoActivity extends AppCompatActivity {
 
         listaRoteiros = new ArrayList<RoteiroFacebook>();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        //Olha aqui Tom
+        GlobalAccess.idRoteiro=0;
+        String testeidRoteiro = String.valueOf(GlobalAccess.idRoteiro);
+
+
         mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid())
-                .child("roteiros").child("facebook");
+                .child("roteiros").child(testeidRoteiro).child("facebook");
         mDatabase.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {

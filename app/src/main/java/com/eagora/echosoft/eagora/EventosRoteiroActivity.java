@@ -65,7 +65,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
         perfilUsuario = GlobalAccess.perfilUsuario;
 
         acesso = new AcessoGraphFacebook();
-        raio = 10000;
+        raio = 5000;
 
 
         if(GlobalAccess.listaEventos.size()==0) {

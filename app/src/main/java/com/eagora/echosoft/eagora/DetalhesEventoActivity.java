@@ -32,7 +32,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DetalhesEventoActivity extends AppCompatActivity {
 
@@ -208,9 +210,12 @@ public class DetalhesEventoActivity extends AppCompatActivity {
                         roteiroFb.setEstado(estadoEvento);
 
 
+                        //Olha aqui Tom
+                        GlobalAccess.idRoteiro=0;
+                        String testeidRoteiro = String.valueOf(GlobalAccess.idRoteiro);
 
                         mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid())
-                                .child("roteiros").child("facebook").child(idEvento);
+                                .child("roteiros").child(testeidRoteiro).child("facebook").child(idEvento);
                         mDatabase.setValue(roteiroFb);
 
                         FirebaseStorage storage = FirebaseStorage.getInstance();

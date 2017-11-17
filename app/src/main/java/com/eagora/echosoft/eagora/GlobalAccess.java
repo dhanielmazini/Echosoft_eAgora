@@ -23,4 +23,5 @@ public class GlobalAccess {
     public static Coordenada coordenadaLocalViagem;
     public static List<TipoViagemGenerico> listaLugares = new ArrayList<TipoViagemGenerico>();
     public static List<JSONObject> listaEventos = new ArrayList<JSONObject>();
+    public static int idRoteiro;
 }
