@@ -241,14 +241,14 @@ public class DetalhesEventoActivity extends AppCompatActivity {
                         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                               // Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+                                startActivity(intentEvento);
+                                finish();
                             }
                         });
 
 
-                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
-                        startActivity(intentEvento);
+
 
                     }
                 }
