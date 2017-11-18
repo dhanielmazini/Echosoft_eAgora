@@ -2,6 +2,7 @@ package com.eagora.echosoft.eagora;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -101,14 +102,17 @@ public class DetalhesEventoActivity extends AppCompatActivity {
             horarioEvento = horario;
 
 
-            try {
+          /*  try {
                 //Cover (capa) da imagem do evento do Facebook
                 JSONObject cover = dados.getJSONObject("cover");
                 AQuery aq = new AQuery(this);
                 aq.id(imgEvento).image(cover.get("source").toString());
             }catch(Exception e){
                 e.printStackTrace();
-            }
+            }*/
+
+            Bitmap bitmapTeste = BitmapFactory.decodeStream(getBaseContext().openFileInput("capaEvento"));
+            imgEvento.setImageBitmap(bitmapTeste);
 
             //Cria a URL
             final String url = "https://www.facebook.com/events/" + dados.get("id") + "/";

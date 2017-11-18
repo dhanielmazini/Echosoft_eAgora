@@ -1,9 +1,11 @@
 package com.eagora.echosoft.eagora;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -40,6 +42,8 @@ import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -195,7 +199,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
         for(int i=0;i<GlobalAccess.listaEventos.size();i++){
             try {
-                ImageView imgEvento = new ImageView(this);
+                final ImageView imgEvento = new ImageView(this);
                 imgEvento.setId(i+200);
 
                 //Objeto pai
@@ -210,6 +214,10 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
 
 
+
+
+
+
                 final String idEvento = dados.get("id").toString();
 
 
@@ -219,6 +227,10 @@ public class EventosRoteiroActivity extends AppCompatActivity {
                 //Abre o link do evento
                 imgEvento.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+
+                        Bitmap bitmapTeste  = ((BitmapDrawable) imgEvento.getDrawable()).getBitmap();
+
+                        createImageFromBitmap(bitmapTeste);
 
                         Intent intentEvento = new Intent(getApplicationContext(), DetalhesEventoActivity.class);
                         intentEvento.putExtra("idEvento",idEvento);
@@ -239,6 +251,21 @@ public class EventosRoteiroActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public String createImageFromBitmap(Bitmap bitmap) {
+        String fileName = "capaEvento";//no .png or .jpg needed
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            fileName = null;
+        }
+        return fileName;
     }
 
 }
