@@ -39,7 +39,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
 
         mostrarRoteiros();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.ic_add_circle_black_24dp);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +48,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
                 rotsel.putExtra("NUM_ROTEIRO",listRoteiros.size());
                 rotsel.putExtra("IS_OLD",false);
                 startActivity(rotsel);
+                finish();
             }
         });
 
@@ -81,6 +82,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
 
     public void preencheRoteiros(){
         LinearLayout ll = (LinearLayout)findViewById(R.id.linearRoteiros);
+
         for(int i=0;i<listRoteiros.size();i++){
             final TextView txtRot = new TextView(this);
             txtRot.setId(Integer.parseInt(listRoteiros.get(i)));
@@ -95,6 +97,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
                     rotsel.putExtra("NUM_ROTEIRO",txtRot.getId());
                     rotsel.putExtra("IS_OLD",true);
                     startActivity(rotsel);
+                    finish();
                 }
             });
 

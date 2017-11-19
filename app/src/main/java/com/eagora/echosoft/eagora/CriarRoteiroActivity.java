@@ -29,9 +29,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.eagora.echosoft.eagora.Facebook.RoteiroFacebook;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
@@ -42,6 +44,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -137,6 +141,7 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                                 startActivity(localSel);
                             } else {
                                 Intent eveSel = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+                                eveSel.putExtra("NUM_ROT",nRoteiro);
                                 startActivity(eveSel);
                             }
                         }
@@ -147,6 +152,8 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                 decision.show();
             }
         });
+
+        GlobalAccess.coordenadaLocalViagem = new Coordenada(-23.1929726,-45.8910633);
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.local_viagem);
@@ -178,6 +185,17 @@ public class CriarRoteiroActivity extends AppCompatActivity {
     private void listSelected() {
         mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("roteiros").child(String.valueOf(nRoteiro));
+
+        if (mDatabase == null) {
+            mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("roteiros");
+            mDatabase.setValue(String.valueOf(nRoteiro));
+        }
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("roteiros").child(String.valueOf(nRoteiro));
+
+        System.out.println(String.valueOf(nRoteiro));
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -219,8 +237,9 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                         listRot.add(nSelec);
                     }
 
-                    if (s.equals("Facebook"))
+//                    if (s.equals("Facebook"))
                         iface();
+
                 }
             }
             public void onCancelled(DatabaseError databaseError) {
@@ -248,6 +267,16 @@ public class CriarRoteiroActivity extends AppCompatActivity {
             txtEndereco.setText("(" + listRot.get(i).getEndereco() + ", " +
                     listRot.get(i).getCep() + "\n" +
                     listRot.get(i).getCidade() + ", " + listRot.get(i).getEstado() + ")"+ "\n\n\n\n" + "");
+
+            final String url = "https://www.facebook.com/events/" + listRot.get(i).getId() + "/";
+            String caminho = "imgEventos/" + listRot.get(i).getId() + ".png";
+
+            try {
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(caminho);
+                Glide.with(this).using(new FirebaseImageLoader()).load(storageReference).into(imgEvento);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
             linear.addView(txtNomeEvento);
             txtNomeEvento.setTypeface(null, Typeface.BOLD);

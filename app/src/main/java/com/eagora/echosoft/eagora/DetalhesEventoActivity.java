@@ -46,6 +46,7 @@ public class DetalhesEventoActivity extends AppCompatActivity {
     String idEvento,nomeEvento,dataEvento,horarioEvento,localEvento,
             enderecoEvento,cepEvento,cidadeEvento,estadoEvento;
     long ident=-1;
+    int nRoteiro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class DetalhesEventoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        nRoteiro = getIntent().getIntExtra("NUM_DO_ROT",nRoteiro);
         InitializeControls();
     }
 
@@ -215,8 +217,8 @@ public class DetalhesEventoActivity extends AppCompatActivity {
 
 
                         //Olha aqui Tom
-                        GlobalAccess.idRoteiro=0;
-                        String testeidRoteiro = String.valueOf(GlobalAccess.idRoteiro);
+
+                        String testeidRoteiro = String.valueOf(nRoteiro);
 
                         mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid())
                                 .child("roteiros").child(testeidRoteiro).child("facebook").child(idEvento);

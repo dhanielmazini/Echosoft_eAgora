@@ -8,8 +8,9 @@
     tools:context="com.eagora.echosoft.eagora.CriarRoteiroActivity"
     tools:showIn="@layout/activity_criar_roteiro">
 
+
     <LinearLayout
-        android:id="@+id/rotLin"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -44,12 +45,16 @@
             android:text="Eventos e locais selecionados"
             android:textSize="25dp"
             android:textColor="#000"/>
-        <View
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/rotLin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 

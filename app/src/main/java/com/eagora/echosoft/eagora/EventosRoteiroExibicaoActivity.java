@@ -64,7 +64,7 @@ public class EventosRoteiroExibicaoActivity extends AppCompatActivity {
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Olha aqui Tom
-        GlobalAccess.idRoteiro=0;
+
         String testeidRoteiro = String.valueOf(GlobalAccess.idRoteiro);
 
 

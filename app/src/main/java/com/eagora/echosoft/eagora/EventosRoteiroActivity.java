@@ -56,6 +56,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
     Button btnEventosBanco,btnAtualizarLista;
     AcessoGraphFacebook acesso;
     double raio;
+    int nRoteiro;
 
 
 
@@ -70,6 +71,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
         acesso = new AcessoGraphFacebook();
         raio = 5000;
+        nRoteiro = getIntent().getIntExtra("NUM_ROT",nRoteiro);
 
 
         if(GlobalAccess.listaEventos.size()==0) {
@@ -229,6 +231,7 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
                         Intent intentEvento = new Intent(getApplicationContext(), DetalhesEventoActivity.class);
                         intentEvento.putExtra("idEvento",idEvento);
+                        intentEvento.putExtra("NUM_DO_ROT",nRoteiro);
                         intentEvento.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intentEvento);
                     }
