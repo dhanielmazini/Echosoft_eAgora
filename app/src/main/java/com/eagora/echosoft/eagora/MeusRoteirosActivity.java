@@ -46,6 +46,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent rotsel = new Intent(getApplicationContext(), CriarRoteiroActivity.class);
                 rotsel.putExtra("NUM_ROTEIRO",listRoteiros.size());
+                rotsel.putExtra("IS_OLD",false);
                 startActivity(rotsel);
             }
         });
@@ -92,6 +93,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent rotsel = new Intent(getApplicationContext(), CriarRoteiroActivity.class);
                     rotsel.putExtra("NUM_ROTEIRO",txtRot.getId());
+                    rotsel.putExtra("IS_OLD",true);
                     startActivity(rotsel);
                 }
             });
@@ -99,14 +101,14 @@ public class MeusRoteirosActivity extends AppCompatActivity {
             ll.addView(txtRot);
             txtRot.setTypeface(null, Typeface.BOLD);
             txtRot.setTextColor(Color.BLACK);
-            txtRot.setTextSize(16);
+            txtRot.setTextSize(32);
         }
     }
 
     public void nenhumRoteiro(){
         LinearLayout ll = (LinearLayout)findViewById(R.id.linearRoteiros);
         TextView txtNone = new TextView(this);
-        txtNone.setText("NAO TENHO ROTEIROS");
+        txtNone.setText("Você ainda não tem roteiros... clique no botão em baixo para criar um novo roteiro !");
 
         ll.addView(txtNone);
         txtNone.setTypeface(null, Typeface.BOLD);
