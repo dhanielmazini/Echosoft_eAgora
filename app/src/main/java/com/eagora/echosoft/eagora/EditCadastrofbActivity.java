@@ -24,7 +24,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EditCadastrofbActivity extends AppCompatActivity {
 
@@ -57,17 +59,37 @@ public class EditCadastrofbActivity extends AppCompatActivity {
         cbCompras = (CheckBox) findViewById(R.id.cbCompras);
         cbAventura = (CheckBox) findViewById(R.id.cbAventura);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid());
+
         final String caminho = "fotoPerfil/" + GlobalAccess.nomeUsuario + ".png";
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(caminho);
+        mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid());
         mDatabase.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Usuario usu = dataSnapshot.getValue(Usuario.class);
+                    List<String> perfis;
+                    perfis = usu.getPerfil();
 
-                    GlobalAccess.nomeUsuario = usu.getNome();
-                    GlobalAccess.emailUsuario = usu.getEmail();
-                    GlobalAccess.perfilUsuario = usu.getPerfil();
+                    //Checkbox do tipo de perfil
+                    for (int i = 0; i < perfis.size(); i++) {
+                        if (perfis.get(i).toString().equals("Aventura"))
+                            cbAventura.setChecked(true);
+                        else if (perfis.get(i).toString().equals("Compras"))
+                            cbCompras.setChecked(true);
+                        else if (perfis.get(i).toString().equals("Cultural"))
+                            cbCultural.setChecked(true);
+                        else if (perfis.get(i).toString().equals("Família"))
+                            cbFamilia.setChecked(true);
+                        else if (perfis.get(i).toString().equals("Gastronômico"))
+                            cbGastro.setChecked(true);
+                        else if (perfis.get(i).toString().equals("Paisagem"))
+                            cbPaisagem.setChecked(true);
+                        else if (perfis.get(i).toString().equals("Trabalho"))
+                            cbTrabalho.setChecked(true);
+                        else if (perfis.get(i).toString().equals("Vida Noturna"))
+                            cbVidaNoturna.setChecked(true);
+                    }
+
                     namefb.setText("Olá " + GlobalAccess.nomeUsuario + ", edite seu perfil de viajante e inicie agora seu planejamento!");
                     pic.setProfileId(Profile.getCurrentProfile().getId());
 
@@ -99,6 +121,10 @@ public class EditCadastrofbActivity extends AppCompatActivity {
                         if (cbVidaNoturna.isChecked()) novosPerfils.add("Vida Noturna");
 
                         if (novosPerfils.size()>0 && novosPerfils.size() <= 3) {
+
+                            Map<String, Object> hopperUpdates = new HashMap<String, Object>();
+                            hopperUpdates.put("perfil", novosPerfils);
+                            mDatabase.updateChildren(hopperUpdates);
 
                             Toast.makeText(getApplicationContext(), "Dados atualizados!", Toast.LENGTH_LONG).show();
                             Intent volta = new Intent(getApplicationContext(), MenuActivity.class);

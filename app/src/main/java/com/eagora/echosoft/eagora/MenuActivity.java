@@ -18,9 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.Facebook.AcessoGraphFacebook;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Usuario.Usuario;
+import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
@@ -117,6 +119,10 @@ public class MenuActivity extends AppCompatActivity
 
         //Definir nome e perfil do usuário como variável global
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        //pegando o token pela autenticação
+        AcessoGraphFacebook.accessToken = AccessToken.getCurrentAccessToken();
+
         mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid());
         mDatabase.addValueEventListener(new ValueEventListener() {
             public void onDataChange(DataSnapshot dataSnapshot) {
