@@ -18,19 +18,24 @@
             <fragment
                 android:layout_columnWeight="3"
                 android:id="@+id/local_viagem"
+                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
                 android:clickable="true"
                 android:hint="@string/localViagem"/>
             <EditText
                 android:id="@+id/Ida"
                 android:clickable="true"
                 android:editable="false"
+                android:focusable="false"
                 android:hint="@string/ida"/>
             <EditText
                 android:id="@+id/Volta"
                 android:clickable="true"
                 android:editable="false"
+                android:focusable="false"
                 android:hint="@string/volta" />
         </GridLayout>
+
+
     </LinearLayout>
 
 

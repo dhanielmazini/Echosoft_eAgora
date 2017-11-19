@@ -67,5 +67,9 @@
     <string name="title_activity_detalhes_evento">DetalhesEventoActivity</string>
     <string name="title_activity_eventos_roteiro_exibicao">EventosRoteiroExibicaoActivity</string>
     <string name="title_activity_edit_cadastrofb">EditCadastrofbActivity</string>
+    <string name="title_activity_roteiro">RoteiroActivity</string>
+    <string name="ida">Data de ida</string>
+    <string name="volta">Data de volta</string>
+    <string name="localViagem">Destino</string>
 
 </resources>
