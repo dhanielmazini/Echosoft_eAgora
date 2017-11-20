@@ -50,16 +50,21 @@ public class PlacesBuilder {
     }
 
     //tipos em https://developers.google.com/places/web-service/supported_types?hl=pt-br
-    public PlacesBuilder type(int type) {
+    public PlacesBuilder type(String type) {
         String typeString = "&type=" + type;
         place.append(typeString);
         return this;
     }
 
     public Uri build() {
-        String keyString = "&key=AIzaSyADceanowFmdgs2F1_jnKjyeXCuRa8IrWo";
+        String keyString = "&key=AIzaSyCKjXv6h28YUPQP9JAb6800mlI6355dcmM";
         place.append(keyString);
         placeUri = Uri.parse(place.toString());
         return placeUri;
+    }
+
+    public Uri next(String url, String next_page) {
+        url = url + "&pagetoken=" + next_page;
+        return Uri.parse(url);
     }
 }

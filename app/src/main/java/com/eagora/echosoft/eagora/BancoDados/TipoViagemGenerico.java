@@ -5,14 +5,14 @@ package com.eagora.echosoft.eagora.BancoDados;
  */
 
 public class TipoViagemGenerico {
-    private long id;
+    private String id;
     private String name;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -24,7 +24,7 @@ public class TipoViagemGenerico {
         this.name = name;
     }
 
-    public TipoViagemGenerico(long id, String name) {
+    public TipoViagemGenerico(String id, String name) {
         this.id = id;
         this.name = name;
     }

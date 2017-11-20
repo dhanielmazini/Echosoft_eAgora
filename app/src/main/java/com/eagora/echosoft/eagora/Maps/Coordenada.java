@@ -2,9 +2,12 @@ package com.eagora.echosoft.eagora.Maps;
 
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -12,7 +15,7 @@ import java.util.Locale;
  * Created by hhaji on 11/10/17.
  */
 
-public class Coordenada {
+public class Coordenada implements Serializable {
     private double latitude;
     private double longitude;
 

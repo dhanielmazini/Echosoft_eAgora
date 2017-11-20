@@ -1,25 +1,37 @@
 package com.eagora.echosoft.eagora.Maps;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.eagora.echosoft.eagora.BancoDados.TipoViagemGenerico;
+
+import java.io.Serializable;
+
 /**
  * Created by hhaji on 29/10/17.
  */
 
-public class Place {
-    //pra pegar foto https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CnRtAAAATLZNl354RwP_9UKbQ_5Psy40texXePv4oAlgP4qNEkdIrkyse7rPXYGd9D_Uj1rVsQdWT4oRz4QrYAJNpFX7rzqqMlZw2h2E2y5IKMUZ7ouD_SlcHxYq1yL4KbKUv3qtWgTK0A6QbGh87GB3sscrHRIQiG2RrmU_jF4tENr9wGS_YxoUSSDrYjWmrNfeEHSGSc3FyhNLlBU&key=YOUR_API_KEY
+public class Place extends TipoViagemGenerico implements Serializable {
     private String id;
-    private String nome;
+    private String name;
     private String foto_ref;
     private String redondezas;
+    private String endereco;
+    private String telefone;
+    private String telefone_int;
     private String estado;
+    private String site;
     private double nota;
     private Coordenada localizacao;
+    private String icone;
 
-    public Place(String id, String nome, double lat, double lng, double nota, String vicinity) {
+    public Place(String id, String name, double lat, double lng, double nota, String vicinity, String icon) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         localizacao = new Coordenada(lat, lng);
         this.nota = nota;
         this.redondezas = vicinity;
+        this.icone = icon;
     }
 
     public String getId() {
@@ -30,12 +42,12 @@ public class Place {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getFoto_ref() {
@@ -54,10 +66,6 @@ public class Place {
         this.redondezas = redondezas;
     }
 
-    public String isEstado() {
-        return estado;
-    }
-
     public String getEstado() {
         if(estado.equals("1"))
             return "Aberto";
@@ -71,9 +79,6 @@ public class Place {
             this.estado = "1";
         else this.estado = "0";
     }
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
     public double getNota() {
         return nota;
@@ -83,6 +88,14 @@ public class Place {
         this.nota = nota;
     }
 
+    public String getIcone() {
+        return icone;
+    }
+
+    public void setIcone(String icone) {
+        this.icone = icone;
+    }
+
     public Coordenada getLocalizacao() {
         return localizacao;
     }
@@ -90,5 +103,37 @@ public class Place {
     public void setLocalizacao(double lat, double lng) {
         this.localizacao.setLatitude(lat);
         this.localizacao.setLongitude(lng);
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getTelefone_int() {
+        return telefone_int;
+    }
+
+    public void setTelefone_int(String telefone_int) {
+        this.telefone_int = telefone_int;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
     }
 }

@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.eagora.echosoft.eagora.GlobalAccess;
 import com.eagora.echosoft.eagora.R;
@@ -23,9 +24,10 @@ import im.delight.android.location.SimpleLocation;
 
 public class ListPlaceActivity extends AppCompatActivity {
     private JSONObject jsonResponse;
-    ListView lstPlaces;
+    private ListView lstPlaces;
+    private Uri urlRequest;
     private SimpleLocation location;
-
+    private int flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,21 +39,25 @@ public class ListPlaceActivity extends AppCompatActivity {
         location.beginUpdates();
         GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
 
+        flag = getIntent().getIntExtra("flag", 0);
+
         lstPlaces = (ListView) findViewById(R.id.lstPlaces);
-        if (getJsonOfNearbyPlaces(GlobalAccess.coordenadaLocalViagem) == 1) {
+        if (getJsonOfNearbyPlaces(GlobalAccess.coordenadaLocalViagem, "") == 1) {
             MakePlacesList();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    protected int getJsonOfNearbyPlaces(Coordenada origin) {
+    protected int getJsonOfNearbyPlaces(Coordenada origin, String next_page) {
 
-        Uri urlRequest = new PlacesBuilder()
+        urlRequest = new PlacesBuilder()
                 .header()
                 .location(origin)
-                .radius(100000)
-                .keyword("restaurant")
+                .radius(10000)
+                .type("restaurant")
                 .build();
+        if(!next_page.equals(""))
+            urlRequest = new PlacesBuilder().next(urlRequest.toString(), next_page);
 
         try {
             jsonResponse = new DownloadMapsUrl().execute(urlRequest.toString()).get();
@@ -60,6 +66,7 @@ public class ListPlaceActivity extends AppCompatActivity {
         catch (Exception e) {
             Log.d("Exception", e.toString());
             return 0;
+
         }
     }
 
@@ -70,18 +77,20 @@ public class ListPlaceActivity extends AppCompatActivity {
             for(int i=0;i<results.length();i++) {
                 Place e;
                 e = new Place(
-                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("id"),
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("place_id"),
                     jsonResponse.getJSONArray("results").getJSONObject(i).getString("name"),
                     jsonResponse.getJSONArray("results").getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lat"),
                     jsonResponse.getJSONArray("results").getJSONObject(i).getJSONObject("geometry").getJSONObject("location").getDouble("lng"),
                     jsonResponse.getJSONArray("results").getJSONObject(i).getDouble("rating"),
-                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("vicinity"));
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("vicinity"),
+                    jsonResponse.getJSONArray("results").getJSONObject(i).getString("icon"));
+
 
                 try {
                     e.setEstado(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("opening_hours").getJSONObject(0).getBoolean("open_now"));
                 }
                 catch (JSONException OpenEx) {
-                    e.setEstado("-1");
+                    e.setEstado(false);
                 }
 
                 try {
@@ -92,13 +101,24 @@ public class ListPlaceActivity extends AppCompatActivity {
                 }
 
                 listaEstab.add(e);
+
+                try {
+                    if(results.length() == i+1) {
+                        getJsonOfNearbyPlaces(GlobalAccess.coordenadaLocalViagem, jsonResponse.getString("next_page_token"));
+                        results = jsonResponse.getJSONArray("results");
+                        i = 0;
+                    }
+                }
+                catch (JSONException nextTok) {
+                    Log.d("Exception", nextTok.toString());
+                    continue;
+                }
             }
         }
         catch (JSONException jsonEx){
             Log.d("Exception", jsonEx.toString());
         }
-        lstPlaces.setAdapter(new PlacesAdapter(this,R.layout.item_place_card,listaEstab));
-
+        lstPlaces.setAdapter(new PlacesAdapter(this,R.layout.item_place_card,listaEstab, flag));
     }
 
 }

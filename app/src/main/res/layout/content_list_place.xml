@@ -7,8 +7,18 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.eagora.echosoft.eagora.Maps.ListPlaceActivity"
     tools:showIn="@layout/activity_list_place">
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="Roboto"
+            android:textSize="30dp"
+            android:text="Sem resultados :I"/>
+    </LinearLayout>
     <ListView
         android:id="@+id/lstPlaces"
         android:layout_width="0dp"

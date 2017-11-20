@@ -246,6 +246,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
+        <activity
+            android:name=".Maps.PlaceActivity"
+            android:label="@string/title_activity_place"
+            android:parentActivityName=".Maps.ListPlaceActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.Maps.ListPlaceActivity" />
+        </activity>
     </application>
 
 </manifest>

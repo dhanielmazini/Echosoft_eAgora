@@ -48,6 +48,7 @@ public class DetalhesEventoActivity extends AppCompatActivity {
     long ident=-1;
     int nRoteiro;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

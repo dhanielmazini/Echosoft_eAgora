@@ -138,6 +138,7 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                         if (GlobalAccess.coordenadaLocalViagem != null) {
                             if (item.getTitle().equals("Local")) {
                                 Intent localSel = new Intent(getApplicationContext(), ListPlaceActivity.class);
+                                localSel.putExtra("flag", 1);
                                 startActivity(localSel);
                             } else {
                                 Intent eveSel = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
