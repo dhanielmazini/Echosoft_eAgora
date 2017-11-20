@@ -13,24 +13,44 @@
     <RelativeLayout
         android:layout_width="368dp"
         android:layout_height="495dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="8dp"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btnMaps"
+            android:id="@+id/btnEventos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Locais Google"
+            android:layout_below="@+id/btnMaps2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:onClick="iniciarEventos"
+            android:text="Pesquisar Eventos"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.854"
-            android:layout_marginTop="60dp"
+            app:layout_constraintVertical_bias="0.854" />
+
+        <Button
+            android:id="@+id/btnMaps2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/place_autocomplete_fragment"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:onClick="iniciarPesquisaEstabelecimentos"
+            android:text="Pesquisar Estabelecimentos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.854" />
 
         <ImageView
             android:id="@+id/imageView6"

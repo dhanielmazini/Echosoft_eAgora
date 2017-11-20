@@ -32,6 +32,7 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
     List<Place> placeList;
     private View row;
     private int flag = 0;
+
     public PlacesAdapter(Context context, int layoutResourceId,List<Place> list, int flag) {
         super(context,0,list);
         this.layoutResourceId = layoutResourceId;

@@ -48,7 +48,7 @@ public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView getn, text_mail;
-    private Button btnMaps;
+    private Button btnMaps, btnEventos;
     private NavigationView navigationView;
     private DatabaseReference mDatabase;
     private SimpleLocation location;
@@ -64,14 +64,9 @@ public class MenuActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         img = (ImageView)findViewById(R.id.imageView6);
+
         btnMaps = (Button) findViewById(R.id.btnMaps);
-        btnMaps.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(getApplicationContext(), ListPlaceActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnEventos = (Button) findViewById(R.id.btnEventos);
 
         String[] permissoes = new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,
                                            android.Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -103,10 +98,8 @@ public class MenuActivity extends AppCompatActivity
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                // TODO: obter informações sobre o local selecionado.
+                GlobalAccess.coordenadaLocalViagem = null;
                 GlobalAccess.coordenadaLocalViagem = new Coordenada(place.getLatLng().latitude, place.getLatLng().longitude);
-                Intent locaisProximos = new Intent(getApplicationContext(), ListPlaceActivity.class);
-                startActivity(locaisProximos);
                 Log.i("logX", "Place: " + place.getName());
                 GlobalAccess.listaLugares.clear();
                 GlobalAccess.listaEventos.clear();
@@ -114,7 +107,6 @@ public class MenuActivity extends AppCompatActivity
 
             @Override
             public void onError(Status status) {
-                // TODO: Solucionar o erro.
                 Log.i("logX", "Ocorreu um erro: " + status);
             }
         });
@@ -161,6 +153,28 @@ public class MenuActivity extends AppCompatActivity
         //location.beginUpdates();
         GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
 
+    }
+
+    public void iniciarEventos(View view){
+        Coordenada coor = GlobalAccess.coordenadaLocalViagem;
+        if(coor != null) {
+            Intent eventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+            startActivity(eventos);
+        }else{
+            Toast.makeText(MenuActivity.this, "Por favor, selecione um destino",
+                            Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void iniciarPesquisaEstabelecimentos(View view){
+        Coordenada coor = GlobalAccess.coordenadaLocalViagem;
+        if(coor != null) {
+            Intent eventos = new Intent(getApplicationContext(), ListPlaceActivity.class);
+            startActivity(eventos);
+        }else{
+            Toast.makeText(MenuActivity.this, "Por favor, selecione um destino",
+                            Toast.LENGTH_SHORT).show();
+        }
     }
 
     protected void onActivityResult(int requestCode, int result, Intent data){
@@ -220,15 +234,9 @@ public class MenuActivity extends AppCompatActivity
             startActivity(intentPontosTur);
             finish();
         } else if (id == R.id.nav_procurar_bares) {
-                if(c!=null){
-                    Intent intentbar = new Intent(getApplicationContext(), ListPlaceActivity.class);
-                    startActivity(intentbar);
-                    finish();
-                 }
-                else{
-                    Toast.makeText(MenuActivity.this, "Por favor selecione um destino", Toast.LENGTH_SHORT).show();
-                }
-            finish();
+                Intent intentbar = new Intent(getApplicationContext(), EstabelecimentosActivity.class);
+                startActivity(intentbar);
+                finish();
         } else if (id == R.id.nav_editar_cadastro) {
             if(Profile.getCurrentProfile()!=null){
                 Intent contafb = new Intent(getApplicationContext(),EditCadastrofbActivity.class);
