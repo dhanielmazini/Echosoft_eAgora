@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Created by hhaji on 29/10/17.
  */
 
-public class Place extends TipoViagemGenerico implements Serializable {
+public class Place implements Serializable {
     private String id;
     private String name;
     private String foto_ref;

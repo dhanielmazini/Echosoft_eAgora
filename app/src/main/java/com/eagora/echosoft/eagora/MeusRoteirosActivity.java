@@ -36,7 +36,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meus_roteiros);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        
         mostrarRoteiros();
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

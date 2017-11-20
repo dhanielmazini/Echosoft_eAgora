@@ -218,7 +218,6 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
                 final String idEvento = dados.get("id").toString();
 
-
                 //Seta a imagemview como clicável
                 imgEvento.setClickable(true);
 

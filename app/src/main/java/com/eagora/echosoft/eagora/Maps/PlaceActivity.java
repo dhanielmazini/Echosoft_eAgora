@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.eagora.echosoft.eagora.ApiAccessResponse;
 import com.eagora.echosoft.eagora.EventosRoteiroActivity;
 import com.eagora.echosoft.eagora.Facebook.RoteiroFacebook;
 import com.eagora.echosoft.eagora.GlobalAccess;
@@ -39,6 +40,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,56 +138,23 @@ public class PlaceActivity extends AppCompatActivity {
         lblWebsiteLugar = (TextView) findViewById(R.id.lblWebsiteLugar);
         try {
             btnEscolherLugar.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            mDatabase = FirebaseDatabase.getInstance().getReference();
-                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
+                        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                            GlobalAccess.idRoteiro = 0;
-                            String testeidRoteiro = String.valueOf(GlobalAccess.idRoteiro);
-                            mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid())
-                                    .child("roteiros").child(testeidRoteiro).child("maps").child(place.getId());
-                            mDatabase.setValue(place);
+                        //GlobalAccess.idRoteiro = 0;
+                        String testeidRoteiro = String.valueOf(GlobalAccess.idRoteiro);
+                        mDatabase = FirebaseDatabase.getInstance().getReference("usuarios").child(user.getUid())
+                                .child("roteiros").child(testeidRoteiro).child("maps").child(place.getId());
+                        mDatabase.setValue(place);
 
-                            try {
-                                Intent intentMaps = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
-                                startActivity(intentMaps);
-                                finish();
-                            }
-                            catch (Exception e) {
-                                Log.d(e.toString(), "blab");
-                            }
-                        /*FirebaseStorage storage = FirebaseStorage.getInstance();
-                        StorageReference storageRef = storage.getReference();
-                        String caminho = "imgEventos/" + idEvento + ".png";
-                        StorageReference mountainImagesRef = storageRef.child(caminho);
-
-
-                        // Get the data from an ImageView as bytes
-                        imgEvento.setDrawingCacheEnabled(true);
-                        imgEvento.buildDrawingCache();
-                        Bitmap bitmap = imgEvento.getDrawingCache();
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                        byte[] data = baos.toByteArray();
-
-                        UploadTask uploadTask = mountainImagesRef.putBytes(data);
-                        uploadTask.addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                // Handle unsuccessful uploads
-                            }
-                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
-                                startActivity(intentEvento);
-                                finish();
-                            }
-                        });*/
-                        }
+                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+                        startActivity(intentEvento);
+                        finish();
                     }
+                }
             );
         }
         catch(Exception e) {
