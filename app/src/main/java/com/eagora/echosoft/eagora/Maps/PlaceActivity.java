@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.eagora.echosoft.eagora.ApiAccessResponse;
 import com.eagora.echosoft.eagora.EventosRoteiroActivity;
 import com.eagora.echosoft.eagora.Facebook.RoteiroFacebook;
 import com.eagora.echosoft.eagora.GlobalAccess;

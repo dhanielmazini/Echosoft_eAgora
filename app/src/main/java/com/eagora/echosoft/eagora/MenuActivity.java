@@ -220,7 +220,7 @@ public class MenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_procurar_eventos) {
 
                 if(c!=null){
-                    Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+                    Intent intentEventos = new Intent(getApplicationContext(), EventosActivity.class);
                     startActivity(intentEventos);
                     finish();
                 }

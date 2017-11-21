@@ -12,42 +12,76 @@
 
 
     <LinearLayout
-        android:id="@+id/linearEventos"
+        android:id="@+id/linearProcuraEventos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:scrollIndicators="end"
         >
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="\n Selecione o Tipo de Evento\n"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnBuscarEventosVidaNoturna"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnAventura"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Vida Noturna"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.64" />
+            android:text="Aventura" />
 
         <Button
-            android:id="@+id/btnBuscarEventosGastronomico"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnCompras"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:text="Gastronômico"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.64" />
+            android:text="Compras" />
 
+        <Button
+            android:id="@+id/btnCultural"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cultural" />
+
+        <Button
+            android:id="@+id/btnFamilia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Família" />
+
+        <Button
+            android:id="@+id/btnGastronomico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gastronômico" />
+
+        <Button
+            android:id="@+id/btnPaisagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Paisagem" />
+
+        <Button
+            android:id="@+id/btnTrabalho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trabalho" />
+
+        <Button
+            android:id="@+id/btnVidaNoturna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vida Noturna" />
+
+        <Button
+            android:id="@+id/btnOutros"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Outros" />
 
     </LinearLayout>
 

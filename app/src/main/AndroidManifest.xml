@@ -197,11 +197,6 @@
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
-            android:name=".Maps.PesquisaEnderecos"
-            android:label="@string/title_activity_pesquisa_enderecos"
-            android:theme="@style/AppTheme.NoActionBar" />
-        \value="com.eagora.echosoft.eagora.InicioActivity" />
-        <activity
             android:name=".CriarRoteiroActivity"
             android:label="Criar Roteiro"
             android:parentActivityName=".MenuActivity"
@@ -255,6 +250,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.Maps.ListPlaceActivity" />
         </activity>
+        <activity
+            android:name=".EventosExibirActivity"
+            android:label="Exibir Eventos"
+            android:parentActivityName=".EventosActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.EventosActivity" />
+        </activity>
+
+
     </application>
 
 </manifest>

@@ -78,6 +78,9 @@ public class CriarRoteiroActivity extends AppCompatActivity {
             setTitle("Criar Roteiro");
 
         nRoteiro = getIntent().getIntExtra("NUM_ROTEIRO",nRoteiro);
+
+        GlobalAccess.idRoteiro = nRoteiro;
+
         ida = (EditText)findViewById(R.id.Ida);
         volta = (EditText)findViewById(R.id.Volta);
 
@@ -139,6 +142,7 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                             if (item.getTitle().equals("Local")) {
                                 Intent localSel = new Intent(getApplicationContext(), ListPlaceActivity.class);
                                 localSel.putExtra("flag", 1);
+                                localSel.putExtra("NUM_ROT", nRoteiro);
                                 startActivity(localSel);
                             } else {
                                 Intent eveSel = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
