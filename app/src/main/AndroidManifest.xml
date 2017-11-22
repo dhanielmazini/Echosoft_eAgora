@@ -60,6 +60,13 @@
         <activity
             android:name=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SingupActivity"
             android:label="Cadastro"
@@ -104,13 +111,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.InicioActivity" />
         </activity>
-        \value="com.eagora.echosoft.eagora.InicioActivity" />
         <activity
             android:name=".InicioActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
