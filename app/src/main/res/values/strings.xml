@@ -72,5 +72,7 @@
     <string name="volta">Data de volta</string>
     <string name="localViagem">Destino</string>
     <string name="title_activity_place">PlaceActivity</string>
+    <string name="title_activity_faq">FAQActivity</string>
+    <string name="title_activity_criar_conta">CriarContaActivity</string>
 
 </resources>

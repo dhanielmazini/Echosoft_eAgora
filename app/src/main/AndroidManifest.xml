@@ -62,9 +62,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -106,7 +106,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.InicioActivity" />
             android:parentActivityName=".InicioActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"/>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.InicioActivity" />
@@ -115,7 +115,6 @@
             android:name=".InicioActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -149,20 +148,20 @@
         <activity
             android:name=".EstabelecimentosActivity"
             android:label="@string/title_activity_estabelecimentos"
-            android:parentActivityName=".TelaDeRedirecionamentoMainActivity"
+            android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.TelaDeRedirecionamentoMainActivity" />
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
             android:name=".PontosTuristicosActivity"
             android:label="@string/title_activity_pontos_turisticos"
-            android:parentActivityName=".TelaDeRedirecionamentoMainActivity"
+            android:parentActivityName=".MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.TelaDeRedirecionamentoMainActivity" />
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
             android:name=".AdapterOptions$CadastroEditActivity"
@@ -263,8 +262,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.EventosActivity" />
         </activity>
-
-
+        <activity
+            android:name=".FAQActivity"
+            android:label="@string/title_activity_faq"
+            android:parentActivityName=".MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
+        </activity>
+        <activity
+            android:name=".CriarContaActivity"
+            android:label="@string/title_activity_criar_conta"
+            android:parentActivityName=".MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MenuActivity" />
+        </activity>
     </application>
 
 </manifest>

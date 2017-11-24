@@ -1,11 +1,8 @@
 package com.eagora.echosoft.eagora;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -41,7 +38,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import android.Manifest;
+
 import im.delight.android.location.SimpleLocation;
 
 public class MenuActivity extends AppCompatActivity
@@ -231,12 +228,21 @@ public class MenuActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_procurar_pontos) {
             Intent intentPontosTur = new Intent(getApplicationContext(), PontosTuristicosActivity.class);
-            startActivity(intentPontosTur);
-            finish();
+            if(c!=null)
+                startActivity(intentPontosTur);
+             else
+                Toast.makeText(MenuActivity.this, "Por favor, selecione um destino",
+                        Toast.LENGTH_SHORT).show();
+                finish();
         } else if (id == R.id.nav_procurar_bares) {
                 Intent intentbar = new Intent(getApplicationContext(), EstabelecimentosActivity.class);
-                startActivity(intentbar);
-                finish();
+                if( c!=null)
+                    startActivity(intentbar);
+                else
+                    Toast.makeText(MenuActivity.this, "Por favor, selecione um destino",
+                            Toast.LENGTH_SHORT).show();
+
+            finish();
         } else if (id == R.id.nav_editar_cadastro) {
             if(Profile.getCurrentProfile()!=null){
                 Intent contafb = new Intent(getApplicationContext(),EditCadastrofbActivity.class);

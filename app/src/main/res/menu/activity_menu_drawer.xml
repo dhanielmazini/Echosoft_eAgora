@@ -21,10 +21,6 @@
             android:id="@+id/nav_procurar_bares"
 
             android:title="Procurar Bares e Restaurantes" />
-        <item
-            android:id="@+id/nav_blank"
-            android:title=" "
-            />
     </group>
 
     <item android:title=" ">
@@ -33,8 +29,12 @@
                 android:id="@+id/nav_editar_cadastro"
                 android:title="Editar Cadastro" />
             <item
+                android:id="@+id/nav_blank"
+                android:title=" Central de Ajuda" />
+            <item
                 android:id="@+id/nav_sair"
                 android:title="Sair" />
+
         </menu>
     </item>
 
