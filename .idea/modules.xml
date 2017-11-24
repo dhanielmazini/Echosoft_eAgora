@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Echosoft_eAgora.iml" filepath="$PROJECT_DIR$/Echosoft_eAgora.iml" />
       <module fileurl="file://$PROJECT_DIR$/Echosoft_eAgora.iml" filepath="$PROJECT_DIR$/Echosoft_eAgora.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Echosoft_eAgora.iml" filepath="$PROJECT_DIR$/Echosoft_eAgora.iml" />
       <module fileurl="file://$PROJECT_DIR$/Echosoft_eAgora2.iml" filepath="$PROJECT_DIR$/Echosoft_eAgora2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Echosoft_eAgora4.iml" filepath="$PROJECT_DIR$/Echosoft_eAgora4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

@@ -6,7 +6,16 @@ package com.eagora.echosoft.eagora.Facebook;
 
 public class RoteiroFacebook {
 
-    private String id,nome,data,horario,local,endereco,cep,cidade,estado;
+    private String id;
+    private String nome;
+    private String data;
+    private String horario;
+    private String local;
+    private String endereco;
+    private String cep;
+    private String cidade;
+    private String estado;
+    private String imagem;
 
 
     public RoteiroFacebook(){
@@ -84,5 +93,13 @@ public class RoteiroFacebook {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }

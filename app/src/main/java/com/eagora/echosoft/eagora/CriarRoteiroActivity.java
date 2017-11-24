@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
 import com.bumptech.glide.Glide;
 import com.eagora.echosoft.eagora.Facebook.RoteiroFacebook;
 import com.eagora.echosoft.eagora.Maps.Coordenada;
@@ -276,12 +278,31 @@ public class CriarRoteiroActivity extends AppCompatActivity {
             final String url = "https://www.facebook.com/events/" + listRot.get(i).getId() + "/";
             String caminho = "imgEventos/" + listRot.get(i).getId() + ".png";
 
-            try {
+
+            AQuery aq = new AQuery(this);
+            aq.id(imgEvento).image(listRot.get(i).getImagem());
+
+            //Seta a imagemview como clicável
+            imgEvento.setClickable(true);
+
+            //Abre o link do evento
+            imgEvento.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                }
+            });
+
+
+            /*try {
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(caminho);
                 Glide.with(this).using(new FirebaseImageLoader()).load(storageReference).into(imgEvento);
             }catch (Exception e){
                 e.printStackTrace();
-            }
+            }*/
 
             linear.addView(txtNomeEvento);
             txtNomeEvento.setTypeface(null, Typeface.BOLD);

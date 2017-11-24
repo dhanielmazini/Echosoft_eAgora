@@ -44,7 +44,7 @@ public class DetalhesEventoActivity extends AppCompatActivity {
     Button btnEscolherEvento;
     private DatabaseReference mDatabase,mDatabase2;
     String idEvento,nomeEvento,dataEvento,horarioEvento,localEvento,
-            enderecoEvento,cepEvento,cidadeEvento,estadoEvento;
+            enderecoEvento,cepEvento,cidadeEvento,estadoEvento,imagem;
     long ident=-1;
     int nRoteiro;
 
@@ -113,6 +113,9 @@ public class DetalhesEventoActivity extends AppCompatActivity {
             }catch(Exception e){
                 e.printStackTrace();
             }*/
+
+            JSONObject cover = dados.getJSONObject("cover");
+            imagem = cover.get("source").toString();
 
             Bitmap bitmapTeste = BitmapFactory.decodeStream(getBaseContext().openFileInput("capaEvento"));
             imgEvento.setImageBitmap(bitmapTeste);
@@ -215,6 +218,7 @@ public class DetalhesEventoActivity extends AppCompatActivity {
                         roteiroFb.setCep(cepEvento);
                         roteiroFb.setCidade(cidadeEvento);
                         roteiroFb.setEstado(estadoEvento);
+                        roteiroFb.setImagem(imagem);
 
 
                         //Olha aqui Tom
@@ -225,35 +229,9 @@ public class DetalhesEventoActivity extends AppCompatActivity {
                                 .child("roteiros").child(testeidRoteiro).child("facebook").child(idEvento);
                         mDatabase.setValue(roteiroFb);
 
-                        FirebaseStorage storage = FirebaseStorage.getInstance();
-                        StorageReference storageRef = storage.getReference();
-                        String caminho = "imgEventos/" + idEvento + ".png";
-                        StorageReference mountainImagesRef = storageRef.child(caminho);
-
-
-                        // Get the data from an ImageView as bytes
-                        imgEvento.setDrawingCacheEnabled(true);
-                        imgEvento.buildDrawingCache();
-                        Bitmap bitmap = imgEvento.getDrawingCache();
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                        byte[] data = baos.toByteArray();
-
-                        UploadTask uploadTask = mountainImagesRef.putBytes(data);
-                        uploadTask.addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                // Handle unsuccessful uploads
-                            }
-                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
-                                startActivity(intentEvento);
-                                finish();
-                            }
-                        });
-
+                        Intent intentEventos = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+                        startActivity(intentEventos);
+                        finish();
 
 
 
