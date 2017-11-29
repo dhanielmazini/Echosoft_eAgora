@@ -137,15 +137,6 @@
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
-            android:name=".TelaDeRedirecionamentoMainActivity"
-            android:label="@string/title_activity_tela_de_redirecionamento_main"
-            android:parentActivityName=".MenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.MenuActivity" />
-        </activity>
-        <activity
             android:name=".EstabelecimentosActivity"
             android:label="@string/title_activity_estabelecimentos"
             android:parentActivityName=".MenuActivity"
@@ -271,13 +262,13 @@
                 android:value="com.eagora.echosoft.eagora.MenuActivity" />
         </activity>
         <activity
-            android:name=".CriarContaActivity"
-            android:label="@string/title_activity_criar_conta"
+            android:name=".CentralActivity"
+            android:label="Central de Ajuda"
             android:parentActivityName=".MenuActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eagora.echosoft.eagora.MenuActivity" />
-        </activity>
+                android:value="com.eagora.echosoft.eagora.CentralActivity" />
+            ></activity>
     </application>
 
 </manifest>

@@ -74,5 +74,10 @@
     <string name="title_activity_place">PlaceActivity</string>
     <string name="title_activity_faq">FAQActivity</string>
     <string name="title_activity_criar_conta">CriarContaActivity</string>
+    <string name="title_activity_centralde_ajuda">CentraldeAjudaActivity</string>
+    <string name="title_activity_centralctivity">Centralctivity</string>
+    <string name="title_activity_teste">testeActivity</string>
+    <string name="title_activity_central_de_ajuda">CentralDeAjudaActivity</string>
+    <string name="title_activity_oi">oiActivity</string>
 
 </resources>

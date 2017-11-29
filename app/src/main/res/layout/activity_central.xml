@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.eagora.echosoft.eagora.CentralActivity">
+
+    <RelativeLayout
+        android:layout_width="314dp"
+        android:layout_height="529dp"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="55dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="O que é o eAgora?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:text="O eAgora é um aplicativo de planejamento de viagens, onde o usuário ao se logar, é capaz de selecionar um local e procurar por bares, restaurantes e eventos próximos à esta localidade, tendo a opção de um roteiro de viagens, de acordo com seu perfil de viagem."
+            android:textAlignment="textStart"
+            android:textSize="16sp"
+            android:layout_below="@+id/textView4"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="O que é um perfil de viagem?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView6"
+            android:layout_alignLeft="@+id/textView6"
+            android:layout_alignStart="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="O perfil de viagem define os principais interesses do usuário, ele é definido inicialmente, quando é criado um cadastro no aplicativo ou na primeira vez que se conectar com o facebook."
+            android:textSize="16sp"
+            android:layout_below="@+id/textView7"
+            android:layout_alignLeft="@+id/textView7"
+            android:layout_alignStart="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Posso mudar meu perfil de viagens?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView8"
+            android:layout_alignLeft="@+id/textView8"
+            android:layout_alignStart="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Sim, vá no menu lateral e clique em editar cadastro, nesta tela, você poderá selecionar outras tags para definir um  novo perfil.\n"
+            android:textSize="16sp"
+            android:layout_below="@+id/textView9"
+            android:layout_alignLeft="@+id/textView9"
+            android:layout_alignStart="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Como inserir um evento ou local no roteiro?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/textView10"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/textView10"
+            android:layout_alignStart="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/textView11"
+        android:layout_below="@+id/textView11"
+        android:text="\nPrimeiramente, no menu lateral, selecione Meus Roteiros -> Clique em + -> Digite um local na caixa de texto na parte superior da  -> Clique novamente em + -> selecione local ou eventos -> clique sobre a imagem do local/evento -> clique em escolher. Você poderá selecionar quantos eventos se interessar.\n"
+        android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView12"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/textView12"
+            android:layout_below="@+id/textView12"
+            android:text="É necessário uma conta no Facebook para utilizar o aplicativo?\n"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView13"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/textView13"
+            android:layout_below="@+id/textView13"
+            android:text="Não é necessário, mas não é possível localizar os eventos próximos à você, apenas os locais, como bares, restaurantes e pontos turísticos, mas isso não impede que seja criado um bom roteiro.\n"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -249,7 +249,7 @@ public class MenuActivity extends AppCompatActivity
                 startActivity(contafb);
             }
             else{
-                Intent conta = new Intent(getApplicationContext(),CadastroEditarActivity.class);
+                Intent conta = new Intent(getApplicationContext(),CentralActivity.class);
                 startActivity(conta);
             }
             finish();
@@ -264,8 +264,10 @@ public class MenuActivity extends AppCompatActivity
             finish();
         }
         else if (id == R.id.nav_blank) {
-
+            Intent central = new Intent(getApplicationContext(),CentralActivity.class);
+                startActivity(central);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
