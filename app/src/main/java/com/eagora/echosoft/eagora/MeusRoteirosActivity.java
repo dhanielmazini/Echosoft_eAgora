@@ -93,7 +93,7 @@ public class MeusRoteirosActivity extends AppCompatActivity {
             txtRot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent rotsel = new Intent(getApplicationContext(), CriarRoteiroActivity.class);
+                    Intent rotsel = new Intent(getApplicationContext(), ResultActivity.class);
                     rotsel.putExtra("NUM_ROTEIRO",txtRot.getId());
                     rotsel.putExtra("IS_OLD",true);
                     startActivity(rotsel);

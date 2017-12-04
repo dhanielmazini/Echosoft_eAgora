@@ -79,5 +79,6 @@
     <string name="title_activity_teste">testeActivity</string>
     <string name="title_activity_central_de_ajuda">CentralDeAjudaActivity</string>
     <string name="title_activity_oi">oiActivity</string>
+    <string name="title_activity_result">ResultActivity</string>
 
 </resources>

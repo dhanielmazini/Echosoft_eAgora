@@ -268,7 +268,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eagora.echosoft.eagora.CentralActivity" />
-            ></activity>
+            >
+        </activity>
+        <activity
+            android:name=".ResultActivity"
+            android:label="@string/title_activity_result"
+            android:parentActivityName=".MeusRoteirosActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eagora.echosoft.eagora.MeusRoteirosActivity" />
+        </activity>
     </application>
 
 </manifest>

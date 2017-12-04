@@ -74,7 +74,7 @@ public class CriarRoteiroActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if( getIntent().getBooleanExtra("IS_OLD",isold) )
+        if( getIntent().getBooleanExtra("ISOLD",isold) )
             setTitle("Editar Roteiro");
         else
             setTitle("Criar Roteiro");
@@ -147,6 +147,7 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                                 localSel.putExtra("NUM_ROT", nRoteiro);
                                 startActivity(localSel);
                             } else {
+                                System.out.println("heio");
                                 Intent eveSel = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
                                 eveSel.putExtra("NUM_ROT",nRoteiro);
                                 startActivity(eveSel);
@@ -159,8 +160,6 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                 decision.show();
             }
         });
-
-        GlobalAccess.coordenadaLocalViagem = new Coordenada(-23.1929726,-45.8910633);
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
                 getFragmentManager().findFragmentById(R.id.local_viagem);
