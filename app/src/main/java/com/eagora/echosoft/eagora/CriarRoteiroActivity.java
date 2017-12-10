@@ -167,10 +167,8 @@ public class CriarRoteiroActivity extends AppCompatActivity {
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
-                // TODO: obter informações sobre o local selecionado.
+                GlobalAccess.coordenadaLocalViagem = null;
                 GlobalAccess.coordenadaLocalViagem = new Coordenada(place.getLatLng().latitude, place.getLatLng().longitude);
-                Intent locaisProximos = new Intent(getApplicationContext(), ListPlaceActivity.class);
-                startActivity(locaisProximos);
                 Log.i("logX", "Place: " + place.getName());
                 GlobalAccess.listaLugares.clear();
                 GlobalAccess.listaEventos.clear();

@@ -78,8 +78,8 @@ public class EventosExibirActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... params) {
-                listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaLocalViagem.getLatitude(),
-                        GlobalAccess.coordenadaLocalViagem.getLongitude(), raio, listaLugares);
+                listaEventos = acesso.procurarEventos(GlobalAccess.coordenadaUsuario.getLatitude(),
+                        GlobalAccess.coordenadaUsuario.getLongitude(), raio, listaLugares);
                 return null;
             }
         }.execute();

@@ -39,17 +39,27 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:10.0.1'
     compile 'com.firebaseui:firebase-ui-storage:0.6.0'
     compile 'com.android.support:recyclerview-v7:25.0.0'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:support-vector-drawable:25.3.1'
+    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:support-vector-drawable:25.0.0'
     compile 'com.google.android.gms:play-services-location:10.0.1'
     compile 'com.google.android.gms:play-services-auth:10.0.1'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
     compile 'com.google.android.gms:play-services-places:10.0.1'
     compile 'com.github.rey5137:material:1.2.2'
-    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-v4:25.0.0'
     compile 'com.github.delight-im:Android-SimpleLocation:v1.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
 }
 
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.0.0'
+            }
+        }
+    }
+}
 apply plugin: 'com.google.gms.google-services'

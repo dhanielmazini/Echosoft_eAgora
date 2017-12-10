@@ -201,7 +201,7 @@ public class MenuActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Coordenada c = GlobalAccess.coordenadaLocalViagem;
+        Coordenada c = GlobalAccess.coordenadaUsuario;
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 
