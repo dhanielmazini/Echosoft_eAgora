@@ -6,11 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.eagora.echosoft.eagora.ResultActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/showFull"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/showFull"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/btnEditRot"
