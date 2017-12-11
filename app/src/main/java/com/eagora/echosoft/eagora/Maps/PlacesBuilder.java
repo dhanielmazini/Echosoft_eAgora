@@ -6,49 +6,49 @@ import android.net.Uri;
  * Created by hhaji on 25/10/17.
  */
 
-public class PlacesURLBuilder {
+public class PlacesBuilder {
     private StringBuilder place;
     private Uri placeUri;
     public final String HEADER = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
 
-    public PlacesURLBuilder header() {
+    public PlacesBuilder header() {
         place = new StringBuilder();
         place.append(HEADER);
         return this;
     }
 
-    public PlacesURLBuilder location(Coordenada location) {
+    public PlacesBuilder location(Coordenada location) {
         String locationString = "location=" + location.getLatitude() + "," + location.getLongitude();
         place.append(locationString);
         return this;
     }
 
-    public PlacesURLBuilder radius(double radius) {
+    public PlacesBuilder radius(double radius) {
         String radiusString = "&radius=" + radius;
         place.append(radiusString);
         return this;
     }
 
-    public PlacesURLBuilder keyword(String keyword) {
+    public PlacesBuilder keyword(String keyword) {
         String keywordString = "&keyword=" + keyword;
         place.append(keywordString);
         return this;
     }
 
-    public PlacesURLBuilder priceRange(int min, int max) {
+    public PlacesBuilder priceRange(int min, int max) {
         String priceRangeString = "&minprice=" + min + "&maxprice=" + max;
         place.append(priceRangeString);
         return this;
     }
 
-    public PlacesURLBuilder openNow(int open) {
+    public PlacesBuilder openNow(int open) {
         String openString = "&opennow=" + open;
         place.append(openString);
         return this;
     }
 
     //tipos em https://developers.google.com/places/web-service/supported_types?hl=pt-br
-    public PlacesURLBuilder type(String type) {
+    public PlacesBuilder type(String type) {
         String typeString = "&type=" + type;
         place.append(typeString);
         return this;

@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by hhaji on 30/10/17.
  */
-public class PlacesItem extends ArrayAdapter<Place> {
+public class PlacesAdapter extends ArrayAdapter<Place> {
 
     Context context;
     int layoutResourceId;
@@ -28,7 +28,7 @@ public class PlacesItem extends ArrayAdapter<Place> {
     private View row;
     private int flag = 0;
 
-    public PlacesItem(Context context, int layoutResourceId, List<Place> list, int flag) {
+    public PlacesAdapter(Context context, int layoutResourceId, List<Place> list, int flag) {
         super(context,0,list);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -62,7 +62,7 @@ public class PlacesItem extends ArrayAdapter<Place> {
         holder.txtNome.setText(place.getName());
         holder.txtNota.setText(notaString);
         Picasso.with(getContext()).load(place.getIcone()).into(holder.imgIcon);
-        String url = MapsURLImageRequest.RequestURL(place.getFoto_ref(), 1000, 1000, place.getLocalizacao());
+        String url = URLImageRequest.RequestURL(place.getFoto_ref(), 1000, 1000, place.getLocalizacao());
         Picasso.with(getContext()).load(url).into(holder.imgBanner, new com.squareup.picasso.Callback() {
             Toast toast;
             @Override
