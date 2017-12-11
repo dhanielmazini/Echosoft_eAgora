@@ -3,27 +3,20 @@ package com.eagora.echosoft.eagora.Maps;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.eagora.echosoft.eagora.CriarRoteiroActivity;
 import com.eagora.echosoft.eagora.GlobalAccess;
 import com.eagora.echosoft.eagora.R;
-import com.eagora.echosoft.eagora.ResultActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -87,14 +80,14 @@ public class ListPlaceActivity extends AppCompatActivity {
     }
 
     protected int getJsonOfNearbyPlaces(Coordenada origin, String next_page) {
-        urlRequest = new PlacesURLBuilder()
+        urlRequest = new PlacesBuilder()
                 .header()
                 .location(origin)
                 .radius(10000)
                 .type(typeOfLocation)
                 .build();
         if(!next_page.equals(""))
-            urlRequest = new PlacesURLBuilder().next(urlRequest.toString(), next_page);
+            urlRequest = new PlacesBuilder().next(urlRequest.toString(), next_page);
 
         try {
             jsonResponse = new DownloadMapsUrl().execute(urlRequest.toString()).get();
@@ -154,7 +147,7 @@ public class ListPlaceActivity extends AppCompatActivity {
         catch (JSONException jsonEx){
             Log.d("Exception", jsonEx.toString());
         }
-        lstPlaces.setAdapter(new PlacesItem(this,R.layout.item_place_card,listaEstab, flag));
+        lstPlaces.setAdapter(new PlacesAdapter(this,R.layout.item_place_card,listaEstab, flag));
 
     }
 
