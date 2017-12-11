@@ -2,55 +2,53 @@ package com.eagora.echosoft.eagora.Maps;
 
 import android.net.Uri;
 
-import java.util.List;
-
 /**
  * Created by hhaji on 25/10/17.
  */
 
-public class PlacesBuilder {
+public class PlacesURLBuilder {
     private StringBuilder place;
     private Uri placeUri;
     public final String HEADER = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
 
-    public PlacesBuilder header() {
+    public PlacesURLBuilder header() {
         place = new StringBuilder();
         place.append(HEADER);
         return this;
     }
 
-    public PlacesBuilder location(Coordenada location) {
+    public PlacesURLBuilder location(Coordenada location) {
         String locationString = "location=" + location.getLatitude() + "," + location.getLongitude();
         place.append(locationString);
         return this;
     }
 
-    public PlacesBuilder radius(double radius) {
+    public PlacesURLBuilder radius(double radius) {
         String radiusString = "&radius=" + radius;
         place.append(radiusString);
         return this;
     }
 
-    public PlacesBuilder keyword(String keyword) {
+    public PlacesURLBuilder keyword(String keyword) {
         String keywordString = "&keyword=" + keyword;
         place.append(keywordString);
         return this;
     }
 
-    public PlacesBuilder priceRange(int min, int max) {
+    public PlacesURLBuilder priceRange(int min, int max) {
         String priceRangeString = "&minprice=" + min + "&maxprice=" + max;
         place.append(priceRangeString);
         return this;
     }
 
-    public PlacesBuilder openNow(int open) {
+    public PlacesURLBuilder openNow(int open) {
         String openString = "&opennow=" + open;
         place.append(openString);
         return this;
     }
 
     //tipos em https://developers.google.com/places/web-service/supported_types?hl=pt-br
-    public PlacesBuilder type(String type) {
+    public PlacesURLBuilder type(String type) {
         String typeString = "&type=" + type;
         place.append(typeString);
         return this;

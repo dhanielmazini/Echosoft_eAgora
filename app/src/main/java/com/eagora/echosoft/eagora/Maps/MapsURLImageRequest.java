@@ -4,7 +4,7 @@ package com.eagora.echosoft.eagora.Maps;
  * Created by hhaji on 12/11/17.
  */
 
-public class URLImageRequest {
+public class MapsURLImageRequest {
     public static String RequestURL(String photoRef, int width, int height, Coordenada local) {
         if(!photoRef.equals("SF")) {
             return "https://maps.googleapis.com/maps/api/place/photo?maxheight=" + height +

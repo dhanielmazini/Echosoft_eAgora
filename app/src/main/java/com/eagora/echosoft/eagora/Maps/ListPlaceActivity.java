@@ -1,15 +1,24 @@
 package com.eagora.echosoft.eagora.Maps;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.eagora.echosoft.eagora.CriarRoteiroActivity;
 import com.eagora.echosoft.eagora.GlobalAccess;
@@ -31,13 +40,23 @@ public class ListPlaceActivity extends AppCompatActivity {
     private Uri urlRequest;
     private SimpleLocation location;
     private int flag;
+    List<Place> listaEstab;
+    ImageView imgFilter;
+    String typeOfLocation = "restaurant";
+    Dialog dialog;
+    Activity activity;
+    private AlertDialog alertDialog1;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_place);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        activity = this;
 
+        imgFilter = (ImageView) findViewById(R.id.imgFilter);
+        //AlertDialog (AlertDialog) alertDialog1
         location = new SimpleLocation(this, true);
         location.beginUpdates();
         GlobalAccess.coordenadaUsuario = new Coordenada(location.getLatitude(), location.getLongitude());
@@ -49,6 +68,14 @@ public class ListPlaceActivity extends AppCompatActivity {
             MakePlacesList();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        imgFilter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CreateAlertDialogWithRadioButtonGroup();
+            }
+        });
+
     }
 
     @Override
@@ -60,15 +87,14 @@ public class ListPlaceActivity extends AppCompatActivity {
     }
 
     protected int getJsonOfNearbyPlaces(Coordenada origin, String next_page) {
-
-        urlRequest = new PlacesBuilder()
+        urlRequest = new PlacesURLBuilder()
                 .header()
                 .location(origin)
                 .radius(10000)
-                .type("restaurant")
+                .type(typeOfLocation)
                 .build();
         if(!next_page.equals(""))
-            urlRequest = new PlacesBuilder().next(urlRequest.toString(), next_page);
+            urlRequest = new PlacesURLBuilder().next(urlRequest.toString(), next_page);
 
         try {
             jsonResponse = new DownloadMapsUrl().execute(urlRequest.toString()).get();
@@ -82,7 +108,7 @@ public class ListPlaceActivity extends AppCompatActivity {
     }
 
     public void MakePlacesList() {
-        List<Place> listaEstab = new ArrayList<>();
+        listaEstab = new ArrayList<>();
         try {
             JSONArray results = jsonResponse.getJSONArray("results");
             for(int i=0;i<results.length();i++) {
@@ -95,7 +121,6 @@ public class ListPlaceActivity extends AppCompatActivity {
                     jsonResponse.getJSONArray("results").getJSONObject(i).getDouble("rating"),
                     jsonResponse.getJSONArray("results").getJSONObject(i).getString("vicinity"),
                     jsonResponse.getJSONArray("results").getJSONObject(i).getString("icon"));
-
 
                 try {
                     e.setEstado(jsonResponse.getJSONArray("results").getJSONObject(i).getJSONArray("opening_hours").getJSONObject(0).getBoolean("open_now"));
@@ -129,7 +154,43 @@ public class ListPlaceActivity extends AppCompatActivity {
         catch (JSONException jsonEx){
             Log.d("Exception", jsonEx.toString());
         }
-        lstPlaces.setAdapter(new PlacesAdapter(this,R.layout.item_place_card,listaEstab, flag));
+        lstPlaces.setAdapter(new PlacesItem(this,R.layout.item_place_card,listaEstab, flag));
+
+    }
+
+    public void CreateAlertDialogWithRadioButtonGroup(){
+        CharSequence[] itens = {"Restaurantes", "Bares", "Lojas"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ListPlaceActivity.this);
+
+        builder.setTitle("Selecione um tipo");
+
+        builder.setSingleChoiceItems(itens, -1, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int item) {
+
+                switch(item)
+                {
+                    case 0:
+                        typeOfLocation = "restaurant";
+                        break;
+                    case 1:
+                        typeOfLocation = "bar";
+                        break;
+                    case 2:
+                        typeOfLocation = "store";
+                        break;
+                }
+                if (getJsonOfNearbyPlaces(GlobalAccess.coordenadaLocalViagem, "") == 1) {
+                    MakePlacesList();
+                }
+                alertDialog1.dismiss();
+            }
+        });
+        alertDialog1 = builder.create();
+        alertDialog1.show();
+
     }
 
 }
+

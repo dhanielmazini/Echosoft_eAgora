@@ -3,29 +3,24 @@ package com.eagora.echosoft.eagora.Maps;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eagora.echosoft.eagora.MenuActivity;
 import com.eagora.echosoft.eagora.R;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 /**
  * Created by hhaji on 30/10/17.
  */
-public class PlacesAdapter extends ArrayAdapter<Place> {
+public class PlacesItem extends ArrayAdapter<Place> {
 
     Context context;
     int layoutResourceId;
@@ -33,7 +28,7 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
     private View row;
     private int flag = 0;
 
-    public PlacesAdapter(Context context, int layoutResourceId,List<Place> list, int flag) {
+    public PlacesItem(Context context, int layoutResourceId, List<Place> list, int flag) {
         super(context,0,list);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -67,7 +62,7 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
         holder.txtNome.setText(place.getName());
         holder.txtNota.setText(notaString);
         Picasso.with(getContext()).load(place.getIcone()).into(holder.imgIcon);
-        String url = URLImageRequest.RequestURL(place.getFoto_ref(), 1000, 1000, place.getLocalizacao());
+        String url = MapsURLImageRequest.RequestURL(place.getFoto_ref(), 1000, 1000, place.getLocalizacao());
         Picasso.with(getContext()).load(url).into(holder.imgBanner, new com.squareup.picasso.Callback() {
             Toast toast;
             @Override
