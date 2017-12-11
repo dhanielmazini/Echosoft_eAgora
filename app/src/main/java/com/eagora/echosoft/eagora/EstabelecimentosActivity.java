@@ -18,8 +18,8 @@ import com.eagora.echosoft.eagora.Maps.Coordenada;
 import com.eagora.echosoft.eagora.Maps.DownloadMapsUrl;
 import com.eagora.echosoft.eagora.Maps.ListPlaceActivity;
 import com.eagora.echosoft.eagora.Maps.Place;
-import com.eagora.echosoft.eagora.Maps.PlacesItem;
-import com.eagora.echosoft.eagora.Maps.PlacesURLBuilder;
+import com.eagora.echosoft.eagora.Maps.PlacesAdapter;
+import com.eagora.echosoft.eagora.Maps.PlacesBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -83,14 +83,14 @@ public class EstabelecimentosActivity extends AppCompatActivity {
     }
 
     protected int getJsonOfNearbyPlaces(Coordenada origin, String next_page) {
-        urlRequest = new PlacesURLBuilder()
+        urlRequest = new PlacesBuilder()
                 .header()
                 .location(origin)
                 .radius(10000)
                 .type(typeOfLocation)
                 .build();
         if(!next_page.equals(""))
-            urlRequest = new PlacesURLBuilder().next(urlRequest.toString(), next_page);
+            urlRequest = new PlacesBuilder().next(urlRequest.toString(), next_page);
 
         try {
             jsonResponse = new DownloadMapsUrl().execute(urlRequest.toString()).get();
@@ -150,7 +150,7 @@ public class EstabelecimentosActivity extends AppCompatActivity {
         catch (JSONException jsonEx){
             Log.d("Exception", jsonEx.toString());
         }
-        lstPlaces.setAdapter(new PlacesItem(this,R.layout.item_place_card,listaEstab, flag));
+        lstPlaces.setAdapter(new PlacesAdapter(this,R.layout.item_place_card,listaEstab, flag));
 
     }
 

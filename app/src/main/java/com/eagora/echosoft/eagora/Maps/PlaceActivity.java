@@ -116,7 +116,7 @@ public class PlaceActivity extends AppCompatActivity {
             lblNotaLugar.setText(String.valueOf(place.getNota()));
             lblWebsiteLugar.setText(place.getSite());
 
-            String url = MapsURLImageRequest.mapsImageRequestURL(1000, 1000, place.getLocalizacao());
+            String url = URLImageRequest.mapsImageRequestURL(1000, 1000, place.getLocalizacao());
             Picasso.with(getContext()).load(url).into(imgMapsLugar);
         }
         catch(JSONException e) {
