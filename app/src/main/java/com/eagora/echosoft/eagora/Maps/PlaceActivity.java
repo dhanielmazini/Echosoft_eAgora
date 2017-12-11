@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.eagora.echosoft.eagora.CriarRoteiroActivity;
 import com.eagora.echosoft.eagora.EventosRoteiroActivity;
 import com.eagora.echosoft.eagora.Facebook.RoteiroFacebook;
 import com.eagora.echosoft.eagora.GlobalAccess;
@@ -115,7 +116,7 @@ public class PlaceActivity extends AppCompatActivity {
             lblNotaLugar.setText(String.valueOf(place.getNota()));
             lblWebsiteLugar.setText(place.getSite());
 
-            String url = URLImageRequest.mapsImageRequestURL(1000, 1000, place.getLocalizacao());
+            String url = MapsURLImageRequest.mapsImageRequestURL(1000, 1000, place.getLocalizacao());
             Picasso.with(getContext()).load(url).into(imgMapsLugar);
         }
         catch(JSONException e) {
@@ -149,7 +150,7 @@ public class PlaceActivity extends AppCompatActivity {
                                 .child("roteiros").child(testeidRoteiro).child("maps").child(place.getId());
                         mDatabase.setValue(place);
 
-                        Intent intentEvento = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
+                        Intent intentEvento = new Intent(getApplicationContext(), CriarRoteiroActivity.class);
                         startActivity(intentEvento);
                         finish();
                     }
