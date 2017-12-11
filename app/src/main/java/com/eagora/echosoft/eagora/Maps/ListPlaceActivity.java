@@ -1,5 +1,6 @@
 package com.eagora.echosoft.eagora.Maps;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -10,8 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.eagora.echosoft.eagora.CriarRoteiroActivity;
 import com.eagora.echosoft.eagora.GlobalAccess;
 import com.eagora.echosoft.eagora.R;
+import com.eagora.echosoft.eagora.ResultActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +49,14 @@ public class ListPlaceActivity extends AppCompatActivity {
             MakePlacesList();
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent meuRoteiro = new Intent(getApplicationContext(), CriarRoteiroActivity.class);
+        startActivity(meuRoteiro);
+        finish();
+        super.onBackPressed();
     }
 
     protected int getJsonOfNearbyPlaces(Coordenada origin, String next_page) {

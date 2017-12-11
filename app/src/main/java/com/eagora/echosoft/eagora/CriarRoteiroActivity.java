@@ -90,11 +90,12 @@ public class CriarRoteiroActivity extends AppCompatActivity {
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                mC.set(Calendar.YEAR, year);
-                mC.set(Calendar.MONTH, monthOfYear);
-                mC.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                if(iv == 0)
+                mC.set(Calendar.YEAR, i);
+                mC.set(Calendar.MONTH, i1);
+                mC.set(Calendar.DAY_OF_MONTH, i2);
+                if(iv == 0) {
                     updateLabel(ida);
+                }
                 else
                     updateLabel(volta);
             }
@@ -146,12 +147,20 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                                 localSel.putExtra("flag", 1);
                                 localSel.putExtra("NUM_ROT", nRoteiro);
                                 startActivity(localSel);
+                                finish();
                             } else {
                                 System.out.println("heio");
                                 Intent eveSel = new Intent(getApplicationContext(), EventosRoteiroActivity.class);
                                 eveSel.putExtra("NUM_ROT",nRoteiro);
                                 startActivity(eveSel);
+                                finish();
                             }
+                        } else {
+                            Toast.makeText(
+                                    CriarRoteiroActivity.this,
+                                    "Não selecionou local de viagem.",
+                                    Toast.LENGTH_SHORT
+                            ).show();
                         }
                         return true;
                     }
@@ -184,6 +193,16 @@ public class CriarRoteiroActivity extends AppCompatActivity {
         listSelected();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent meuRoteiro = new Intent(getApplicationContext(), ResultActivity.class);
+        meuRoteiro.putExtra("NUM_ROTEIRO",nRoteiro);
+        meuRoteiro.putExtra("IS_OLD",isold);
+        startActivity(meuRoteiro);
+        finish();
+        super.onBackPressed();
     }
 
     private void listSelected() {
@@ -224,8 +243,10 @@ public class CriarRoteiroActivity extends AppCompatActivity {
             txt.setText("Ainda não selecionou nenhum evento/local...");
             ll.addView(txt);
         } else {
-            for(int i=0;i<listSelecionados.size();i++)
+            for(int i=0;i<listSelecionados.size();i++) {
                 insert(listSelecionados.get(i));
+            }
+
         }
     }
 
@@ -240,15 +261,13 @@ public class CriarRoteiroActivity extends AppCompatActivity {
                         RoteiroFacebook nSelec = dados.getValue(RoteiroFacebook.class);
                         listRot.add(nSelec);
                     }
-
-//                    if (s.equals("Facebook"))
-                        iface();
-
+                    iface();
                 }
             }
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
     }
 
     private void iface() {
@@ -326,12 +345,15 @@ public class CriarRoteiroActivity extends AppCompatActivity {
             txtEndereco.setTextColor(Color.BLACK);
             txtEndereco.setTextSize(13);
         }
+
+        for(int i=listRot.size()-1;i>=0;i--){
+            listRot.remove(i);
+        }
     }
 
     private void updateLabel( EditText txt ) {
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
-
-        txt.setText( new SimpleDateFormat("dd/MM/yy").format(mC.getTime()) );
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
+        txt.setText( sdf.format(mC.getTime()));
     }
 
 }

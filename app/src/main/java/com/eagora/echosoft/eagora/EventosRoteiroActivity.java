@@ -78,6 +78,14 @@ public class EventosRoteiroActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed(){
+        Intent meuRoteiro = new Intent(getApplicationContext(), CriarRoteiroActivity.class);
+        startActivity(meuRoteiro);
+        finish();
+        super.onBackPressed();
+    }
+
     private void atualizaLista(){
         listarLugares1();
         listarLugares2();
