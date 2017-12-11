@@ -231,6 +231,8 @@ public class ResultActivity extends AppCompatActivity {
             txtEndereco.setTextColor(Color.BLACK);
             txtEndereco.setTextSize(13);
         }
+        for(int i=listRot.size()-1;i>=0;i--)
+            listRot.remove(i);
     }
 
 }
